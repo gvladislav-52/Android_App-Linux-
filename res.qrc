@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Header.qml</file>
+        <file>ui/Image Header/menu.png</file>
+        <file>ui/Image Header/search.png</file>
+    </qresource>
+</RCC>
