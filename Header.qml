@@ -9,7 +9,7 @@ Item {
         id: rectangle_header
         color: "#1e1e1e"
         width: parent.width
-        height: parent.height* 0.15
+        height: parent.height
 
         RowLayout
         {
@@ -80,9 +80,8 @@ Item {
             {
                 id: review_button
                 anchors.left: page_rowlayout.left
-                anchors.leftMargin: -rectangle_header.width *0.15
-                Layout.preferredWidth: rectangle_header.width*0.2
-                Layout.preferredHeight: rectangle_header.height*0.4
+                Layout.preferredWidth: rectangle_header.width/2
+                Layout.preferredHeight: rectangle_header.height/2
                 background: Rectangle
                 {
                     id: backgroundRect
@@ -98,7 +97,6 @@ Item {
                             verticalCenter: parent.verticalCenter
                         }
                     }
-                    radius: 10
                     Behavior on color {
                                 ColorAnimation {
                                     duration: 200
@@ -118,9 +116,8 @@ Item {
             {
                 id: nutrition_button
                 anchors.right: page_rowlayout.right
-                anchors.rightMargin: -rectangle_header.width *0.15
-                Layout.preferredWidth: rectangle_header.width*0.2
-                Layout.preferredHeight: rectangle_header.height*0.4
+                Layout.preferredWidth: rectangle_header.width/2
+                Layout.preferredHeight: rectangle_header.height/2
                 background: Rectangle
                 {
                     color: nutrition_button.pressed ? "lightgray" : "transparent"
@@ -135,7 +132,6 @@ Item {
                             verticalCenter: parent.verticalCenter
                         }
                     }
-                    radius: 10
                     Behavior on color {
                                 ColorAnimation {
                                     duration: 200

@@ -1,6 +1,9 @@
 #include "header_widget.h"
 
-Header_widget::Header_widget(QObject *parent) : QObject(parent) {}
+Header_widget::Header_widget(QObject *parent) : QObject(parent)
+{
+    m_page_temp = true;
+}
 
 bool Header_widget::getPage_temp() const
 {

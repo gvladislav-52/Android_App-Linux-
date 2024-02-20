@@ -4,5 +4,9 @@
         <file>Header.qml</file>
         <file>ui/Image Header/menu.png</file>
         <file>ui/Image Header/search.png</file>
+        <file>Review_field.qml</file>
+        <file>Nutrition_field.qml</file>
+        <file>ui/Image Calendar/arrow.png</file>
+        <file>ui/Image Calendar/calendar.png</file>
     </qresource>
 </RCC>
