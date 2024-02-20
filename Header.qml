@@ -89,7 +89,7 @@ Item {
                     Text
                     {
                         text: "ОБЗОР"
-                        color: "#FFFFFF"
+                        color: Header_widget.page_temp?"#FFFFFF":"gray"
                         font.pixelSize: page_rowlayout.height * 0.2
                         anchors
                         {
@@ -124,7 +124,7 @@ Item {
                     Text
                     {
                         text: "ПИТАНИЕ"
-                        color: "#FFFFFF"
+                        color: !Header_widget.page_temp?"#FFFFFF":"gray"
                         font.pixelSize: page_rowlayout.height * 0.2
                         anchors
                         {

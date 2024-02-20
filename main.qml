@@ -62,7 +62,7 @@ Window {
                     anchors.right: parent.right
                     font.pixelSize: parent.height*0.3
                     text: qsTr("20.02.2024")
-                    color: "#FFFFFF"
+                    color: "gray"
                 }
             }
 
