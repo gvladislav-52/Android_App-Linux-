@@ -1,4 +1,4 @@
-import QtQuick 2.15
+    import QtQuick 2.15
 import QtQuick.Layouts
 import QtQuick.Controls
 Item {
@@ -89,7 +89,7 @@ Item {
                     Text
                     {
                         text: "ОБЗОР"
-                        color: Header_widget.page_temp?"#FFFFFF":"gray"
+                        color: !swipeView.currentIndex?"#FFFFFF":"gray"
                         font.pixelSize: page_rowlayout.height * 0.2
                         anchors
                         {
@@ -106,7 +106,7 @@ Item {
 
                 onClicked:
                 {
-                    Header_widget.page_temp = true
+                    swipeView.currentIndex = 0
                 }
 
 
@@ -124,7 +124,7 @@ Item {
                     Text
                     {
                         text: "ПИТАНИЕ"
-                        color: !Header_widget.page_temp?"#FFFFFF":"gray"
+                        color: swipeView.currentIndex?"#FFFFFF":"gray"
                         font.pixelSize: page_rowlayout.height * 0.2
                         anchors
                         {
@@ -141,7 +141,7 @@ Item {
 
                 onClicked:
                 {
-                    Header_widget.page_temp = false
+                    swipeView.currentIndex = 1
                 }
             }
         }
@@ -149,7 +149,7 @@ Item {
 
     Rectangle
     {
-        visible: Header_widget.page_temp
+        visible: !swipeView.currentIndex
         anchors
         {
             bottom: rectangle_header.bottom
@@ -163,7 +163,7 @@ Item {
 
     Rectangle
     {
-        visible: !Header_widget.page_temp
+        visible: swipeView.currentIndex
         anchors
         {
             bottom: rectangle_header.bottom

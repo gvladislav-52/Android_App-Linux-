@@ -8,5 +8,6 @@
         <file>Nutrition_field.qml</file>
         <file>ui/Image Calendar/arrow.png</file>
         <file>ui/Image Calendar/calendar.png</file>
+        <file>ui/Image Main/plus.png</file>
     </qresource>
 </RCC>

@@ -3,7 +3,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "header_widget.h"
+// #include "header_widget.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    Header_widget header_temp;
+    // Header_widget header_temp;
 
     const QUrl url("qrc:/main.qml");
     QObject::connect(
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.load(url);
     QQmlContext * rootContext = engine.rootContext();
-    rootContext->setContextProperty("Header_widget",&header_temp);
+    // rootContext->setContextProperty("Header_widget",&header_temp);
 
     return app.exec();
 }

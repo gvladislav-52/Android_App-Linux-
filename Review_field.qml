@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Layouts
+import QtQuick.Controls
 
 Item
 {
-
     GridLayout {
         id: menu_gridlayout
             columns: 2
@@ -17,22 +17,25 @@ Item
             {
                 Layout.preferredHeight: parent.height/2
                 Layout.preferredWidth: parent.width/2.01
-                color: "#1e1e1e"
+                color: reception_mouse_area.pressed?"gray": "#1e1e1e"
                 border.color: "black"
                 radius: 10
 
-                Text
+                ColumnLayout
                 {
-                    id: reception_text
-                    text:  "Прием"
-                    color: "gray"
                     anchors
                     {
                         top: parent.top
                         left: parent.left
                         topMargin: parent.height *0.1
                         leftMargin: parent.width*0.05
+                        bottom: parent.bottom
                     }
+                Text
+                {
+                    id: reception_text
+                    text:  "Прием"
+                    color: "gray"
                     font.pixelSize: parent.height *0.2
                 }
 
@@ -40,14 +43,40 @@ Item
                 {
                     text:  "0 ккал"
                     color: "#FFFFFF"
+                    font.pixelSize: parent.height *0.3
+                    anchors.top: reception_text.bottom
+                }
+                }
+
+                Image
+                {
+                    id: plus_button_image
+                    source: "qrc:/ui/Image Main/plus.png"
+                    width: parent.width*0.3
+                    height: parent.height*0.3
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
                     anchors
                     {
-                        top: reception_text.top
-                        left: parent.left
-                        topMargin: parent.height *0.3
-                        leftMargin: parent.width*0.05
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: -parent.width*0.05
                     }
-                    font.pixelSize: parent.height *0.3
+                }
+
+                MouseArea
+                {
+                    id: reception_mouse_area
+                    anchors.fill: parent
+                    onClicked: console.log("button reception")
+                }
+
+                Behavior on color
+                {
+                    ColorAnimation
+                    {
+                        duration: 200
+                    }
                 }
             }
 
@@ -56,22 +85,26 @@ Item
                 Layout.preferredHeight: parent.height/2
                 Layout.preferredWidth: parent.width/2.01
                 anchors.right: parent.right
-                color: "#1e1e1e"
+                color: activity_mouse_area.pressed?"gray":"#1e1e1e"
                 border.color: "black"
                 radius: 10
 
-                Text
+                ColumnLayout
                 {
-                    id: activity_text
-                    text:  "Деятельность"
-                    color: "gray"
+                    id: columnasd
                     anchors
                     {
                         top: parent.top
                         left: parent.left
                         topMargin: parent.height *0.1
                         leftMargin: parent.width*0.05
+                        bottom: parent.bottom
                     }
+                Text
+                {
+                    id: activity_text
+                    text:  "Деятельность"
+                    color: "gray"
                     font.pixelSize: parent.height *0.2
                 }
 
@@ -79,37 +112,66 @@ Item
                 {
                     text:  "-0 ккал"
                     color: "#FFFFFF"
+                    font.pixelSize: parent.height *0.3
+                    anchors.top: activity_text.bottom
+                }
+                }
+
+                Image
+                {
+                    source: "qrc:/ui/Image Main/plus.png"
+                    width: parent.width*0.3
+                    height: parent.height*0.3
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
                     anchors
                     {
-                        top: activity_text.top
-                        left: parent.left
-                        topMargin: parent.height *0.3
-                        leftMargin: parent.width*0.05
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: -parent.width*0.05
                     }
-                    font.pixelSize: parent.height *0.3
+
+                }
+
+                MouseArea
+                {
+                    id: activity_mouse_area
+                    anchors.fill: parent
+                    onClicked: console.log("button activity")
+                }
+
+                Behavior on color
+                {
+                    ColorAnimation
+                    {
+                        duration: 200
+                    }
                 }
             }
 
             Rectangle
             {
-                Layout.preferredHeight: parent.height/2
+                Layout.preferredHeight: parent.height/1.8
                 Layout.preferredWidth: parent.width/2.01
-                color: "#1e1e1e"
+                color: drinking_mouse_area.pressed?"gray":"#1e1e1e"
                 border.color: "black"
                 radius: 10
 
+                ColumnLayout
+                {
+                    anchors
+                    {
+                        top: parent.top
+                        left: parent.left
+                        topMargin: parent.height *0.07
+                        leftMargin: parent.width*0.05
+                        bottom: parent.bottom
+                    }
                 Text
                 {
                     id: drinking_text
                     text:  "Питьевой режим"
                     color: "gray"
-                    anchors
-                    {
-                        top: parent.top
-                        left: parent.left
-                        topMargin: parent.height *0.1
-                        leftMargin: parent.width*0.05
-                    }
                     font.pixelSize: parent.height *0.2
                 }
 
@@ -118,83 +180,202 @@ Item
                     id: drinking_text_two
                     text:  "0 л"
                     color: "#FFFFFF"
-                    anchors
-                    {
-                        top: drinking_text.top
-                        left: parent.left
-                        topMargin: parent.height *0.25
-                        leftMargin: parent.width*0.05
-                    }
                     font.pixelSize: parent.height *0.3
+                    anchors.top: drinking_text.bottom
                 }
 
                 Text
                 {
                     text:  "из 2,88 л"
                     color: "gray"
+                    font.pixelSize: parent.height *0.2
+                    anchors.top: drinking_text_two.bottom
+                }
+                }
+
+                Image
+                {
+                    source: "qrc:/ui/Image Main/plus.png"
+                    width: plus_button_image.width
+                    height: plus_button_image.height
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
                     anchors
                     {
-                        top: drinking_text_two.top
-                        left: parent.left
-                        topMargin: parent.height *0.35
-                        leftMargin: parent.width*0.05
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: -parent.width*0.05
                     }
-                    font.pixelSize: parent.height *0.2
+
+                }
+
+                MouseArea
+                {
+                    id: drinking_mouse_area
+                    anchors.fill: parent
+                    onClicked: console.log("button drinking")
+                }
+
+                Behavior on color
+                {
+                    ColorAnimation
+                    {
+                        duration: 200
+                    }
                 }
             }
 
             Rectangle
             {
-                Layout.preferredHeight: parent.height/2
+                id: weight_button
+                Layout.preferredHeight: parent.height/1.8
                 Layout.preferredWidth: parent.width/2.01
                 anchors.right: parent.right
-                color: "#1e1e1e"
+                color: weight_mouse_area.pressed?"gray": "#1e1e1e"
                 border.color: "black"
                 radius: 10
 
-                Text
+                ColumnLayout
                 {
-                    id: weight_text
-                    text:  "Вес"
-                    color: "gray"
                     anchors
                     {
                         top: parent.top
                         left: parent.left
-                        topMargin: parent.height *0.1
+                        topMargin: parent.height *0.07
                         leftMargin: parent.width*0.05
+                        bottom: parent.bottom
                     }
-                    font.pixelSize: parent.height *0.2
+
+                    Text
+                    {
+                        id: weight_text
+                        text:  "Вес"
+                        color: "gray"
+                        font.pixelSize: parent.height *0.2
+                    }
+
+                    Text
+                    {
+                        id: weight_text_two
+                        text:  "72 кг"
+                        color: "#FFFFFF"
+                        font.pixelSize: parent.height *0.3
+                        anchors.top: weight_text.bottom
+                    }
+
+                    Text
+                    {
+                        text:  "цель: 77 кг"
+                        color: "gray"
+                        font.pixelSize: parent.height *0.2
+                        anchors.top: weight_text_two.bottom
+                    }
                 }
 
-                Text
+                Image
                 {
-                    id: weight_text_two
-                    text:  "72 кг"
-                    color: "#FFFFFF"
+                    source: "qrc:/ui/Image Main/plus.png"
+                    width: plus_button_image.width
+                    height: plus_button_image.height
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
                     anchors
                     {
-                        top: weight_text.top
-                        left: parent.left
-                        topMargin: parent.height *0.25
-                        leftMargin: parent.width*0.05
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: -parent.width*0.05
                     }
-                    font.pixelSize: parent.height *0.3
+
                 }
 
-                Text
+                MouseArea
                 {
-                    text:  "цель: 77 кг"
-                    color: "gray"
-                    anchors
+                    id: weight_mouse_area
+                    anchors.fill: parent
+                    onClicked: console.log("button weight")
+                }
+
+                Behavior on color
+                {
+                    ColorAnimation
                     {
-                        top: weight_text_two.top
-                        left: parent.left
-                        topMargin: parent.height *0.35
-                        leftMargin: parent.width*0.05
+                        duration: 200
                     }
-                    font.pixelSize: parent.height *0.2
                 }
             }
         }
+
+    ColumnLayout
+    {
+        anchors
+        {
+            top: menu_gridlayout.bottom
+            topMargin: parent.height*0.1
+            left: menu_gridlayout.left
+        }
+        width: parent.width*0.9
+        height: parent.height-menu_gridlayout.height
+
+        Rectangle
+        {
+            Layout.preferredHeight: parent.height*0.2
+            Layout.preferredWidth: parent.width*0.5
+            color: "transparent"
+            border.color: "black"
+            radius: 10
+        }
+
+        GridLayout
+        {
+            columns: 2
+            rows: 2
+            Layout.preferredHeight: parent.height
+            Layout.preferredWidth: parent.width*0.9
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            Rectangle
+            {
+                id: squirrels_table
+                Layout.preferredHeight: parent.height*0.3
+                Layout.preferredWidth: parent.width*0.5
+                //anchors.left: parent.left
+                color: "transparent"
+                border.color: "black"
+                radius: 10
+            }
+
+            Rectangle
+            {
+                id: carbohydrates_table
+                Layout.preferredHeight: parent.height*0.3
+                Layout.preferredWidth: parent.width*0.5
+                //anchors.right: parent.right
+                color: "transparent"
+                border.color: "black"
+                radius: 10
+            }
+
+            Rectangle
+            {
+                id: fats_table
+                Layout.preferredHeight: parent.height*0.3
+                Layout.preferredWidth: parent.width*0.5
+                anchors.top: squirrels_table.bottom
+                color: "transparent"
+                border.color: "black"
+                radius: 10
+            }
+
+            Rectangle
+            {
+                id: cellulose_table
+                Layout.preferredHeight: parent.height*0.3
+                Layout.preferredWidth: parent.width*0.5
+                anchors.top: carbohydrates_table.bottom
+                color: "transparent"
+                border.color: "black"
+                radius: 10
+            }
+        }
+    }
 }

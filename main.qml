@@ -77,21 +77,25 @@ Window {
             }
         }
 
-        Item
-        {
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: parent.height*0.75
-            Review_field
-            {
-                visible: Header_widget.page_temp
-                anchors.fill: parent
-            }
+        SwipeView {
+                id: swipeView
+                Layout.preferredWidth: parent.width
+                Layout.preferredHeight: parent.height*0.75
 
-            Nutrition_field
-            {
-                visible: !Header_widget.page_temp
-                anchors.fill: parent
+                Item {
+                    Review_field
+                        {
+                            anchors.fill: parent
+                        }
+                }
+
+                Item {
+                    Nutrition_field
+                        {
+                            anchors.fill: parent
+                        }
+                }
+
             }
-        }
     }
 }
