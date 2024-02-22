@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     header_widget.cpp \
-    main.cpp
+    main.cpp \
+    statistics_table_widget.cpp
 
 HEADERS += \
-    header_widget.h
+    header_widget.h \
+    statistics_table_widget.h
 
 FORMS +=
 

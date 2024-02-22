@@ -95,7 +95,6 @@ Window {
                             anchors.fill: parent
                         }
                 }
-
             }
     }
 }

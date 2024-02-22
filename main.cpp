@@ -1,21 +1,18 @@
-#include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QQmlContext>
-
-// #include "header_widget.h"
+#include "QTime"
+#include "QTimer"
+#include "statistics_table_widget.h"
 
 int main(int argc, char *argv[])
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 6, 1)
-    QCoreApplication::setAttribure(Qt::AA_EnableHighDpiScaling);
-#endif
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    // Header_widget header_temp;
 
-    const QUrl url("qrc:/main.qml");
+    qmlRegisterType<statistics_table_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
+    const QUrl url(u"qrc:/main.qml"_qs);
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,
@@ -26,8 +23,5 @@ int main(int argc, char *argv[])
         },
         Qt::QueuedConnection);
     engine.load(url);
-    QQmlContext * rootContext = engine.rootContext();
-    // rootContext->setContextProperty("Header_widget",&header_temp);
-
     return app.exec();
 }

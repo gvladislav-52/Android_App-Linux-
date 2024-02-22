@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts
 import QtQuick.Controls
+import my_statistic_table_qml
 
 Item
 {
@@ -316,13 +317,85 @@ Item
         width: parent.width*0.9
         height: parent.height-menu_gridlayout.height
 
-        Rectangle
+        RowLayout
         {
+            Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height*0.2
-            Layout.preferredWidth: parent.width*0.5
-            color: "transparent"
-            border.color: "black"
-            radius: 10
+
+            Statistic_object
+            {
+                id: statistic_object_main
+                anchors
+                {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                }
+                Layout.preferredWidth: parent.height/1.2
+                Layout.preferredHeight: parent.height/1.2
+                arcWidth: 6
+                outerColor: "orange"
+                innerColor: "gray"
+                speed: 3500
+            }
+
+            ColumnLayout
+            {
+                id: statistic_object_columnlayout
+                anchors
+                {
+                left: statistic_object_main.right
+                leftMargin: parent.width*0.05
+                verticalCenter:parent.verticalCenter
+                }
+                Layout.preferredHeight: parent.height
+                Layout.preferredWidth: parent.horizontalCenter
+                Text
+                {
+                    id: text_one_main_statistic
+                    text: "В целом"
+                    font.pixelSize: parent.height*0.15
+                    color: "lightgray"
+                }
+                Text
+                {
+                    id: text_two_main_statistic
+                    text: "0 ккал"
+                    color: "white"
+                    font.pixelSize: parent.height*0.35
+                    anchors.top:text_one_main_statistic.bottom
+                }
+                Text
+                {
+                    anchors.top:text_two_main_statistic.bottom
+                    text: "из 3443 ккал"
+                    color: "gray"
+                    font.pixelSize: parent.height*0.15
+                }
+            }
+
+            Image
+            {
+                anchors
+                {
+                left: statistic_object_columnlayout.right
+                leftMargin: parent.width*0.075
+                }
+                source: "qrc:/ui/Image Main/info.png"
+                Layout.preferredWidth: parent.height/3
+                Layout.preferredHeight: parent.height/3
+            }
+
+            Image
+            {
+                anchors
+                {
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+                }
+                source: "qrc:/ui/Image Main/medal.png"
+                Layout.preferredWidth: parent.height/1.2
+                Layout.preferredHeight: parent.height/1.2
+            }
         }
 
         GridLayout
@@ -330,51 +403,108 @@ Item
             columns: 2
             rows: 2
             Layout.preferredHeight: parent.height
-            Layout.preferredWidth: parent.width*0.9
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.preferredWidth: parent.width
+            anchors
+            {
+                horizontalCenter: parent.horizontalCenter
+            }
 
             Rectangle
             {
                 id: squirrels_table
-                Layout.preferredHeight: parent.height*0.3
-                Layout.preferredWidth: parent.width*0.5
-                //anchors.left: parent.left
+                Layout.preferredHeight: parent.height*0.25
+                Layout.preferredWidth: parent.width/2.01
+                anchors.left: parent.left
                 color: "transparent"
                 border.color: "black"
-                radius: 10
+
+                Statistic_object
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    width: parent.height/1.2
+                    height: parent.height/1.2
+                    arcWidth: 6
+                    outerColor: "orange"
+                    innerColor: "gray"
+                    speed: 120
+                }
             }
 
             Rectangle
             {
                 id: carbohydrates_table
-                Layout.preferredHeight: parent.height*0.3
-                Layout.preferredWidth: parent.width*0.5
-                //anchors.right: parent.right
+                Layout.preferredHeight: parent.height*0.25
+                Layout.preferredWidth: parent.width/2.01
+                anchors.right: parent.right
                 color: "transparent"
                 border.color: "black"
-                radius: 10
+
+                Statistic_object
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    width: parent.height/1.2
+                    height: parent.height/1.2
+                    arcWidth: 6
+                    outerColor: "orange"
+                    innerColor: "gray"
+                    speed: 2200
+                }
             }
 
             Rectangle
             {
                 id: fats_table
-                Layout.preferredHeight: parent.height*0.3
-                Layout.preferredWidth: parent.width*0.5
-                anchors.top: squirrels_table.bottom
+                Layout.preferredHeight: parent.height*0.25
+                Layout.preferredWidth: parent.width/2.01
+                anchors
+                {
+                    top: squirrels_table.bottom
+                    topMargin: parent.height*0.05
+                    left: parent.left
+                }
                 color: "transparent"
                 border.color: "black"
-                radius: 10
+
+                Statistic_object
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    width: parent.height/1.2
+                    height: parent.height/1.2
+                    arcWidth: 6
+                    outerColor: "orange"
+                    innerColor: "gray"
+                    speed: 500
+                }
             }
 
             Rectangle
             {
                 id: cellulose_table
-                Layout.preferredHeight: parent.height*0.3
-                Layout.preferredWidth: parent.width*0.5
-                anchors.top: carbohydrates_table.bottom
+                Layout.preferredHeight: parent.height*0.25
+                Layout.preferredWidth: parent.width/2.01
+                anchors
+                {
+                    top: carbohydrates_table.bottom
+                    topMargin: parent.height*0.05
+                    right: parent.right
+                }
                 color: "transparent"
                 border.color: "black"
-                radius: 10
+
+                Statistic_object
+                {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    width: parent.height/1.2
+                    height: parent.height/1.2
+                    arcWidth: 6
+                    outerColor: "orange"
+                    innerColor: "gray"
+                    speed: 1000
+                }
             }
         }
     }
