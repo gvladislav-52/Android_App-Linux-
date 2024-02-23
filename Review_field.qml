@@ -322,6 +322,12 @@ Item
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height*0.2
 
+            MouseArea
+            {
+                anchors.fill: parent
+                onClicked: console.log("kkal")
+            }
+
             Statistic_object
             {
                 id: statistic_object_main
@@ -336,6 +342,18 @@ Item
                 outerColor: "orange"
                 innerColor: "gray"
                 speed: 3500
+
+                Text
+                {
+                    anchors
+                    {
+                        verticalCenter:parent.verticalCenter
+                        horizontalCenter:parent.horizontalCenter
+                    }
+
+                    color: "gray"
+                    text: "0%"
+                }
             }
 
             ColumnLayout
@@ -360,7 +378,7 @@ Item
                 {
                     id: text_two_main_statistic
                     text: "0 ккал"
-                    color: "white"
+                    color: "#FFFFFF"
                     font.pixelSize: parent.height*0.35
                     anchors.top:text_one_main_statistic.bottom
                 }
@@ -395,6 +413,12 @@ Item
                 source: "qrc:/ui/Image Main/medal.png"
                 Layout.preferredWidth: parent.height/1.2
                 Layout.preferredHeight: parent.height/1.2
+
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked: console.log("medal")
+                }
             }
         }
 
@@ -409,51 +433,150 @@ Item
                 horizontalCenter: parent.horizontalCenter
             }
 
-            Rectangle
+            RowLayout
             {
                 id: squirrels_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
                 anchors.left: parent.left
-                color: "transparent"
-                border.color: "black"
 
                 Statistic_object
                 {
+                    id: object_one
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    width: parent.height/1.2
-                    height: parent.height/1.2
+                    Layout.preferredHeight: parent.height/1.2
+                    Layout.preferredWidth: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
                     speed: 120
+
+                    Text
+                    {
+                        anchors
+                        {
+                            verticalCenter:parent.verticalCenter
+                            horizontalCenter:parent.horizontalCenter
+                        }
+
+                        color: "gray"
+                        text: "0%"
+                    }
+                }
+
+                Text
+                {
+                    id: object_one_text1
+                    anchors
+                    {
+                        top: parent.top
+                        left: object_one.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "Белки"
+                    color: "lightgray"
+                }
+                Text
+                {
+                    id: object_one_text2
+                    anchors
+                    {
+                        left: object_one.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.3
+                    text: "0 г"
+                    color: "#FFFFFF"
+                    anchors.top:object_one_text1.bottom
+                }
+                Text
+                {
+                    anchors
+                    {
+                        left: object_one.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "из 211 г"
+                    color: "gray"
+                    anchors.top:object_one_text2.bottom
                 }
             }
 
-            Rectangle
+            RowLayout
             {
                 id: carbohydrates_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
                 anchors.right: parent.right
-                color: "transparent"
-                border.color: "black"
 
                 Statistic_object
                 {
+                    id: object_two
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    width: parent.height/1.2
-                    height: parent.height/1.2
+                    Layout.preferredHeight: parent.height/1.2
+                    Layout.preferredWidth: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
                     speed: 2200
+
+                    Text
+                    {
+                        anchors
+                        {
+                            verticalCenter:parent.verticalCenter
+                            horizontalCenter:parent.horizontalCenter
+                        }
+
+                        color: "gray"
+                        text: "0%"
+                    }
+                }
+                Text
+                {
+                    id: object_two_text1
+                    anchors
+                    {
+                        top: parent.top
+                        left: object_two.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "Углеводы"
+                    color: "lightgray"
+                }
+                Text
+                {
+                    id: object_two_text2
+                    anchors
+                    {
+                        left: object_two.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.3
+                    text: "0 г"
+                    color: "#FFFFFF"
+                    anchors.top:object_two_text1.bottom
+                }
+                Text
+                {
+                    anchors
+                    {
+                        left: object_two.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "из 414 г"
+                    color: "gray"
+                    anchors.top:object_two_text2.bottom
                 }
             }
 
-            Rectangle
+            RowLayout
             {
                 id: fats_table
                 Layout.preferredHeight: parent.height*0.25
@@ -464,23 +587,72 @@ Item
                     topMargin: parent.height*0.05
                     left: parent.left
                 }
-                color: "transparent"
-                border.color: "black"
 
                 Statistic_object
                 {
+                    id: object_three
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    width: parent.height/1.2
-                    height: parent.height/1.2
+                    Layout.preferredHeight: parent.height/1.2
+                    Layout.preferredWidth: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
                     speed: 500
+
+                    Text
+                    {
+                        anchors
+                        {
+                            verticalCenter:parent.verticalCenter
+                            horizontalCenter:parent.horizontalCenter
+                        }
+
+                        color: "gray"
+                        text: "0%"
+                    }
+                }
+                Text
+                {
+                    id: object_three_text1
+                    anchors
+                    {
+                        top: parent.top
+                        left: object_three.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "Жиры"
+                    color: "lightgray"
+                }
+                Text
+                {
+                    id: object_three_text2
+                    anchors
+                    {
+                        left: object_three.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.3
+                    text: "0 г"
+                    color: "#FFFFFF"
+                    anchors.top:object_three_text1.bottom
+                }
+                Text
+                {
+                    anchors
+                    {
+                        left: object_three.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "из 95,8 г"
+                    color: "gray"
+                    anchors.top:object_three_text2.bottom
                 }
             }
 
-            Rectangle
+            RowLayout
             {
                 id: cellulose_table
                 Layout.preferredHeight: parent.height*0.25
@@ -491,19 +663,69 @@ Item
                     topMargin: parent.height*0.05
                     right: parent.right
                 }
-                color: "transparent"
-                border.color: "black"
 
                 Statistic_object
                 {
+                    id: object_four
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    width: parent.height/1.2
-                    height: parent.height/1.2
+                    Layout.preferredHeight: parent.height/1.2
+                    Layout.preferredWidth: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
                     speed: 1000
+
+                    Text
+                    {
+                        anchors
+                        {
+                            verticalCenter:parent.verticalCenter
+                            horizontalCenter:parent.horizontalCenter
+                        }
+
+                        color: "gray"
+                        text: "0%"
+                    }
+                }
+
+                Text
+                {
+                    id: object_four_text1
+                    anchors
+                    {
+                        top: parent.top
+                        left: object_four.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "Клетчатка"
+                    color: "lightgray"
+                }
+                Text
+                {
+                    id: object_four_text2
+                    anchors
+                    {
+                        left: object_four.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.3
+                    text: "0 г"
+                    color: "#FFFFFF"
+                    anchors.top:object_four_text1.bottom
+                }
+                Text
+                {
+                    anchors
+                    {
+                        left: object_four.right
+                        leftMargin: parent.width*0.1
+                    }
+                    font.pixelSize: parent.height*0.15
+                    text: "из 27,5 г"
+                    color: "gray"
+                    anchors.top:object_four_text2.bottom
                 }
             }
         }
