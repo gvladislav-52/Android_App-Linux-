@@ -11,5 +11,8 @@
         <file>ui/Image Main/plus.png</file>
         <file>ui/Image Main/info.png</file>
         <file>ui/Image Main/medal.png</file>
+        <file>ui/Image Main/dot.png</file>
+        <file>ui/Image Main/addfile.jpg</file>
+        <file>ui/Image Main/cancel.jpg</file>
     </qresource>
 </RCC>
