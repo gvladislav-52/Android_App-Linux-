@@ -22,79 +22,144 @@ Item
         horizontalCenter: parent.horizontalCenter
         verticalCenter: parent.verticalCenter
         }
-        //spacing: 10
+
             Repeater {
                 model: 7
 
-                Rectangle {
-                    id: rectangle_schedule
-                    Layout.preferredHeight: track.height* 0.07
-                    Layout.preferredWidth: parent.width
+                    Rectangle {
+                        id: tect
+                        Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
+                        Layout.preferredWidth: parent.width
+                        color: "transparent"
 
-                    color: "#1e1e1e"
-                    radius: 10
-                    RowLayout {
-                        anchors.fill: parent
-                        Text
+                        Rectangle
                         {
-                            text: Nutriton_temp.meal_schedule_string[index]
-                            font.pixelSize: parent.height * 0.4
-                            color: "gray"
-                            anchors
-                            {
-                                verticalCenter:parent.verticalCenter
-                                left: parent.left
-                                leftMargin: parent.width*0.03
-                            }
+                            id: name_schedule
+                            width: parent.width
+                            height: track.height * 0.07
+                            color: "#1e1e1e"
+                            radius: 10
+
+                            RowLayout {
+                                                    id: test_rowlayout
+                                                    anchors.fill: parent
+
+                                                    Text
+                                                    {
+                                                        text: Nutriton_temp.meal_schedule_string[index]
+                                                        font.pixelSize: parent.height * 0.4
+                                                        color: "gray"
+                                                        anchors
+                                                        {
+                                                            verticalCenter:parent.verticalCenter
+                                                            left: parent.left
+                                                            leftMargin: parent.width*0.03
+                                                        }
+                                                    }
+
+                                                    Text
+                                                    {
+                                                        text: "2232 ккал."
+                                                        font.pixelSize: parent.height*0.3
+                                                        color: "gray"
+                                                        anchors
+                                                        {
+                                                            verticalCenter:parent.verticalCenter
+                                                            right: dot_image.left
+                                                            rightMargin: parent.width * 0.03
+                                                        }
+                                                    }
+
+                                                    Image
+                                                    {
+                                                        id: dot_image
+                                                        source: "qrc:/ui/Image Main/dot.png"
+                                                        Layout.preferredHeight: parent.height * 0.6
+                                                        Layout.preferredWidth: parent.height * 0.6
+                                                        smooth: true
+                                                        fillMode: Image.PreserveAspectFit
+                                                        anchors
+                                                        {
+                                                            verticalCenter: parent.verticalCenter
+                                                            right: plus_image.left
+                                                            rightMargin: parent.width * 0.03
+                                                        }
+                                                    }
+
+                                                    Image
+                                                    {
+                                                        id: plus_image
+                                                        source: "qrc:/ui/Image Main/plus.png"
+                                                        Layout.preferredHeight: parent.height * 0.6
+                                                        Layout.preferredWidth: parent.height * 0.6
+                                                        smooth: true
+                                                        fillMode: Image.PreserveAspectFit
+                                                        anchors
+                                                        {
+                                                            verticalCenter: parent.verticalCenter
+                                                            right: parent.right
+                                                            rightMargin: parent.width * 0.02
+                                                        }
+
+                                                        MouseArea
+                                                        {
+                                                            anchors.fill: parent
+                                                            onClicked:
+                                                            {
+                                                                sfa.model = sfa.model+1
+                                                            }
+                                                        }
+                                                    }
+                                                }
                         }
 
-                        Text
-                        {
-                            text: "2232 ккал."
-                            font.pixelSize: parent.height*0.3
-                            color: "gray"
-                            anchors
-                            {
-                                verticalCenter:parent.verticalCenter
-                                right: dot_image.left
-                                rightMargin: parent.width * 0.03
-                            }
-                        }
+                        clip: true
 
-                        Image
-                        {
-                            id: dot_image
-                            source: "qrc:/ui/Image Main/dot.png"
-                            Layout.preferredHeight: parent.height * 0.6
-                            Layout.preferredWidth: parent.height * 0.6
-                            smooth: true
-                            fillMode: Image.PreserveAspectFit
+                        ColumnLayout {
                             anchors
                             {
-                                verticalCenter: parent.verticalCenter
-                                right: plus_image.left
-                                rightMargin: parent.width * 0.03
-                            }
-                        }
+                                top: name_schedule.bottom
+                                topMargin: parent.height*0.02
+                                horizontalCenter: parent.horizontalCenter
 
-                        Image
-                        {
-                            id: plus_image
-                            source: "qrc:/ui/Image Main/plus.png"
-                            Layout.preferredHeight: parent.height * 0.6
-                            Layout.preferredWidth: parent.height * 0.6
-                            smooth: true
-                            fillMode: Image.PreserveAspectFit
-                            anchors
-                            {
-                                verticalCenter: parent.verticalCenter
-                                right: parent.right
-                                rightMargin: parent.width * 0.02
                             }
-                        }
+                            Layout.preferredHeight: parent.height
+                            Layout.preferredWidth: parent.width
+                                        Repeater {
+                                            id: sfa
+                                            model: Nutriton_temp.food_schedule_string.length
+                                            RowLayout {
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth:track.width*0.8
+
+                                                Text {
+                                                    id: poprob
+                                                    Layout.alignment: Qt.AlignLeft
+                                                    text: Nutriton_temp.food_schedule_string[index]
+                                                    font.pixelSize: track.height * 0.025
+                                                    color: "#FFFFFF"
+                                                }
+
+                                                Image
+                                                {
+                                                    Layout.alignment: Qt.AlignRight
+                                                    source: "qrc:/ui/Image Main/cancel.jpg"
+                                                    Layout.preferredHeight: track.height * 0.025
+                                                    Layout.preferredWidth: track.height * 0.025
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            sfa.model = sfa.model-1
+                                                            //Nutriton_temp.remove_food_schedule(index)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                     }
-                    border.color: "black"
-                }
             }
 
             Repeater {
@@ -107,7 +172,7 @@ Item
 
                     Text
                     {
-                        text: Nutriton_temp.meal_schedule_string[index]
+                        text: Nutriton_temp.note_string[index]
                         color: "gray"
                         font.pixelSize: parent.height * 0.3
                         anchors
@@ -166,7 +231,7 @@ Item
                     anchors.fill: parent
                     onClicked:
                     {
-                        Nutriton_temp.add_schedule_string()
+                        Nutriton_temp.add_note_string()
                         test.model = test.model+1
                     }
                 }

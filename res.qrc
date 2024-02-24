@@ -14,5 +14,6 @@
         <file>ui/Image Main/dot.png</file>
         <file>ui/Image Main/addfile.jpg</file>
         <file>ui/Image Main/cancel.jpg</file>
+        <file>Test.qml</file>
     </qresource>
 </RCC>
