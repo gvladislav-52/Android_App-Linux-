@@ -106,6 +106,7 @@ Item
                                                             anchors.fill: parent
                                                             onClicked:
                                                             {
+                                                                Nutriton_temp.add_food_string()
                                                                 sfa.model = sfa.model+1
                                                             }
                                                         }
@@ -127,7 +128,7 @@ Item
                             Layout.preferredWidth: parent.width
                                         Repeater {
                                             id: sfa
-                                            model: Nutriton_temp.food_schedule_string.length
+                                            model: 0
                                             RowLayout {
                                                 Layout.preferredHeight: track.height * 0.025
                                                 Layout.preferredWidth:track.width*0.8
@@ -140,8 +141,21 @@ Item
                                                     color: "#FFFFFF"
                                                 }
 
+                                                Text
+                                                {
+                                                    text: "186 ккал."
+                                                    anchors
+                                                    {
+                                                       right: sas.left
+                                                       rightMargin: parent.width *0.1
+                                                    }
+                                                    font.pixelSize: track.height * 0.02
+                                                    color: "lightgray"
+                                                }
+
                                                 Image
                                                 {
+                                                    id: sas
                                                     Layout.alignment: Qt.AlignRight
                                                     source: "qrc:/ui/Image Main/cancel.jpg"
                                                     Layout.preferredHeight: track.height * 0.025
@@ -151,8 +165,9 @@ Item
                                                         anchors.fill: parent
                                                         onClicked:
                                                         {
+                                                            var currentIndex = index
+                                                            Nutriton_temp.remove_food_schedule(currentIndex)
                                                             sfa.model = sfa.model-1
-                                                            //Nutriton_temp.remove_food_schedule(index)
                                                         }
                                                     }
                                                 }

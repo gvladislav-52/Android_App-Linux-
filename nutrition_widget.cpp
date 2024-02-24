@@ -10,14 +10,6 @@ Nutrition_widget::Nutrition_widget()
     m_meal_schedule_string.append("УЖИН");
     m_meal_schedule_string.append("ВТОРОЙ УЖИН");
     m_meal_schedule_string.append("АКТИВНОСТЬ");
-
-    m_food_schedule_string.append("ЗАВТРАК1");
-    m_food_schedule_string.append("ВТОРОЙ ЗАВТРАК1");
-    m_food_schedule_string.append("ОБЕД1");
-    m_food_schedule_string.append("ПОЛДНИК1");
-    m_food_schedule_string.append("УЖИН1");
-    m_food_schedule_string.append("ВТОРОЙ УЖИН1");
-    m_meal_schedule_string.append("АКТИВНОСТЬ1");
 }
 
 QVector<QString> Nutrition_widget::getMeal_schedule_string() const
@@ -33,6 +25,11 @@ void Nutrition_widget::setMeal_schedule_string(const QVector<QString> &newMeal_s
     emit meal_schedule_stringChanged();
 }
 
+void Nutrition_widget::add_food_string()
+{
+    m_food_schedule_string.append("food" + QString::number(m_food_schedule_string.size()));
+}
+
 void Nutrition_widget::add_note_string()
 {
     m_note_string.append("good");
@@ -44,8 +41,6 @@ void Nutrition_widget::remove_food_schedule(int index)
     {
         m_food_schedule_string.remove(index);
     }
-    for(int i = 0; i < m_food_schedule_string.size(); i++)
-        qDebug() << m_food_schedule_string;
 }
 
 QVector<QString> Nutrition_widget::getNote_string() const

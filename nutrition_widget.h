@@ -32,8 +32,9 @@ private:
     QVector<QString> m_food_schedule_string;
 
 public slots:
-        void add_note_string();
+    void add_note_string();
     void remove_food_schedule(int index);
+    void add_food_string();
 };
 
 #endif // NUTRITION_WIDGET_H
