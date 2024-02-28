@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     header_widget.cpp \
     main.cpp \
+    navigation_menu.cpp \
     nutrition_widget.cpp \
     statistics_table_widget.cpp
 
 HEADERS += \
     header_widget.h \
+    navigation_menu.h \
     nutrition_widget.h \
     statistics_table_widget.h
 

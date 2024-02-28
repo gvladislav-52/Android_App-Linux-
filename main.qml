@@ -13,91 +13,10 @@ Window {
         anchors.fill: parent
     }
 
-    ColumnLayout
+    Schedule_field
     {
+        id: schedule_temp
         anchors.fill: parent
-        spacing: 0
-        Header
-        {
-            id: main_header
-            enabled: true
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: parent.height*0.15
-        }
-
-        RowLayout
-        {
-            id: calendar_rowlayout
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: parent.height*0.1
-
-            Image
-            {
-                id: calendar_left_button
-                source: "qrc:/ui/Image Calendar/arrow.png"
-                anchors.left: parent.left
-                Layout.preferredHeight: parent.height*0.4
-                Layout.preferredWidth: parent.width *0.1
-                fillMode: Image.PreserveAspectFit
-                mirror: true
-            }
-
-            RowLayout
-            {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-
-                Image
-                {
-                    id: calendar_image
-                    source: "qrc:/ui/Image Calendar/calendar.png"
-                    Layout.fillHeight: true
-                    Layout.maximumWidth: parent.width*0.2
-                    fillMode: Image.PreserveAspectFit
-                    anchors.left: parent.left
-                }
-
-                Text
-                {
-                    id: calendar_text_data
-                    anchors.right: parent.right
-                    font.pixelSize: parent.height*0.3
-                    text: qsTr("20.02.2024")
-                    color: "gray"
-                }
-            }
-
-            Image
-            {
-                id: calendar_right_button
-                source: "qrc:/ui/Image Calendar/arrow.png"
-                anchors.right: parent.right
-                Layout.preferredHeight: parent.height*0.4
-                Layout.preferredWidth: parent.width *0.1
-                fillMode: Image.PreserveAspectFit
-            }
-        }
-
-        SwipeView {
-                id: swipeView
-                enabled: true
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: parent.height*0.75
-
-                Item {
-                    Review_field
-                        {
-                            anchors.fill: parent
-                        }
-                }
-
-                Item {
-                    Nutrition_field
-                        {
-                            anchors.fill: parent
-                        }
-                }
-            }
     }
 
     SwipeView
@@ -130,32 +49,20 @@ Window {
         {
             if(currentIndex === 0)
             {
-                swipeView.enabled = false
-                main_header.enabled = false
+                schedule_temp.temp_swipe = false
+                //swipeView.enabled = false
+                schedule_temp.temp_header = false
+                //main_header.enabled = false
                 mainbar.enabled = true
             }
             else
             {
-                 swipeView.enabled = true
-                main_header.enabled = true
+                schedule_temp.temp_swipe = true
+                schedule_temp.temp_header = true
+                 //swipeView.enabled = true
+                //main_header.enabled = true
                 mainbar.enabled = false
             }
         }
     }
-
-    // Test {
-    //     id: mainbar_tools
-    //     x: -width
-    //     enabled: false
-    //     width: parent.width/1.5
-    //     height: parent.height
-
-    //     PropertyAnimation {
-    //         id: testAnimation
-    //         target: mainbar_tools
-    //         property: "x"
-    //         duration: 500
-    //         easing.type: Easing.InOutQuad
-    //     }
-    // }
 }

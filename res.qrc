@@ -15,5 +15,12 @@
         <file>ui/Image Main/addfile.jpg</file>
         <file>ui/Image Main/cancel.jpg</file>
         <file>Test.qml</file>
+        <file>ui/Image NaviBar/book.png</file>
+        <file>ui/Image NaviBar/food.png</file>
+        <file>ui/Image NaviBar/person.png</file>
+        <file>ui/Image NaviBar/question.png</file>
+        <file>ui/Image NaviBar/schedule.jpg</file>
+        <file>Schedule_field.qml</file>
+        <file>Account_field.qml</file>
     </qresource>
 </RCC>

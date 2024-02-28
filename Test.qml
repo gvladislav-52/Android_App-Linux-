@@ -6,7 +6,68 @@ Item
 {
     Rectangle
     {
+        id: main_background
         anchors.fill: parent
         color: "#333333"
+
+        ColumnLayout
+        {
+            width: parent.width
+            height: parent.height*0.5
+            anchors.left: parent.left
+            anchors.top: parent.top
+            //anchors.topMargin: parent.height*0.05
+            spacing: 0
+            Repeater
+            {
+                model: Navi_temp.name_navi_bar.length
+                Rectangle
+                {
+                    Layout.preferredHeight: parent.height*0.2
+                    Layout.preferredWidth: parent.width
+                    color: navi_buttons.pressed? "lightgray":"transparent"
+                    RowLayout
+                    {
+                        height: parent.height
+                        width: parent.width/1.5
+                    Image {
+                        id: image_bar
+                        source: Navi_temp.path_icon[index]
+                        Layout.preferredHeight: parent.height*0.4
+                        Layout.preferredWidth: parent.width*0.4
+                        fillMode: Image.PreserveAspectFit
+                        anchors.left: parent.left
+                    }
+                    Text {
+                        anchors.left: image_bar.right
+                        text: Navi_temp.name_navi_bar[index]
+                        font.pixelSize: parent.height*0.3
+                        color: "lightgray"
+                    }
+                    }
+                    Behavior on color {
+                        ColorAnimation {
+                                duration: 200
+                            }
+                        }
+                    MouseArea
+                    {
+                        id: navi_buttons
+                        anchors.fill: parent
+                    }
+                }
+            }
+        }
+
+        Text
+        {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.bottomMargin: parent.height/100
+            anchors.rightMargin: parent.width/100
+            text: qsTr("created by VG .2024")
+            font.pixelSize: parent.height/100
+            color: "darkgray"
+        }
     }
 }
