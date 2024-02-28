@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import QtQuick.Controls
 Item {
     id: header_bar
-
     Rectangle
     {
         id: rectangle_header
@@ -33,7 +32,10 @@ Item {
                 MouseArea
                 {
                     anchors.fill: menu_button
-                    onClicked: console.log("start menu")
+                    onClicked:
+                    {
+                        mainbar.currentIndex = 0
+                    }
                 }
             }
 

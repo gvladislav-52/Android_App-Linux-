@@ -20,6 +20,7 @@ Window {
         Header
         {
             id: main_header
+            enabled: true
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height*0.15
         }
@@ -79,6 +80,7 @@ Window {
 
         SwipeView {
                 id: swipeView
+                enabled: true
                 Layout.preferredWidth: parent.width
                 Layout.preferredHeight: parent.height*0.75
 
@@ -97,4 +99,63 @@ Window {
                 }
             }
     }
+
+    SwipeView
+    {
+        id: mainbar
+        enabled: false
+        width: parent.width
+        height: parent.height
+        currentIndex: 1
+        Item
+        {
+                Test
+                {
+                    width: parent.width/1.5
+                    height: parent.height
+                }
+        }
+
+        Item
+        {
+            Rectangle
+            {
+                anchors.fill: parent
+                color: "transparent"
+            }
+        }
+
+
+        onCurrentIndexChanged:
+        {
+            if(currentIndex === 0)
+            {
+                swipeView.enabled = false
+                main_header.enabled = false
+                mainbar.enabled = true
+            }
+            else
+            {
+                 swipeView.enabled = true
+                main_header.enabled = true
+                mainbar.enabled = false
+            }
+        }
+    }
+
+    // Test {
+    //     id: mainbar_tools
+    //     x: -width
+    //     enabled: false
+    //     width: parent.width/1.5
+    //     height: parent.height
+
+    //     PropertyAnimation {
+    //         id: testAnimation
+    //         target: mainbar_tools
+    //         property: "x"
+    //         duration: 500
+    //         easing.type: Easing.InOutQuad
+    //     }
+    // }
 }
