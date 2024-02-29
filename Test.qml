@@ -54,6 +54,20 @@ Item
                     {
                         id: navi_buttons
                         anchors.fill: parent
+                        onClicked:
+                        {
+                            if(index === 0)
+                            {
+                                account_temp.visible = true
+                                schedule_temp.visible = false
+                            }
+                            else if(index === 1)
+                            {
+                                account_temp.visible = false
+                                schedule_temp.visible = true
+                            }
+                            mainbar.currentIndex = 1;
+                        }
                     }
                 }
             }

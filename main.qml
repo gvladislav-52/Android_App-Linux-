@@ -19,6 +19,13 @@ Window {
         anchors.fill: parent
     }
 
+    Account_field
+    {
+        id: account_temp
+        anchors.fill: parent
+        visible: false
+    }
+
     SwipeView
     {
         id: mainbar
