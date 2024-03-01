@@ -58,17 +58,13 @@ Window {
             if(currentIndex === 0)
             {
                 schedule_temp.temp_swipe = false
-                //swipeView.enabled = false
                 schedule_temp.temp_header = false
-                //main_header.enabled = false
                 mainbar.enabled = true
             }
             else
             {
                 schedule_temp.temp_swipe = true
                 schedule_temp.temp_header = true
-                 //swipeView.enabled = true
-                //main_header.enabled = true
                 mainbar.enabled = false
             }
         }

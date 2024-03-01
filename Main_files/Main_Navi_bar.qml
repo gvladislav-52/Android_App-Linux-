@@ -16,7 +16,6 @@ Item
             height: parent.height*0.5
             anchors.left: parent.left
             anchors.top: parent.top
-            //anchors.topMargin: parent.height*0.05
             spacing: 0
             Repeater
             {

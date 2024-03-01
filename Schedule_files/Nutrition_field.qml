@@ -16,7 +16,6 @@ Item
     ColumnLayout {
         id: lol
         width: parent.width *0.9
-        //height: parent.height
         anchors
         {
         horizontalCenter: parent.horizontalCenter
@@ -132,11 +131,6 @@ Item
                                                     text: "186 ккал."
                                                     Layout.alignment: Qt.AlignRight
                                                     Layout.rightMargin: parent.width *0.1
-                                                    // anchors
-                                                    // {
-                                                    //    right: sas.left
-                                                    //    rightMargin: parent.width *0.1
-                                                    // }
                                                     font.pixelSize: track.height * 0.02
                                                     color: "lightgray"
                                                 }

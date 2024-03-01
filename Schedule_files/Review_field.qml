@@ -24,6 +24,7 @@ Item
 
                 ColumnLayout
                 {
+                    spacing: 0
                     anchors
                     {
                         top: parent.top
@@ -31,6 +32,7 @@ Item
                         topMargin: parent.height *0.1
                         leftMargin: parent.width*0.05
                         bottom: parent.bottom
+                        bottomMargin: parent.height * 0.1
                     }
                 Text
                 {
@@ -38,6 +40,7 @@ Item
                     text:  "Прием"
                     color: "gray"
                     font.pixelSize: parent.height *0.2
+                    Layout.alignment: Qt.AlignTop
                 }
 
                 Text
@@ -45,7 +48,8 @@ Item
                     text:  "0 ккал"
                     color: "#FFFFFF"
                     font.pixelSize: parent.height *0.3
-                    anchors.top: reception_text.bottom
+                    //anchors.top: reception_text.bottom
+                    Layout.alignment: Qt.AlignTop
                 }
                 }
 
@@ -85,13 +89,15 @@ Item
             {
                 Layout.preferredHeight: parent.height/2
                 Layout.preferredWidth: parent.width/2.01
-                anchors.right: parent.right
+                Layout.alignment: Qt.AlignRight
+                //anchors.right: parent.right
                 color: activity_mouse_area.pressed?"gray":"#1e1e1e"
                 border.color: "black"
                 radius: 10
 
                 ColumnLayout
                 {
+                    spacing: 0
                     id: columnasd
                     anchors
                     {
@@ -100,6 +106,7 @@ Item
                         topMargin: parent.height *0.1
                         leftMargin: parent.width*0.05
                         bottom: parent.bottom
+                        bottomMargin: parent.height * 0.1
                     }
                 Text
                 {
@@ -107,6 +114,7 @@ Item
                     text:  "Деятельность"
                     color: "gray"
                     font.pixelSize: parent.height *0.2
+                    Layout.alignment: Qt.AlignTop
                 }
 
                 Text
@@ -114,7 +122,8 @@ Item
                     text:  "-0 ккал"
                     color: "#FFFFFF"
                     font.pixelSize: parent.height *0.3
-                    anchors.top: activity_text.bottom
+                    //anchors.top: activity_text.btom
+                    Layout.alignment: Qt.AlignTop
                 }
                 }
 
@@ -160,6 +169,7 @@ Item
 
                 ColumnLayout
                 {
+                    spacing: 0
                     anchors
                     {
                         top: parent.top
@@ -167,6 +177,7 @@ Item
                         topMargin: parent.height *0.07
                         leftMargin: parent.width*0.05
                         bottom: parent.bottom
+                        bottomMargin: parent.height * 0.1
                     }
                 Text
                 {
@@ -174,6 +185,7 @@ Item
                     text:  "Питьевой режим"
                     color: "gray"
                     font.pixelSize: parent.height *0.2
+                    Layout.alignment: Qt.AlignTop
                 }
 
                 Text
@@ -182,7 +194,7 @@ Item
                     text:  "0 л"
                     color: "#FFFFFF"
                     font.pixelSize: parent.height *0.3
-                    anchors.top: drinking_text.bottom
+                    //anchors.top: drinking_text.bottom
                 }
 
                 Text
@@ -190,7 +202,8 @@ Item
                     text:  "из 2,88 л"
                     color: "gray"
                     font.pixelSize: parent.height *0.2
-                    anchors.top: drinking_text_two.bottom
+                    //anchors.top: drinking_text_two.bottom
+                    Layout.alignment: Qt.AlignBottom
                 }
                 }
 
@@ -231,13 +244,14 @@ Item
                 id: weight_button
                 Layout.preferredHeight: parent.height/1.8
                 Layout.preferredWidth: parent.width/2.01
-                anchors.right: parent.right
+                Layout.alignment: Qt.AlignRight
                 color: weight_mouse_area.pressed?"gray": "#1e1e1e"
                 border.color: "black"
                 radius: 10
 
                 ColumnLayout
                 {
+                    spacing: 0
                     anchors
                     {
                         top: parent.top
@@ -245,14 +259,15 @@ Item
                         topMargin: parent.height *0.07
                         leftMargin: parent.width*0.05
                         bottom: parent.bottom
+                        bottomMargin: parent.height*0.1
                     }
-
                     Text
                     {
                         id: weight_text
                         text:  "Вес"
                         color: "gray"
                         font.pixelSize: parent.height *0.2
+                        Layout.alignment: Qt.AlignTop
                     }
 
                     Text
@@ -261,7 +276,6 @@ Item
                         text:  "72 кг"
                         color: "#FFFFFF"
                         font.pixelSize: parent.height *0.3
-                        anchors.top: weight_text.bottom
                     }
 
                     Text
@@ -269,7 +283,7 @@ Item
                         text:  "цель: 77 кг"
                         color: "gray"
                         font.pixelSize: parent.height *0.2
-                        anchors.top: weight_text_two.bottom
+                        Layout.alignment: Qt.AlignBottom
                     }
                 }
 
@@ -428,17 +442,13 @@ Item
             rows: 2
             Layout.preferredHeight: parent.height
             Layout.preferredWidth: parent.width
-            anchors
-            {
-                horizontalCenter: parent.horizontalCenter
-            }
+            Layout.alignment: Qt.AlignHCenter
 
             Item
             {
                 id: squirrels_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                // anchors.left: parent.left
                 Layout.alignment: Qt.AlignLeft
 
                 Statistic_object
@@ -512,7 +522,6 @@ Item
                 id: carbohydrates_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                //anchors.right: parent.right
                 Layout.alignment: Qt.AlignRight
                 Statistic_object
                 {
@@ -585,13 +594,6 @@ Item
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
                 Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-                //Layout.topMargin: parent.height *0.05
-                // anchors
-                // {
-                //     top: squirrels_table.bottom
-                //     topMargin: parent.height*0.05
-                //     left: parent.left
-                // }
 
                 Statistic_object
                 {
@@ -664,13 +666,6 @@ Item
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
                 Layout.alignment: Qt.AlignRight| Qt.AlignTop
-                //Layout.topMargin: parent.height *0.01
-                // anchors
-                // {
-                //     top: carbohydrates_table.bottom
-                //     topMargin: parent.height*0.05
-                //     right: parent.right
-                // }
 
                 Statistic_object
                 {

@@ -154,7 +154,6 @@ Item {
         {
             bottom: rectangle_header.bottom
             left: rectangle_header.left
-            //horizontalCenter: review_button.horizontalCenter
         }
         width: rectangle_header.width/2
         height: rectangle_header.height *0.05
@@ -168,7 +167,6 @@ Item {
         {
             bottom: rectangle_header.bottom
             right: rectangle_header.right
-            //horizontalCenter: nutrition_button.horizontalCenter
         }
         width: rectangle_header.width/2
         height: rectangle_header.height *0.05

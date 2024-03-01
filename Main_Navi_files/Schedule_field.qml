@@ -27,7 +27,8 @@ Item {
             {
                 id: calendar_left_button
                 source: "qrc:/ui/Image Calendar/arrow.png"
-                anchors.left: parent.left
+                //anchors.left: parent.left
+                Layout.alignment: Qt.AlignLeft
                 Layout.preferredHeight: parent.height*0.4
                 Layout.preferredWidth: parent.width *0.1
                 fillMode: Image.PreserveAspectFit
@@ -36,8 +37,7 @@ Item {
 
             RowLayout
             {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
                 Image
                 {
@@ -46,13 +46,13 @@ Item {
                     Layout.fillHeight: true
                     Layout.maximumWidth: parent.width*0.2
                     fillMode: Image.PreserveAspectFit
-                    anchors.left: parent.left
+                    Layout.alignment: Qt.AlignLeft
                 }
 
                 Text
                 {
                     id: calendar_text_data
-                    anchors.right: parent.right
+                    Layout.alignment: Qt.AlignRight
                     font.pixelSize: parent.height*0.3
                     text: qsTr("20.02.2024")
                     color: "gray"
@@ -63,7 +63,7 @@ Item {
             {
                 id: calendar_right_button
                 source: "qrc:/ui/Image Calendar/arrow.png"
-                anchors.right: parent.right
+                Layout.alignment: Qt.AlignRight
                 Layout.preferredHeight: parent.height*0.4
                 Layout.preferredWidth: parent.width *0.1
                 fillMode: Image.PreserveAspectFit

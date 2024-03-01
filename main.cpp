@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
-    engine.load(url);
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("Nutriton_temp",&nutrition_temp);
     rootContext->setContextProperty("Navi_temp", &navi_temp);
     rootContext->setContextProperty("Account_temp",&account_temp);
+    engine.load(url);
     return app.exec();
 }
