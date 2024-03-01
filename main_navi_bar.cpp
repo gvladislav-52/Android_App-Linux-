@@ -1,6 +1,6 @@
-#include "navigation_menu.h"
+#include "main_navi_bar.h"
 
-Navigation_menu::Navigation_menu()
+Main_navi_bar::Main_navi_bar()
 {
     m_name_navi_bar.append("Мой профиль");
     m_name_navi_bar.append("Рацион");
@@ -15,12 +15,12 @@ Navigation_menu::Navigation_menu()
     m_path_icon.append("qrc:/ui/Image NaviBar/question.png");
 }
 
-QVector<QString> Navigation_menu::getName_navi_bar() const
+QVector<QString> Main_navi_bar::getName_navi_bar() const
 {
     return m_name_navi_bar;
 }
 
-void Navigation_menu::setName_navi_bar(const QVector<QString> &newName_navi_bar)
+void Main_navi_bar::setName_navi_bar(const QVector<QString> &newName_navi_bar)
 {
     if (m_name_navi_bar == newName_navi_bar)
         return;
@@ -28,12 +28,12 @@ void Navigation_menu::setName_navi_bar(const QVector<QString> &newName_navi_bar)
     emit name_navi_barChanged();
 }
 
-QVector<QString> Navigation_menu::getPath_icon() const
+QVector<QString> Main_navi_bar::getPath_icon() const
 {
     return m_path_icon;
 }
 
-void Navigation_menu::setPath_icon(const QVector<QString> &newPath_icon)
+void Main_navi_bar::setPath_icon(const QVector<QString> &newPath_icon)
 {
     if (m_path_icon == newPath_icon)
         return;

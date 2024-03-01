@@ -26,24 +26,26 @@ Item
                     Layout.preferredHeight: parent.height*0.2
                     Layout.preferredWidth: parent.width
                     color: navi_buttons.pressed? "lightgray":"transparent"
-                    RowLayout
-                    {
+                    RowLayout {
                         height: parent.height
-                        width: parent.width/1.5
-                    Image {
-                        id: image_bar
-                        source: Navi_temp.path_icon[index]
-                        Layout.preferredHeight: parent.height*0.4
-                        Layout.preferredWidth: parent.width*0.4
-                        fillMode: Image.PreserveAspectFit
-                        anchors.left: parent.left
-                    }
-                    Text {
-                        anchors.left: image_bar.right
-                        text: Navi_temp.name_navi_bar[index]
-                        font.pixelSize: parent.height*0.3
-                        color: "lightgray"
-                    }
+                        width: parent.width / 1.5
+
+                        Image {
+                            id: image_bar
+                            source: Navi_temp.path_icon[index]
+                            Layout.preferredHeight: parent.height * 0.4
+                            Layout.preferredWidth: parent.width * 0.4
+                            fillMode: Image.PreserveAspectFit
+                        }
+
+                            Text {
+                                text: Navi_temp.name_navi_bar[index]
+                                font.pixelSize: parent.height * 0.3
+                                color: "lightgray"
+                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                 Layout.fillWidth: true
+                            }
+
                     }
                     Behavior on color {
                         ColorAnimation {

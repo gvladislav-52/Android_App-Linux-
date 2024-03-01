@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts
+import "../Account_files"
+
 Item {
 
         Rectangle
@@ -9,25 +11,14 @@ Item {
             width: parent.width
             height: parent.height * 0.075
 
-            RowLayout
-            {
-                id: header_rowlayout
-
-                anchors.top: rectangle_header.top
-                anchors.left: rectangle_header.left
-                anchors.right: rectangle_header.right
-                anchors.bottom: rectangle_header.bottom
-                anchors.horizontalCenter: rectangle_header.horizontalCenter
-
-
                 Image
                 {
                     id: menu_button
-                    anchors.left: header_rowlayout.left
                     anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
                     source: "qrc:/ui/Image Header/menu.png"
-                    Layout.preferredWidth: rectangle_header.width*0.1
-                    Layout.preferredHeight: rectangle_header.height *0.6
+                    width: parent.width*0.1
+                    height:  parent.height*0.6
                     fillMode: Image.PreserveAspectFit
 
                     MouseArea
@@ -46,11 +37,13 @@ Item {
                         text: "Мой профиль"
                         color: "#FFFFFF"
                         font.pixelSize: rectangle_header.height *0.4
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.verticalCenter: parent.verticalCenter
+                        anchors
+                        {
+                            horizontalCenter: parent.horizontalCenter
+                            verticalCenter: parent.verticalCenter
+                        }
                 }
             }
-        }
 
         Item {
             anchors.top: rectangle_header.bottom
@@ -81,7 +74,7 @@ Item {
                         Layout.preferredHeight: parent.height*0.3
                         Text
                         {
-                            anchors.left: parent.left
+                            Layout.alignment: Qt.AlignLeft
                             text: "Аккаунт: "
                             color: "gray"
                             font.pixelSize: parent.height*0.5
@@ -89,7 +82,8 @@ Item {
 
                         Text
                         {
-                            anchors.right: parent.right
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.fillWidth: true
                             text: "vlad.grachev.9700@mail.ru"
                             color: "white"
                             font.pixelSize: parent.height*0.5
@@ -102,7 +96,7 @@ Item {
                         Layout.preferredHeight: parent.height*0.3
                         Text
                         {
-                            anchors.left: parent.left
+                            Layout.alignment: Qt.AlignLeft
                             text: "Индекс массы тела: "
                             color: "gray"
                             font.pixelSize: parent.height*0.5
@@ -110,7 +104,8 @@ Item {
 
                         Text
                         {
-                            anchors.right: parent.right
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.fillWidth: true
                             text: "22, 2"
                             color: "white"
                             font.pixelSize: parent.height*0.5
@@ -124,7 +119,6 @@ Item {
                         Text
                         {
                             id: data_text
-                            anchors.left: parent.left
                             text: "Добавлено: "
                             color: "gray"
                             font.pixelSize: parent.height*0.5
@@ -132,8 +126,8 @@ Item {
 
                         Text
                         {
-                            anchors.left: data_text.right
-                            anchors.leftMargin: parent.width*0.05
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.fillWidth: true
                             text: "3 дней"
                             color: "white"
                             font.pixelSize: parent.height*0.5
@@ -141,7 +135,7 @@ Item {
 
                         Text
                         {
-                            anchors.right: parent.right
+                            Layout.alignment: Qt.AlignRight
                             text: "Выход"
                             color: "green"
                             font.pixelSize: parent.height*0.5

@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
-
+import "../Schedule_files"
 Item {
     property var  temp_swipe: true
     property var  temp_header: true

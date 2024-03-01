@@ -317,7 +317,7 @@ Item
         width: parent.width*0.9
         height: parent.height-menu_gridlayout.height
 
-        RowLayout
+        Item
         {
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height*0.2
@@ -336,8 +336,8 @@ Item
                     verticalCenter: parent.verticalCenter
                     left: parent.left
                 }
-                Layout.preferredWidth: parent.height/1.2
-                Layout.preferredHeight: parent.height/1.2
+                width: parent.height/1.2
+                height: parent.height/1.2
                 arcWidth: 6
                 outerColor: "orange"
                 innerColor: "gray"
@@ -365,8 +365,9 @@ Item
                 leftMargin: parent.width*0.05
                 verticalCenter:parent.verticalCenter
                 }
-                Layout.preferredHeight: parent.height
-                Layout.preferredWidth: parent.horizontalCenter
+                height: parent.height*0.9
+                width: parent.horizontalCenter
+                spacing: 0
                 Text
                 {
                     id: text_one_main_statistic
@@ -380,11 +381,9 @@ Item
                     text: "0 ккал"
                     color: "#FFFFFF"
                     font.pixelSize: parent.height*0.35
-                    anchors.top:text_one_main_statistic.bottom
                 }
                 Text
                 {
-                    anchors.top:text_two_main_statistic.bottom
                     text: "из 3443 ккал"
                     color: "gray"
                     font.pixelSize: parent.height*0.15
@@ -396,11 +395,12 @@ Item
                 anchors
                 {
                 left: statistic_object_columnlayout.right
-                leftMargin: parent.width*0.075
+                leftMargin: parent.width*0.25
+                verticalCenter: parent.verticalCenter
                 }
                 source: "qrc:/ui/Image Main/info.png"
-                Layout.preferredWidth: parent.height/3
-                Layout.preferredHeight: parent.height/3
+                width: parent.height/3
+                height: parent.height/3
             }
 
             Image
@@ -411,8 +411,8 @@ Item
                 verticalCenter: parent.verticalCenter
                 }
                 source: "qrc:/ui/Image Main/medal.png"
-                Layout.preferredWidth: parent.height/1.2
-                Layout.preferredHeight: parent.height/1.2
+                width: parent.height/1.2
+                height: parent.height/1.2
 
                 MouseArea
                 {
@@ -433,20 +433,21 @@ Item
                 horizontalCenter: parent.horizontalCenter
             }
 
-            RowLayout
+            Item
             {
                 id: squirrels_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                anchors.left: parent.left
+                // anchors.left: parent.left
+                Layout.alignment: Qt.AlignLeft
 
                 Statistic_object
                 {
                     id: object_one
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    Layout.preferredHeight: parent.height/1.2
-                    Layout.preferredWidth: parent.height/1.2
+                    height: parent.height/1.2
+                    width: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
@@ -471,6 +472,7 @@ Item
                     anchors
                     {
                         top: parent.top
+                        topMargin: parent.height * 0.1
                         left: object_one.right
                         leftMargin: parent.width*0.1
                     }
@@ -505,20 +507,20 @@ Item
                 }
             }
 
-            RowLayout
+            Item
             {
                 id: carbohydrates_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                anchors.right: parent.right
-
+                //anchors.right: parent.right
+                Layout.alignment: Qt.AlignRight
                 Statistic_object
                 {
                     id: object_two
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    Layout.preferredHeight: parent.height/1.2
-                    Layout.preferredWidth: parent.height/1.2
+                    height: parent.height/1.2
+                    width: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
@@ -542,6 +544,7 @@ Item
                     anchors
                     {
                         top: parent.top
+                        topMargin: parent.height * 0.1
                         left: object_two.right
                         leftMargin: parent.width*0.1
                     }
@@ -576,25 +579,27 @@ Item
                 }
             }
 
-            RowLayout
+            Item
             {
                 id: fats_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                anchors
-                {
-                    top: squirrels_table.bottom
-                    topMargin: parent.height*0.05
-                    left: parent.left
-                }
+                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                //Layout.topMargin: parent.height *0.05
+                // anchors
+                // {
+                //     top: squirrels_table.bottom
+                //     topMargin: parent.height*0.05
+                //     left: parent.left
+                // }
 
                 Statistic_object
                 {
                     id: object_three
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    Layout.preferredHeight: parent.height/1.2
-                    Layout.preferredWidth: parent.height/1.2
+                    height: parent.height/1.2
+                    width: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
@@ -618,6 +623,7 @@ Item
                     anchors
                     {
                         top: parent.top
+                        topMargin: parent.height*0.1
                         left: object_three.right
                         leftMargin: parent.width*0.1
                     }
@@ -652,25 +658,27 @@ Item
                 }
             }
 
-            RowLayout
+            Item
             {
                 id: cellulose_table
                 Layout.preferredHeight: parent.height*0.25
                 Layout.preferredWidth: parent.width/2.01
-                anchors
-                {
-                    top: carbohydrates_table.bottom
-                    topMargin: parent.height*0.05
-                    right: parent.right
-                }
+                Layout.alignment: Qt.AlignRight| Qt.AlignTop
+                //Layout.topMargin: parent.height *0.01
+                // anchors
+                // {
+                //     top: carbohydrates_table.bottom
+                //     topMargin: parent.height*0.05
+                //     right: parent.right
+                // }
 
                 Statistic_object
                 {
                     id: object_four
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
-                    Layout.preferredHeight: parent.height/1.2
-                    Layout.preferredWidth: parent.height/1.2
+                    height: parent.height/1.2
+                    width: parent.height/1.2
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
@@ -695,6 +703,7 @@ Item
                     anchors
                     {
                         top: parent.top
+                        topMargin: parent.height * 0.1
                         left: object_four.right
                         leftMargin: parent.width*0.1
                     }

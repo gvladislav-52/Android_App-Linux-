@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
+import "../Main_Navi_files"
 
 Window {
     visible: true
@@ -35,7 +36,7 @@ Window {
         currentIndex: 1
         Item
         {
-                Test
+                Main_Navi_bar
                 {
                     width: parent.width/1.5
                     height: parent.height

@@ -15,15 +15,14 @@ Item {
             id: header_rowlayout
 
             anchors.top: rectangle_header.top
-            anchors.left: rectangle_header.left
-            anchors.right: rectangle_header.right
+            width: parent.width
             anchors.horizontalCenter: rectangle_header.horizontalCenter
 
 
             Image
             {
                 id: menu_button
-                anchors.left: header_rowlayout.left
+                Layout.alignment: Qt.AlignLeft
                 source: "qrc:/ui/Image Header/menu.png"
                 Layout.preferredWidth: rectangle_header.width*0.1
                 Layout.preferredHeight: rectangle_header.height *0.3
@@ -45,14 +44,13 @@ Item {
                     text: "Таблица Калорийности"
                     color: "#FFFFFF"
                     font.pixelSize: header_rowlayout.height * 0.7
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             }
 
             Image
             {
                 id: search_button
-                anchors.right: header_rowlayout.right
+                Layout.alignment: Qt.AlignRight
                 source: "qrc:/ui/Image Header/search.png"
                 Layout.preferredWidth: rectangle_header.width*0.1
                 Layout.preferredHeight: rectangle_header.height *0.3
@@ -81,7 +79,7 @@ Item {
             ToolButton
             {
                 id: review_button
-                anchors.left: page_rowlayout.left
+                Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: rectangle_header.width/2
                 Layout.preferredHeight: rectangle_header.height/2
                 background: Rectangle
@@ -117,7 +115,7 @@ Item {
             ToolButton
             {
                 id: nutrition_button
-                anchors.right: page_rowlayout.right
+                Layout.alignment: Qt.AlignRight
                 Layout.preferredWidth: rectangle_header.width/2
                 Layout.preferredHeight: rectangle_header.height/2
                 background: Rectangle
@@ -156,7 +154,7 @@ Item {
         {
             bottom: rectangle_header.bottom
             left: rectangle_header.left
-            horizontalCenter: review_button.horizontalCenter
+            //horizontalCenter: review_button.horizontalCenter
         }
         width: rectangle_header.width/2
         height: rectangle_header.height *0.05
@@ -170,7 +168,7 @@ Item {
         {
             bottom: rectangle_header.bottom
             right: rectangle_header.right
-            horizontalCenter: nutrition_button.horizontalCenter
+            //horizontalCenter: nutrition_button.horizontalCenter
         }
         width: rectangle_header.width/2
         height: rectangle_header.height *0.05

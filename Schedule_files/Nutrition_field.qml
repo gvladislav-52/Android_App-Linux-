@@ -49,12 +49,9 @@ Item
                                                         text: Nutriton_temp.meal_schedule_string[index]
                                                         font.pixelSize: parent.height * 0.4
                                                         color: "gray"
-                                                        anchors
-                                                        {
-                                                            verticalCenter:parent.verticalCenter
-                                                            left: parent.left
-                                                            leftMargin: parent.width*0.03
-                                                        }
+                                                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                        Layout.leftMargin: parent.width * 0.03
+                                                        Layout.fillWidth: true
                                                     }
 
                                                     Text
@@ -62,12 +59,8 @@ Item
                                                         text: "2232 ккал."
                                                         font.pixelSize: parent.height*0.3
                                                         color: "gray"
-                                                        anchors
-                                                        {
-                                                            verticalCenter:parent.verticalCenter
-                                                            right: dot_image.left
-                                                            rightMargin: parent.width * 0.03
-                                                        }
+                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                        Layout.rightMargin: parent.width * 0.03
                                                     }
 
                                                     Image
@@ -78,12 +71,8 @@ Item
                                                         Layout.preferredWidth: parent.height * 0.6
                                                         smooth: true
                                                         fillMode: Image.PreserveAspectFit
-                                                        anchors
-                                                        {
-                                                            verticalCenter: parent.verticalCenter
-                                                            right: plus_image.left
-                                                            rightMargin: parent.width * 0.03
-                                                        }
+                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                        Layout.rightMargin: parent.width * 0.03
                                                     }
 
                                                     Image
@@ -94,12 +83,8 @@ Item
                                                         Layout.preferredWidth: parent.height * 0.6
                                                         smooth: true
                                                         fillMode: Image.PreserveAspectFit
-                                                        anchors
-                                                        {
-                                                            verticalCenter: parent.verticalCenter
-                                                            right: parent.right
-                                                            rightMargin: parent.width * 0.02
-                                                        }
+                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                        Layout.margins: parent.width * 0.02
 
                                                         MouseArea
                                                         {
@@ -139,16 +124,19 @@ Item
                                                     text: Nutriton_temp.food_schedule_string[index]
                                                     font.pixelSize: track.height * 0.025
                                                     color: "#FFFFFF"
+                                                    Layout.fillWidth: true
                                                 }
 
                                                 Text
                                                 {
                                                     text: "186 ккал."
-                                                    anchors
-                                                    {
-                                                       right: sas.left
-                                                       rightMargin: parent.width *0.1
-                                                    }
+                                                    Layout.alignment: Qt.AlignRight
+                                                    Layout.rightMargin: parent.width *0.1
+                                                    // anchors
+                                                    // {
+                                                    //    right: sas.left
+                                                    //    rightMargin: parent.width *0.1
+                                                    // }
                                                     font.pixelSize: track.height * 0.02
                                                     color: "lightgray"
                                                 }
@@ -190,57 +178,51 @@ Item
                         text: Nutriton_temp.note_string[index]
                         color: "gray"
                         font.pixelSize: parent.height * 0.3
-                        anchors
-                        {
-                            verticalCenter:parent.verticalCenter
-                            left: parent.left
-                            leftMargin: parent.width*0.03
-                        }
+                        Layout.alignment: Qt.ALignLeft | Qt.AlignVCenter
+                        Layout.leftMargin: parent.width * 0.03
+                        Layout.fillWidth: true
                     }
 
                     Image
                     {
-                        anchors
-                        {
-                            right: parent.right
-                            rightMargin: parent.width*0.03
-                        }
+                        Layout.alignment: Qt.ALignRight| Qt.AlignVCenter
+                        Layout.rightMargin: parent.width * 0.03
                         source: "qrc:/ui/Image Main/cancel.jpg"
                         Layout.preferredHeight: parent.height * 0.4
                         Layout.preferredWidth: parent.height * 0.4
                     }
                 }
             }
-            RowLayout
+            Item
             {
                 Layout.preferredHeight: track.height* 0.1
-                Layout.preferredWidth: parent.width
-                anchors.horizontalCenter:parent.horizontalCenter
+                Layout.preferredWidth: parent.width*0.6
+                Layout.alignment: Qt.AlignHCenter
 
                 Image
                 {
                     anchors
                     {
-                        right: add_button.left
-                        rightMargin: parent.width*0.03
+                    left: parent.left
+                    verticalCenter: parent.verticalCenter
                     }
                     source: "qrc:/ui/Image Main/addfile.jpg"
-                    Layout.preferredHeight: parent.height * 0.4
-                    Layout.preferredWidth: parent.height * 0.4
+                    height: parent.height * 0.4
+                    width: parent.height * 0.4
                 }
 
                 Text
                 {
-                    id: add_button
                     text: "Добавить заметку"
                     anchors
                     {
-                        verticalCenter:parent.verticalCenter
-                        horizontalCenter:parent.horizontalCenter
+                        horizontalCenter: parent.horizontalCenter
+                        verticalCenter: parent.verticalCenter
                     }
                     color: "gray"
                     font.pixelSize: parent.height * 0.3
                 }
+
                 MouseArea
                 {
                     anchors.fill: parent
