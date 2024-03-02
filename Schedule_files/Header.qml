@@ -13,8 +13,8 @@ Item {
         RowLayout
         {
             id: header_rowlayout
-
             anchors.top: rectangle_header.top
+            anchors.topMargin: parent.height * 0.1
             width: parent.width
             anchors.horizontalCenter: rectangle_header.horizontalCenter
 

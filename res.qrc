@@ -23,5 +23,9 @@
         <file>Schedule_files/Review_field.qml</file>
         <file>Account_files/test.qml</file>
         <file>Main_Navi_files/Account_field.qml</file>
+        <file>Account_files/Account_purpose_widget.qml</file>
+        <file>ui/Image Header/arrow.png</file>
+        <file>Account_files/Account_data_observation_widget.qml</file>
+        <file>Account_files/Account_insert_widget.qml</file>
     </qresource>
 </RCC>

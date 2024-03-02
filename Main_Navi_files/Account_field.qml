@@ -3,7 +3,10 @@ import QtQuick.Layouts
 import "../Account_files"
 
 Item {
-
+    Item
+    {
+        id: main_window_account
+        anchors.fill: parent
         Rectangle
         {
             id: rectangle_header
@@ -148,7 +151,7 @@ Item {
             {
                 anchors.top: profile_rectangle.bottom
                 anchors.topMargin: parent.height*0.025
-                height: (parent.height-profile_rectangle.height) *0.7
+                height: (parent.height-profile_rectangle.height) *0.5
                 width: parent.width *0.9
                 anchors.horizontalCenter: parent.horizontalCenter
 
@@ -158,7 +161,7 @@ Item {
 
                     Rectangle
                     {
-                        Layout.preferredHeight: parent.height*0.1
+                        Layout.preferredHeight: parent.height*0.2
                         Layout.preferredWidth: parent.width
                         color: profile_button_menu.pressed? "lightgray":"transparent"
                         Text
@@ -166,7 +169,7 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             text: Account_temp.account_name_button[index]
                             color: "lightgray"
-                            font.pixelSize: parent.height*0.4
+                            font.pixelSize: parent.height*0.3
                         }
 
                         Rectangle
@@ -189,10 +192,34 @@ Item {
                         {
                             id: profile_button_menu
                             anchors.fill: parent
-                            onClicked: console.log("work button mennu")
+                            onClicked:
+                            {
+                                if(index === 0)
+                                {
+                                purpose_widget.visible = true
+                                main_window_account.enabled = false
+                                }
+                                else if (index === 1)
+                                {
+                                    data_observation_widget.visible = true
+                                    main_window_account.enabled = false
+                                }
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+        Account_purpose_widget {
+            id: purpose_widget
+            visible: false
+            anchors.fill: parent
+        }
+
+        Account_data_observation_widget {
+            id: data_observation_widget
+            visible: false
+            anchors.fill: parent
         }
 }
