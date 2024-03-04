@@ -59,7 +59,7 @@ Item {
 
             Repeater
             {
-                model: Account_temp.purpose_name_static.length
+                model: Account_temp.purpose_object.purpose_name_static.length
 
                 Rectangle
                 {
@@ -71,7 +71,7 @@ Item {
                         id: text_purpose
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_name_static[index]
+                        text: Account_temp.purpose_object.purpose_name_static[index]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -90,7 +90,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Account_temp.purpose_index_dynamic[index]
+                        text: Account_temp.purpose_object.purpose_index_dynamic[index]
                         color: index%2? "lightgray":"green"
                         font.pixelSize: parent.height*0.3
                     }

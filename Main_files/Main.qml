@@ -7,6 +7,7 @@ Window {
     visible: true
     title: qsTr("Android App")
 
+    property int repeater_index
     Rectangle
     {
         id: main_background

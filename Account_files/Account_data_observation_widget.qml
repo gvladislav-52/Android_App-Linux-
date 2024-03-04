@@ -179,7 +179,7 @@ Item {
                         height: parent.height * 0.2
                         Repeater
                         {
-                            model: Account_temp.account_characters.length
+                            model: Account_temp.data_observation.account_characters.length//Account_temp.data_observation.account_characters.length
                             Item
                             {
                                 Layout.preferredHeight: parent.height * 0.3
@@ -190,7 +190,7 @@ Item {
                                 {
                                     anchors.left: parent.left
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: Account_temp.account_characters[index]
+                                    text: Account_temp.data_observation.account_characters[index]
                                     color: "#FFFFFF"
                                     font.pixelSize: parent.height *0.5
                                 }
@@ -207,7 +207,7 @@ Item {
                                         anchors.right: parent.right
                                         anchors.rightMargin: parent.width * 0.1
                                         anchors.verticalCenter: parent.verticalCenter
-                                        text: "73,0"
+                                        text: Account_temp.data_observation.account_vector_weight[index]
                                         color: "#FFFFFF"
                                         font.pixelSize: parent.height *0.5
                                     }
@@ -230,38 +230,138 @@ Item {
             {
                 Rectangle
                 {
+                    id: track
                     anchors.fill: parent
                     color: "#121212"
-                    ColumnLayout
+                    ScrollView
                     {
-                        width: parent.width
-                        height: parent.height * 0.2
-                        Repeater
+                        anchors.fill: parent
+                        clip: true
+                        ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                        contentHeight: lol.height * 1.05
+
+                    ColumnLayout {
+                        id: lol
+                        width: parent.width *0.9
+                        anchors
                         {
-                            model: Account_temp.account_characters.length
-                            Item
-                            {
-                                Layout.preferredHeight: parent.height * 0.3
-                                Layout.preferredWidth: parent.width * 0.9
-                                Layout.alignment: Qt.AlignHCenter
+                        horizontalCenter: parent.horizontalCenter
+                        verticalCenter: parent.verticalCenter
+                        }
 
-                                Text
-                                {
-                                    anchors.left: parent.left
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    text: Account_temp.account_characters[index]
-                                    color: "#FFFFFF"
-                                    font.pixelSize: parent.height *0.5
-                                }
+                            Repeater {
+                                model: Account_temp.data_observation.account_characters.length
 
-                                Rectangle
-                                {
-                                    anchors.bottom: parent.bottom
-                                    anchors.bottomMargin: -parent.height * 0.2
-                                    width: parent.width
-                                    height: parent.height * 0.025
-                                    color: "#FFFFFF"
-                                }
+                                    Rectangle {
+                                        id: tect
+                                        Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
+                                        Layout.preferredWidth: parent.width
+                                        color: "transparent"
+
+                                        Rectangle
+                                        {
+                                            id: name_schedule
+                                            width: parent.width
+                                            height: track.height * 0.07
+                                            color: "transparent"
+
+                                            Text
+                                            {
+                                                anchors.left: parent.left
+                                                anchors.verticalCenter: parent.verticalCenter
+                                                text: Account_temp.data_observation.account_characters[index]
+                                                color: "#FFFFFF"
+                                                font.pixelSize: parent.height *0.5
+                                            }
+                                            MouseArea
+                                            {
+                                                anchors.fill: parent
+                                                onClicked:
+                                                {
+                                                    //Nutriton_temp.add_food_string()
+                                                    //sfa.model = sfa.model+1
+
+                                                    if(sfa.model === 0)
+                                                    {
+                                                        sfa.model = Account_temp.data_observation.account_vector_weight.length
+                                                        testtt.visible = true
+                                                    }
+                                                    else
+                                                    {
+                                                        sfa.model = 0
+                                                        testtt.visible = false
+                                                    }
+                                                }
+                                            }
+
+                                            Rectangle
+                                            {
+                                                width: parent.width
+                                                height: parent.height * 0.07
+                                                anchors.bottom: parent.bottom
+                                                color: "#FFFFFF"
+                                            }
+                                        }
+
+                                        ColumnLayout {
+                                            id: testtt
+                                            visible: true
+                                            anchors
+                                            {
+                                                top: name_schedule.bottom
+                                                topMargin: parent.height*0.02
+                                                horizontalCenter: parent.horizontalCenter
+
+                                            }
+                                            Layout.preferredHeight: parent.height
+                                            Layout.preferredWidth: parent.width
+                                                        Repeater {
+                                                            id: sfa
+                                                            model: Account_temp.data_observation.account_vector_weight.length
+                                                            RowLayout {
+                                                                Layout.preferredHeight: track.height * 0.025
+                                                                Layout.preferredWidth:track.width*0.8
+
+                                                                Text {
+                                                                    id: poprob
+                                                                    Layout.alignment: Qt.AlignLeft
+                                                                    text: Account_temp.data_observation.account_vector_weight[index]
+                                                                    font.pixelSize: track.height * 0.025
+                                                                    color: "#FFFFFF"
+                                                                    Layout.fillWidth: true
+                                                                }
+
+                                                                Text
+                                                                {
+                                                                    text: "186 ккал."
+                                                                    Layout.alignment: Qt.AlignRight
+                                                                    Layout.rightMargin: parent.width *0.1
+                                                                    font.pixelSize: track.height * 0.02
+                                                                    color: "lightgray"
+                                                                }
+
+                                                                Image
+                                                                {
+                                                                    id: sas
+                                                                    Layout.alignment: Qt.AlignRight
+                                                                    source: "qrc:/ui/Image Main/cancel.jpg"
+                                                                    Layout.preferredHeight: track.height * 0.025
+                                                                    Layout.preferredWidth: track.height * 0.025
+                                                                    MouseArea
+                                                                    {
+                                                                        anchors.fill: parent
+                                                                        onClicked:
+                                                                        {
+                                                                            var currentIndex = index
+                                                                            Nutriton_temp.remove_food_schedule(currentIndex)
+                                                                            sfa.model = sfa.model-1
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                    }
                             }
                         }
                     }

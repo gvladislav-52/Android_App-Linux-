@@ -26,6 +26,7 @@
         <file>Account_files/Account_purpose_widget.qml</file>
         <file>ui/Image Header/arrow.png</file>
         <file>Account_files/Account_data_observation_widget.qml</file>
-        <file>Account_files/Account_insert_widget.qml</file>
+        <file>Account_files/Account_my_food_widget.qml</file>
+        <file>Account_files/Add_my_food.qml</file>
     </qresource>
 </RCC>

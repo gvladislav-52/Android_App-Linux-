@@ -172,7 +172,7 @@ void Nutrition_widget::add_food_string()
 
 void Nutrition_widget::add_note_string()
 {
-    m_note_string.append("good");
+    m_note_string.append("good" + QString::number(m_note_string.size()));
 }
 
 void Nutrition_widget::remove_food_schedule(int index)

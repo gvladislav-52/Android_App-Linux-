@@ -196,12 +196,17 @@ Item {
                             {
                                 if(index === 0)
                                 {
-                                purpose_widget.visible = true
-                                main_window_account.enabled = false
+                                    purpose_widget.visible = true
+                                    main_window_account.enabled = false
                                 }
                                 else if (index === 1)
                                 {
                                     data_observation_widget.visible = true
+                                    main_window_account.enabled = false
+                                }
+                                else if (index === 2)
+                                {
+                                    my_food_widget.visible = true
                                     main_window_account.enabled = false
                                 }
                             }
@@ -219,6 +224,13 @@ Item {
 
         Account_data_observation_widget {
             id: data_observation_widget
+            visible: false
+            anchors.fill: parent
+        }
+
+        Account_my_food_widget
+        {
+            id: my_food_widget
             visible: false
             anchors.fill: parent
         }

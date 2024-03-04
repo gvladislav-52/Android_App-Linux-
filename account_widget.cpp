@@ -3,30 +3,14 @@
 Account_widget::Account_widget()
 {
     m_account_name_button.append("Твоя цель");
-   // m_account_name_button.append("Собственные питательные вещества");
-   // m_account_name_button.append("Регулярная деятельность");
     m_account_name_button.append("Данные для наблюдения");
     m_account_name_button.append("Мои блюда");
-   // m_account_name_button.append("Настройка рациона");
     m_account_name_button.append("Изменить пароль");
-   // m_account_name_button.append("Уведомления");
-   // m_account_name_button.append("Присоединенные прмиложения");
     m_account_name_button.append("Удалить аккаунт");
 
-    m_purpose_name_static.append("Цель");
-    m_purpose_name_static.append("Дневной прием");
-    m_purpose_name_static.append("Ожидаемый вес");
-    m_purpose_name_static.append("Мой питьевой режим");
-    m_purpose_name_static.append("Твой обмен веществ");
-
-    m_purpose_index_dynamic.append("Набрать мышечную массу");
-    m_purpose_index_dynamic.append("3433 ккал.");
-    m_purpose_index_dynamic.append("77,0 кг");
-    m_purpose_index_dynamic.append("2,88");
-    m_purpose_index_dynamic.append("1809, 0 ккал");
-
-    m_account_characters.append("Вес [кг]");
-    m_account_characters.append("Рост");
+    m_purpose_object = new Purpose_widget();
+    m_data_observation = new Data_observation_widget();
+    m_my_food_object = new My_food_widget();
 }
 
 QVector<QString> Account_widget::getAccount_name_button() const
@@ -42,12 +26,27 @@ void Account_widget::setAccount_name_button(const QVector<QString> &newAccount_n
     emit account_name_buttonChanged();
 }
 
-QVector<QString> Account_widget::getPurpose_name_static() const
+Purpose_widget::Purpose_widget()
+{
+    m_purpose_name_static.append("Цель");
+    m_purpose_name_static.append("Дневной прием");
+    m_purpose_name_static.append("Ожидаемый вес");
+    m_purpose_name_static.append("Мой питьевой режим");
+    m_purpose_name_static.append("Твой обмен веществ");
+
+    m_purpose_index_dynamic.append("Набрать мышечную массу");
+    m_purpose_index_dynamic.append("3433 ккал.");
+    m_purpose_index_dynamic.append("77,0 кг");
+    m_purpose_index_dynamic.append("2,88");
+    m_purpose_index_dynamic.append("1809, 0 ккал");
+}
+
+QVector<QString> Purpose_widget::getPurpose_name_static() const
 {
     return m_purpose_name_static;
 }
 
-void Account_widget::setPurpose_name_static(const QVector<QString> &newPurpose_name_static)
+void Purpose_widget::setPurpose_name_static(const QVector<QString> &newPurpose_name_static)
 {
     if (m_purpose_name_static == newPurpose_name_static)
         return;
@@ -55,12 +54,12 @@ void Account_widget::setPurpose_name_static(const QVector<QString> &newPurpose_n
     emit purpose_name_staticChanged();
 }
 
-QVector<QString> Account_widget::getPurpose_index_dynamic() const
+QVector<QString> Purpose_widget::getPurpose_index_dynamic() const
 {
     return m_purpose_index_dynamic;
 }
 
-void Account_widget::setPurpose_index_dynamic(const QVector<QString> &newPurpose_index_dynamic)
+void Purpose_widget::setPurpose_index_dynamic(const QVector<QString> &newPurpose_index_dynamic)
 {
     if (m_purpose_index_dynamic == newPurpose_index_dynamic)
         return;
@@ -68,15 +67,75 @@ void Account_widget::setPurpose_index_dynamic(const QVector<QString> &newPurpose
     emit purpose_index_dynamicChanged();
 }
 
-QVector<QString> Account_widget::getAccount_characters() const
+Data_observation_widget::Data_observation_widget()
+{
+    m_account_characters.append("Вес [кг]");
+    m_account_characters.append("Рост");
+
+    m_account_vector_weight.append("73");
+    m_account_vector_weight.append("74");
+}
+
+QVector<QString> Data_observation_widget::getAccount_characters() const
 {
     return m_account_characters;
 }
 
-void Account_widget::setAccount_characters(const QVector<QString> &newAccount_characters)
+void Data_observation_widget::setAccount_characters(const QVector<QString> &newAccount_characters)
 {
     if (m_account_characters == newAccount_characters)
         return;
     m_account_characters = newAccount_characters;
     emit account_charactersChanged();
+}
+
+Purpose_widget *Account_widget::purpose_object() const
+{
+    return m_purpose_object;
+}
+
+Data_observation_widget *Account_widget::data_observation() const
+{
+    return m_data_observation;
+}
+
+My_food_widget::My_food_widget()
+{
+    m_my_food_static.append("Макароны");
+}
+
+void My_food_widget::add_my_food()
+{
+    m_my_food_static.append("Еда" + QString::number(m_my_food_static.size()));
+}
+
+QVector<QString> My_food_widget::getMy_food_static() const
+{
+    return m_my_food_static;
+}
+
+void My_food_widget::setMy_food_static(const QVector<QString> &newMy_food_static)
+{
+    if (m_my_food_static == newMy_food_static)
+        return;
+    m_my_food_static = newMy_food_static;
+    emit my_food_staticChanged();
+}
+
+My_food_widget *Account_widget::my_food_object() const
+{
+    return m_my_food_object;
+}
+
+QVector<QString> Data_observation_widget::getAccount_vector_weight() const
+{
+    return m_account_vector_weight;
+}
+
+void Data_observation_widget::setAccount_vector_weight(const QVector<QString> &newAccount_vector_weight)
+{
+    if (m_account_vector_weight == newAccount_vector_weight)
+        return;
+    m_account_vector_weight = newAccount_vector_weight;
+    emit account_vector_weightChanged();
 }
