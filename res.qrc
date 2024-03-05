@@ -28,5 +28,6 @@
         <file>Account_files/Account_data_observation_widget.qml</file>
         <file>Account_files/Account_my_food_widget.qml</file>
         <file>Account_files/Add_my_food.qml</file>
+        <file>Account_files/VIew_my_food.qml</file>
     </qresource>
 </RCC>

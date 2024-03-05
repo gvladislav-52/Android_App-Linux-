@@ -55,21 +55,19 @@ Item {
         width: parent.width
         color: "#121212"
 
-
-
         Item
         {
-            id: track
+            id: main_scroll_item_food
             anchors.fill: parent
             ScrollView
             {
                 anchors.fill: parent
                 clip: true
                 ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-                contentHeight: lol.height * 1.05
+                contentHeight: list_my_food.height * 1.05
 
             ColumnLayout {
-                id: lol
+                id: list_my_food
                 width: parent.width *0.9
                 anchors
                 {
@@ -77,11 +75,11 @@ Item {
                 verticalCenter: parent.verticalCenter
                 }
                     Repeater {
-                        id: test
+                        id: my_food_repeater
                         model: Account_temp.my_food_object.my_food_static.length
 
                         Item {
-                            Layout.preferredHeight: track.height* 0.1
+                            Layout.preferredHeight: main_scroll_item_food.height* 0.1
                             Layout.preferredWidth: parent.width
 
                             Image
@@ -121,11 +119,24 @@ Item {
                                 width: parent.height * 0.3
                                 height: parent.height * 0.3
                             }
+
+                            MouseArea
+                            {
+                                anchors.fill: parent
+                                onClicked:
+                                {
+                                    view_my_food.static_index = index
+                                    view_my_food.enabled = true
+                                    view_my_food.visible = true
+                                    add_my_food.enabled = false
+                                    food_list.enabled = false
+                                }
+                            }
                         }
                     }
                     Item
                     {
-                        Layout.preferredHeight: track.height* 0.1
+                        Layout.preferredHeight: main_scroll_item_food.height* 0.1
                         Layout.preferredWidth: parent.width*0.6
                         Layout.alignment: Qt.AlignHCenter
 
@@ -159,7 +170,9 @@ Item {
                             onClicked:
                             {
                                 add_my_food.visible = true
+                                add_my_food.enabled = true
                                 food_list.enabled = false
+                                view_my_food.enabled = false
                             }
                         }
                     }
@@ -174,5 +187,12 @@ Item {
     {
         id: add_my_food
         visible: false
+    }
+
+    VIew_my_food
+    {
+        id: view_my_food
+        visible: false
+        static_index: 0
     }
 }

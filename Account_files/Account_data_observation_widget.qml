@@ -179,7 +179,7 @@ Item {
                         height: parent.height * 0.2
                         Repeater
                         {
-                            model: Account_temp.data_observation.account_characters.length//Account_temp.data_observation.account_characters.length
+                            model: Account_temp.data_observation.account_characters.length
                             Item
                             {
                                 Layout.preferredHeight: parent.height * 0.3
@@ -203,14 +203,24 @@ Item {
                                     radius: 5
                                     border.color: "black"
 
-                                    Text {
+                                    TextInput {
+                                        id: text_weigth
                                         anchors.right: parent.right
                                         anchors.rightMargin: parent.width * 0.1
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: Account_temp.data_observation.account_vector_weight[index]
                                         color: "#FFFFFF"
                                         font.pixelSize: parent.height *0.5
+                                        inputMethodHints: Qt.ImhDigitsOnly
+
+                                        onAccepted: {
+                                            focus = false
+                                            Account_temp.data_observation.add_weight(text_weigth.text)
+                                           }
+
+
                                     }
+                                    clip: true
                                 }
                                 Rectangle
                                 {
@@ -278,9 +288,6 @@ Item {
                                                 anchors.fill: parent
                                                 onClicked:
                                                 {
-                                                    //Nutriton_temp.add_food_string()
-                                                    //sfa.model = sfa.model+1
-
                                                     if(sfa.model === 0)
                                                     {
                                                         sfa.model = Account_temp.data_observation.account_vector_weight.length
@@ -327,7 +334,7 @@ Item {
                                                                     Layout.alignment: Qt.AlignLeft
                                                                     text: Account_temp.data_observation.account_vector_weight[index]
                                                                     font.pixelSize: track.height * 0.025
-                                                                    color: "#FFFFFF"
+                                                                    color: "red"
                                                                     Layout.fillWidth: true
                                                                 }
 

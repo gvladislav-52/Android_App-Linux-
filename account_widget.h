@@ -82,6 +82,9 @@ signals:
 private:
     QVector<QString> m_account_characters;
     QVector<QString> m_account_vector_weight;
+
+public slots:
+    void add_weight(QString num);
 };
 
 class My_food_widget: public QObject
@@ -100,7 +103,8 @@ signals:
 private:
     QVector<QString> m_my_food_static;
 public slots:
-    void add_my_food();
+    void add_my_food(QString name_food);
+    void redact_my_food(int index, QString name);
 };
 
 #endif // ACCOUNT_WIDGET_H

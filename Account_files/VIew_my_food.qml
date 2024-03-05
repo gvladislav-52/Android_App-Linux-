@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 Rectangle {
+    property variant static_index
     width: parent.width * 0.9
     height: parent.height * 0.8
     anchors.horizontalCenter: parent.horizontalCenter
@@ -41,8 +42,8 @@ Rectangle {
                     anchors.fill: parent
                     onClicked:
                     {
-                        add_my_food.visible = false
-                        add_my_food.enabled = false
+                        view_my_food.visible = false
+                        view_my_food.enabled = false
                         food_list.enabled = true
                     }
                 }
@@ -53,7 +54,7 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.top: parent.top
                 font.pixelSize: parent.height
-                text: qsTr("Создание еды")
+                text: qsTr("Просмотр еды")
                 color: "white"
             }
 
@@ -72,25 +73,65 @@ Rectangle {
         {
             Layout.alignment: Qt.alignTop | Qt.AlignHCenter
             Layout.topMargin: parent.height * 0.05
-            Layout.preferredHeight: parent.height * 0.15
+            Layout.preferredHeight: parent.height * 0.1
             Layout.preferredWidth: parent.width * 0.9
             border.color: "black"
             radius: 10
             color: "#121212"
 
-            Text
+            Rectangle
             {
                 anchors
                 {
-                    top: parent.top
-                    topMargin: parent.height * 0.1
-                    left: parent.left
-                    leftMargin: parent.width * 0.025
+                    verticalCenter: parent.verticalCenter
+                    horizontalCenter: parent.horizontalCenter
+                }
+                height: parent.height * 0.5
+                width: parent.width * 0.95
+                color: "transparent"
+
+                Text
+                {
+                    anchors
+                    {
+                        left: parent.left
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    text: "Название:"
+                    font.pixelSize: parent.height * 0.7
+                    color: "gray"
                 }
 
-                text: "Название:"
-                font.pixelSize: parent.height * 0.15
-                color: "lightgray"
+                Rectangle
+                {
+                    anchors
+                    {
+                        right: parent.right
+                    }
+                    height: parent.height
+                    width: parent.width * 0.6
+                    clip: true
+                    color: "transparent"
+                TextInput
+                {
+                    id: naming_food
+                    anchors
+                    {
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    text: Account_temp.my_food_object.my_food_static[static_index]
+                    font.pixelSize: parent.height * 0.7
+                    color: "white"
+
+                    onAccepted: {
+                        focus = false
+                    }
+                }
+                }
+                clip: true
             }
 
             Rectangle
@@ -101,38 +142,10 @@ Rectangle {
                     bottomMargin: parent.height * 0.1
                     horizontalCenter: parent.horizontalCenter
                 }
-                height: parent.height * 0.5
+
+                color: "green"
+                height: parent.height * 0.05
                 width: parent.width * 0.95
-                color: "transparent"
-
-                TextInput
-                {
-                    id: naming_food
-                    anchors
-                    {
-                        left: parent.left
-                        bottom: parent.bottom
-                        bottomMargin: parent.height * 0.1
-                    }
-
-                    text: "Название еды"
-                    color: "white"
-                    font.pixelSize: parent.height * 0.4
-                    width: parent.width
-                }
-
-                Rectangle
-                {
-                    anchors
-                    {
-                        bottom: parent.bottom
-                    }
-
-                    color: "green"
-                    height: parent.height * 0.05
-                    width: parent.width
-                }
-                clip: true
             }
         }
 
@@ -267,10 +280,9 @@ Rectangle {
                 anchors.fill: parent
                 onClicked:
                 {
-                    Account_temp.my_food_object.add_my_food(naming_food.text)
-                    my_food_repeater.model = Account_temp.my_food_object.my_food_static.length
-                    add_my_food.visible = false
-                    add_my_food.enabled = false
+                    Account_temp.my_food_object.redact_my_food(static_index, naming_food.text)
+                    view_my_food.visible = false
+                    view_my_food.enabled = false
                     food_list.enabled = true
                 }
             }

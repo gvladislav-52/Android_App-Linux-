@@ -104,9 +104,15 @@ My_food_widget::My_food_widget()
     m_my_food_static.append("Макароны");
 }
 
-void My_food_widget::add_my_food()
+void My_food_widget::add_my_food(QString name_food)
 {
-    m_my_food_static.append("Еда" + QString::number(m_my_food_static.size()));
+    m_my_food_static.append(name_food);
+}
+
+void My_food_widget::redact_my_food(int index, QString name)
+{
+    m_my_food_static[index] = name;
+    emit my_food_staticChanged();
 }
 
 QVector<QString> My_food_widget::getMy_food_static() const
@@ -137,5 +143,11 @@ void Data_observation_widget::setAccount_vector_weight(const QVector<QString> &n
     if (m_account_vector_weight == newAccount_vector_weight)
         return;
     m_account_vector_weight = newAccount_vector_weight;
+    emit account_vector_weightChanged();
+}
+
+void Data_observation_widget::add_weight(QString num)
+{
+    m_account_vector_weight.append(num);
     emit account_vector_weightChanged();
 }
