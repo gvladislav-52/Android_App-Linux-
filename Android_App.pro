@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     account_widget.cpp \
     main.cpp \
+    main_data_management_db.cpp \
     main_navi_bar.cpp \
     schedule_widget.cpp
 
 HEADERS += \
     account_widget.h \
+    main_data_management_db.h \
     main_navi_bar.h \
     schedule_widget.h
 

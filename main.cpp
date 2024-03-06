@@ -4,6 +4,7 @@
 #include "account_widget.h"
 #include "schedule_widget.h"
 #include "main_navi_bar.h"
+#include "main_data_management_db.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     Nutrition_widget nutrition_temp;
     Main_navi_bar navi_temp;
     Account_widget account_temp;
+    Main_data_management_db db;
     qmlRegisterType<Schedule_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 

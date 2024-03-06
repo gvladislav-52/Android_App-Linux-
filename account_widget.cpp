@@ -74,6 +74,9 @@ Data_observation_widget::Data_observation_widget()
 
     m_account_vector_weight.append("73");
     m_account_vector_weight.append("74");
+
+    m_account_date_temp.append("08.02.2024");
+    m_account_date_temp.append("15.02.2024");
 }
 
 QVector<QString> Data_observation_widget::getAccount_characters() const
@@ -150,4 +153,33 @@ void Data_observation_widget::add_weight(QString num)
 {
     m_account_vector_weight.append(num);
     emit account_vector_weightChanged();
+}
+
+void Data_observation_widget::add_date()
+{
+    QDate currentDate = QDate::currentDate();
+    m_account_date_temp.append(currentDate.toString("dd-MM-yyyy"));
+    emit account_date_tempChanged();
+}
+
+void Data_observation_widget::remove_item_schedule(int index)
+{
+    if (index >= 0 && index < m_account_vector_weight.size())
+    {
+        m_account_vector_weight.remove(index);
+    }
+    emit account_vector_weightChanged();
+}
+
+QVector<QString> Data_observation_widget::getAccount_date_temp() const
+{
+    return m_account_date_temp;
+}
+
+void Data_observation_widget::setAccount_date_temp(const QVector<QString> &newAccount_date_temp)
+{
+    if (m_account_date_temp == newAccount_date_temp)
+        return;
+    m_account_date_temp = newAccount_date_temp;
+    emit account_date_tempChanged();
 }

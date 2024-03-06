@@ -205,19 +205,37 @@ Item {
 
                                     TextInput {
                                         id: text_weigth
-                                        anchors.right: parent.right
-                                        anchors.rightMargin: parent.width * 0.1
-                                        anchors.verticalCenter: parent.verticalCenter
+                                        anchors.fill: parent
                                         text: Account_temp.data_observation.account_vector_weight[index]
                                         color: "#FFFFFF"
                                         font.pixelSize: parent.height *0.5
                                         inputMethodHints: Qt.ImhDigitsOnly
+                                        verticalAlignment: TextInput.AlignVCenter
+                                        horizontalAlignment: TextInput.AlignRight
+                                        anchors.rightMargin: parent.width * 0.1
+
+
+                                        onFocusChanged:
+                                        {
+                                            if (focus) {
+                                                text_weigth.text = ""
+                                            }
+                                        }
+
+                                        onActiveFocusChanged: {
+                                                    if (!activeFocus && text_weigth.text === "") {
+                                                        text_weigth.text = Account_temp.data_observation.account_vector_weight[Account_temp.data_observation.account_vector_weight.length-1]
+                                                    }
+                                                }
 
                                         onAccepted: {
                                             focus = false
-                                            Account_temp.data_observation.add_weight(text_weigth.text)
+                                            if(text_weigth.text !== "")
+                                                {
+                                                Account_temp.data_observation.add_weight(text_weigth.text)
+                                                Account_temp.data_observation.add_date();
+                                                }
                                            }
-
 
                                     }
                                     clip: true
@@ -332,25 +350,25 @@ Item {
                                                                 Text {
                                                                     id: poprob
                                                                     Layout.alignment: Qt.AlignLeft
-                                                                    text: Account_temp.data_observation.account_vector_weight[index]
+                                                                    text: Account_temp.data_observation.account_date_temp[index]
                                                                     font.pixelSize: track.height * 0.025
-                                                                    color: "red"
+                                                                    color: "lightgray"
                                                                     Layout.fillWidth: true
                                                                 }
 
                                                                 Text
                                                                 {
-                                                                    text: "186 ккал."
+                                                                    text: Account_temp.data_observation.account_vector_weight[index]
                                                                     Layout.alignment: Qt.AlignRight
                                                                     Layout.rightMargin: parent.width *0.1
-                                                                    font.pixelSize: track.height * 0.02
-                                                                    color: "lightgray"
+                                                                    font.pixelSize: track.height * 0.025
+                                                                    color: "#FFFFFF"
                                                                 }
 
                                                                 Image
                                                                 {
                                                                     id: sas
-                                                                    Layout.alignment: Qt.AlignRight
+                                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                                                                     source: "qrc:/ui/Image Main/cancel.jpg"
                                                                     Layout.preferredHeight: track.height * 0.025
                                                                     Layout.preferredWidth: track.height * 0.025
@@ -360,7 +378,8 @@ Item {
                                                                         onClicked:
                                                                         {
                                                                             var currentIndex = index
-                                                                            Nutriton_temp.remove_food_schedule(currentIndex)
+                                                                            Account_temp.data_observation.remove_item_schedule(currentIndex)
+                                                                            //Nutriton_temp.remove_food_schedule(currentIndex)
                                                                             sfa.model = sfa.model-1
                                                                         }
                                                                     }
