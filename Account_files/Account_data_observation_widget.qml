@@ -179,7 +179,7 @@ Item {
                         height: parent.height * 0.2
                         Repeater
                         {
-                            model: Account_temp.data_observation.account_characters.length
+                            model: Main_logic_temp.account_widget.data_observation.account_characters.length
                             Item
                             {
                                 Layout.preferredHeight: parent.height * 0.3
@@ -190,7 +190,7 @@ Item {
                                 {
                                     anchors.left: parent.left
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: Account_temp.data_observation.account_characters[index]
+                                    text: Main_logic_temp.account_widget.data_observation.account_characters[index]
                                     color: "#FFFFFF"
                                     font.pixelSize: parent.height *0.5
                                 }
@@ -206,7 +206,7 @@ Item {
                                     TextInput {
                                         id: text_weigth
                                         anchors.fill: parent
-                                        text: Account_temp.data_observation.account_vector_weight[index]
+                                        text: Main_logic_temp.account_widget.data_observation.account_vector_weight[index]
                                         color: "#FFFFFF"
                                         font.pixelSize: parent.height *0.5
                                         inputMethodHints: Qt.ImhDigitsOnly
@@ -224,7 +224,7 @@ Item {
 
                                         onActiveFocusChanged: {
                                                     if (!activeFocus && text_weigth.text === "") {
-                                                        text_weigth.text = Account_temp.data_observation.account_vector_weight[Account_temp.data_observation.account_vector_weight.length-1]
+                                                        text_weigth.text = Main_logic_temp.account_widget.data_observation.account_vector_weight[Main_logic_temp.account_widget.data_observation.account_vector_weight.length-1]
                                                     }
                                                 }
 
@@ -232,8 +232,8 @@ Item {
                                             focus = false
                                             if(text_weigth.text !== "")
                                                 {
-                                                Account_temp.data_observation.add_weight(text_weigth.text)
-                                                Account_temp.data_observation.add_date();
+                                                Main_logic_temp.account_widget.data_observation.add_weight(text_weigth.text)
+                                                Main_logic_temp.account_widget.data_observation.add_date();
                                                 }
                                            }
 
@@ -278,7 +278,7 @@ Item {
                         }
 
                             Repeater {
-                                model: Account_temp.data_observation.account_characters.length
+                                model: Main_logic_temp.account_widget.data_observation.account_characters.length
 
                                     Rectangle {
                                         id: tect
@@ -297,7 +297,7 @@ Item {
                                             {
                                                 anchors.left: parent.left
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                text: Account_temp.data_observation.account_characters[index]
+                                                text: Main_logic_temp.account_widget.data_observation.account_characters[index]
                                                 color: "#FFFFFF"
                                                 font.pixelSize: parent.height *0.5
                                             }
@@ -308,7 +308,7 @@ Item {
                                                 {
                                                     if(sfa.model === 0)
                                                     {
-                                                        sfa.model = Account_temp.data_observation.account_vector_weight.length
+                                                        sfa.model = Main_logic_temp.account_widget.data_observation.account_vector_weight.length
                                                         testtt.visible = true
                                                     }
                                                     else
@@ -342,7 +342,7 @@ Item {
                                             Layout.preferredWidth: parent.width
                                                         Repeater {
                                                             id: sfa
-                                                            model: Account_temp.data_observation.account_vector_weight.length
+                                                            model: Main_logic_temp.account_widget.data_observation.account_vector_weight.length
                                                             RowLayout {
                                                                 Layout.preferredHeight: track.height * 0.025
                                                                 Layout.preferredWidth:track.width*0.8
@@ -350,7 +350,7 @@ Item {
                                                                 Text {
                                                                     id: poprob
                                                                     Layout.alignment: Qt.AlignLeft
-                                                                    text: Account_temp.data_observation.account_date_temp[index]
+                                                                    text: Main_logic_temp.account_widget.data_observation.account_date_temp[index]
                                                                     font.pixelSize: track.height * 0.025
                                                                     color: "lightgray"
                                                                     Layout.fillWidth: true
@@ -358,7 +358,7 @@ Item {
 
                                                                 Text
                                                                 {
-                                                                    text: Account_temp.data_observation.account_vector_weight[index]
+                                                                    text: Main_logic_temp.account_widget.data_observation.account_vector_weight[index]
                                                                     Layout.alignment: Qt.AlignRight
                                                                     Layout.rightMargin: parent.width *0.1
                                                                     font.pixelSize: track.height * 0.025
@@ -378,7 +378,7 @@ Item {
                                                                         onClicked:
                                                                         {
                                                                             var currentIndex = index
-                                                                            Account_temp.data_observation.remove_item_schedule(currentIndex)
+                                                                            Main_logic_temp.account_widget.data_observation.remove_item_schedule(currentIndex)
                                                                             //Nutriton_temp.remove_food_schedule(currentIndex)
                                                                             sfa.model = sfa.model-1
                                                                         }
