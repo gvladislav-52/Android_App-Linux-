@@ -358,7 +358,10 @@ Item {
 
                                                                 Text
                                                                 {
-                                                                    text: Main_logic_temp.account_widget.data_observation.account_vector_weight[index]
+                                                                    text:
+                                                                    {
+                                                                        Main_logic_temp.account_widget.data_observation.account_vector_weight[index]
+                                                                    }
                                                                     Layout.alignment: Qt.AlignRight
                                                                     Layout.rightMargin: parent.width *0.1
                                                                     font.pixelSize: track.height * 0.025

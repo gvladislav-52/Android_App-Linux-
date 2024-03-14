@@ -72,8 +72,11 @@ Data_observation_widget::Data_observation_widget()
     m_account_characters.append("Вес [кг]");
     m_account_characters.append("Рост");
 
-    m_account_vector_weight.append("73");
-    m_account_vector_weight.append("74");
+    // m_account_vector_weight.append("73");
+    // m_account_vector_weight.append("74");
+
+    m_height.append("15");
+    m_height.append("220");
 
     m_account_date_temp.append("08.02.2024");
     m_account_date_temp.append("15.02.2024");
@@ -160,6 +163,11 @@ void Data_observation_widget::add_date()
     QDate currentDate = QDate::currentDate();
     m_account_date_temp.append(currentDate.toString("dd-MM-yyyy"));
     emit account_date_tempChanged();
+}
+
+void Data_observation_widget::add_height(QString height)
+{
+   m_account_vector_weight.append(height);
 }
 
 void Data_observation_widget::remove_item_schedule(int index)

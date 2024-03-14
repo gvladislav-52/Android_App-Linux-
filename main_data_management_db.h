@@ -32,6 +32,7 @@ public slots:
     void networkReplyReadyRead();
     void selectAll();
     void add_db();
+    void get_data_from_db();
 
 signals:
     void userSignedIn();
@@ -49,6 +50,7 @@ private:
     QString m_name;
     QString m_type;
     QString m_weight;
+    QString m_height;
     Account_widget *m_account_widget = nullptr;
 };
 

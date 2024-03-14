@@ -89,12 +89,13 @@ signals:
 private:
     QVector<QString> m_account_characters;
     QVector<QString> m_account_vector_weight;
-
+    QVector<QString> m_height;
     QVector<QString> m_account_date_temp;
 
 public slots:
     void add_weight(QString num);
     void add_date();
+    void add_height(QString height);
     void remove_item_schedule(int index);
 };
 

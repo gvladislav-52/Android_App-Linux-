@@ -4,13 +4,16 @@ Main_data_management_db::Main_data_management_db(QObject *parent)
     : QObject(parent),
     m_apiKey(QString())
 {
+    // m_weight = "100";
+    // m_food = "Chicken";
+    // m_type = "Meat";
+    // m_name = "pavlov";
+    // m_height = "180";
     m_networkAccessManaager = new QNetworkAccessManager(this);
-    connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::add_db);
+    //connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::add_db);
     connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::selectAll);
+    connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::get_data_from_db);
     m_account_widget = new Account_widget();
-    m_food = "Hava";
-    m_name = "lol";
-    m_type = "nucl";
 }
 
 Main_data_management_db::~Main_data_management_db()
@@ -68,6 +71,11 @@ void Main_data_management_db::networkReplyReadyRead()
     else
     {
         qDebug() << "The response was: " << response;
+        qDebug() << m_food;
+        qDebug() << m_name;
+        qDebug() << m_type;
+        qDebug() << m_weight;
+        qDebug() << m_height;
     }
 }
 
@@ -87,11 +95,59 @@ void Main_data_management_db::add_db()
     newPet["Type"] = m_type;
     newPet["Name"] = m_name;
     newPet["Food"] = m_food;
+    newPet["Weight"] = m_weight;
+    newPet["Height"] = m_height;
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
 
     QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/"+ catalog+ "/.json?auth=" + idToken));
     newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
     m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
+}
+
+void Main_data_management_db::get_data_from_db()
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/.json?auth=" + idToken;
+    QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+
+    connect(networkReply, &QNetworkReply::finished, [=]()
+            {
+                if(networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+
+                        for(int i = 0; i < 5; i++)
+                        {
+                            switch(i)
+                            {
+                            case 0:
+                                m_food = jsonObject["Food"].toString();
+                                break;
+                            case 1:
+                                m_name = jsonObject["Name"].toString();
+                                break;
+                            case 2:
+                                m_type = jsonObject["Type"].toString();
+                                break;
+                            case 3:
+                                m_weight = jsonObject["Weight"].toString();
+                                m_account_widget->data_observation()->add_weight(m_weight);
+                                break;
+                            case 4:
+                                m_height = jsonObject["Height"].toString();
+                                //m_account_widget->data_observation()->add_weight(m_height);
+                            default:
+                                qDebug() << "Error";
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                networkReply->deleteLater();
+            });
 }
 
 void Main_data_management_db::performPOST(const QString &url, const QJsonDocument &payload)
