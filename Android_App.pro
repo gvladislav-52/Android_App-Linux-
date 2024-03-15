@@ -32,3 +32,5 @@ RESOURCES += \
     res.qrc
 
 DISTFILES +=
+
+include(android_openssl/openssl.pri)

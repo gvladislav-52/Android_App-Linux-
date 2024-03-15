@@ -5,6 +5,7 @@
 #include "schedule_widget.h"
 #include "main_navi_bar.h"
 #include "main_data_management_db.h"
+#include <QSslSocket>
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,9 @@ int main(int argc, char *argv[])
     Account_widget account_temp;
     Main_data_management_db db;
     Main_data_management_db authHandler;
+
+    authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
+    authHandler.signUserIn("start@email.com", "123123123");
     qmlRegisterType<Schedule_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 
@@ -35,9 +39,11 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Main_logic_temp",& authHandler);
     engine.load(url);
 
-
-    authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
-    authHandler.signUserIn("start@email.com", "123123123");
-
+    qDebug() << "My build Version String is - "
+             << QSslSocket::sslLibraryBuildVersionString()
+             << "  "
+                " and version string is  "
+             << QSslSocket::sslLibraryVersionString();
+    qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
     return app.exec();
 }

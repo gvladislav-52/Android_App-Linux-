@@ -68,6 +68,7 @@ class Data_observation_widget: public QObject
     Q_PROPERTY(QVector<QString> account_characters READ getAccount_characters WRITE setAccount_characters NOTIFY account_charactersChanged FINAL)
     Q_PROPERTY(QVector<QString> account_vector_weight READ getAccount_vector_weight WRITE setAccount_vector_weight NOTIFY account_vector_weightChanged FINAL)
     Q_PROPERTY(QVector<QString> account_date_temp READ getAccount_date_temp WRITE setAccount_date_temp NOTIFY account_date_tempChanged FINAL)
+    Q_PROPERTY(QVector<QString> account_vector_height READ getAccount_vector_height WRITE setAccount_vector_height NOTIFY account_vector_heightChanged FINAL)
 public:
     Data_observation_widget();
     QVector<QString> getAccount_characters() const;
@@ -79,6 +80,9 @@ public:
     QVector<QString> getAccount_date_temp() const;
     void setAccount_date_temp(const QVector<QString> &newAccount_date_temp);
 
+    QVector<QString> getAccount_vector_height() const;
+    void setAccount_vector_height(const QVector<QString> &newAccount_vector_height);
+
 signals:
     void account_charactersChanged();
 
@@ -86,11 +90,14 @@ signals:
 
     void account_date_tempChanged();
 
+    void account_vector_heightChanged();
+
 private:
     QVector<QString> m_account_characters;
     QVector<QString> m_account_vector_weight;
-    QVector<QString> m_height;
     QVector<QString> m_account_date_temp;
+
+    QVector<QString> m_account_vector_height;
 
 public slots:
     void add_weight(QString num);

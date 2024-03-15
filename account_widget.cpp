@@ -75,8 +75,8 @@ Data_observation_widget::Data_observation_widget()
     // m_account_vector_weight.append("73");
     // m_account_vector_weight.append("74");
 
-    m_height.append("15");
-    m_height.append("220");
+    // m_account_vector_height.append("15");
+    // m_account_vector_height.append("220");
 
     m_account_date_temp.append("08.02.2024");
     m_account_date_temp.append("15.02.2024");
@@ -167,7 +167,8 @@ void Data_observation_widget::add_date()
 
 void Data_observation_widget::add_height(QString height)
 {
-   m_account_vector_weight.append(height);
+    m_account_vector_height.append(height);
+    emit account_vector_heightChanged();
 }
 
 void Data_observation_widget::remove_item_schedule(int index)
@@ -190,4 +191,17 @@ void Data_observation_widget::setAccount_date_temp(const QVector<QString> &newAc
         return;
     m_account_date_temp = newAccount_date_temp;
     emit account_date_tempChanged();
+}
+
+QVector<QString> Data_observation_widget::getAccount_vector_height() const
+{
+    return m_account_vector_height;
+}
+
+void Data_observation_widget::setAccount_vector_height(const QVector<QString> &newAccount_vector_height)
+{
+    if (m_account_vector_height == newAccount_vector_height)
+        return;
+    m_account_vector_height = newAccount_vector_height;
+    emit account_vector_heightChanged();
 }

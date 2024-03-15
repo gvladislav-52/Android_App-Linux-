@@ -137,10 +137,7 @@ void Main_data_management_db::get_data_from_db()
                                 break;
                             case 4:
                                 m_height = jsonObject["Height"].toString();
-                                //m_account_widget->data_observation()->add_weight(m_height);
-                            default:
-                                qDebug() << "Error";
-                                break;
+                                m_account_widget->data_observation()->add_height(m_height);
                             }
                         }
                     }
