@@ -9,6 +9,7 @@ Main_data_management_db::Main_data_management_db(QObject *parent)
     // m_type = "Meat";
     // m_name = "pavlov";
     // m_height = "180";
+    // m_purpose = 3;
     m_networkAccessManaager = new QNetworkAccessManager(this);
     //connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::add_db);
     connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::selectAll);
@@ -65,17 +66,19 @@ void Main_data_management_db::networkReplyReadyRead()
     {
         idToken = jsonDocument.object().value("idToken").toString();
         m_localId = jsonDocument.object().value("localId").toString();
+        m_account_log = jsonDocument.object().value("email").toString();
+
+        m_account_widget->setEmail_log(m_account_log);
         qDebug () << "Succesfull!";
         emit userSignedIn();
     }
     else
     {
         qDebug() << "The response was: " << response;
-        qDebug() << m_food;
-        qDebug() << m_name;
-        qDebug() << m_type;
         qDebug() << m_weight;
         qDebug() << m_height;
+        qDebug() << m_account_log;
+        qDebug() << m_purpose;
     }
 }
 
@@ -92,11 +95,9 @@ void Main_data_management_db::add_db()
 {
     QString catalog = m_localId;
     QVariantMap newPet;
-    newPet["Type"] = m_type;
-    newPet["Name"] = m_name;
-    newPet["Food"] = m_food;
     newPet["Weight"] = m_weight;
     newPet["Height"] = m_height;
+    newPet["Purpose"] = m_purpose;
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
 
     QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/"+ catalog+ "/.json?auth=" + idToken));
@@ -118,31 +119,44 @@ void Main_data_management_db::get_data_from_db()
                     {
                         QJsonObject jsonObject = jsonResponse.object();
 
-                        for(int i = 0; i < 5; i++)
+                        for(int i = 0; i < 6; i++)
                         {
                             switch(i)
                             {
                             case 0:
-                                m_food = jsonObject["Food"].toString();
+                                m_purpose = jsonObject["Purpose"].toInt();
+                                switch(m_purpose)
+                                {
+                                case 1:
+                                    m_account_widget->purpose_object()->add_purpose("Быть в форме");
+                                    break;
+                                case 2:
+                                    m_account_widget->purpose_object()->add_purpose("Похудеть");
+                                    break;
+                                case 3:
+                                    m_account_widget->purpose_object()->add_purpose("Набрать мышечную массу");
+                                    break;
+                                }
                                 break;
                             case 1:
-                                m_name = jsonObject["Name"].toString();
-                                break;
-                            case 2:
-                                m_type = jsonObject["Type"].toString();
-                                break;
-                            case 3:
                                 m_weight = jsonObject["Weight"].toString();
                                 m_account_widget->data_observation()->add_weight(m_weight);
+                                m_account_widget->purpose_object()->setExpected_weight(m_weight);
                                 break;
-                            case 4:
+                            case 2:
                                 m_height = jsonObject["Height"].toString();
                                 m_account_widget->data_observation()->add_height(m_height);
+                                break;
                             }
                         }
                     }
                 }
-
+                m_afternoon = 3433;
+                m_account_widget->purpose_object()->setAfternoon(m_afternoon);
+                m_drinking_regime = 2.92;
+                m_account_widget->purpose_object()->setDrinking_regime(m_drinking_regime);
+                m_metabolism = 1809;
+                m_account_widget->purpose_object()->setMetabolism(m_metabolism);
                 networkReply->deleteLater();
             });
 }

@@ -87,7 +87,7 @@ Item {
                         {
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            text: "vlad.grachev.9700@mail.ru"
+                            text: Main_logic_temp.account_widget.email_log
                             color: "white"
                             font.pixelSize: parent.height*0.5
                         }

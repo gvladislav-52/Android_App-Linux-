@@ -34,11 +34,11 @@ Purpose_widget::Purpose_widget()
     m_purpose_name_static.append("Мой питьевой режим");
     m_purpose_name_static.append("Твой обмен веществ");
 
-    m_purpose_index_dynamic.append("Набрать мышечную массу");
-    m_purpose_index_dynamic.append("3433 ккал.");
-    m_purpose_index_dynamic.append("77,0 кг");
-    m_purpose_index_dynamic.append("2,88");
-    m_purpose_index_dynamic.append("1809, 0 ккал");
+    //m_purpose_temp = "Набрать мышечную массу";
+    // m_afternoon = "3433 ккал.";
+    // m_expected_weight = "77,0 кг";
+    // m_drinking_regime = "2,88";
+    // m_metabolism = "1809, 0 ккал";
 }
 
 QVector<QString> Purpose_widget::getPurpose_name_static() const
@@ -54,19 +54,6 @@ void Purpose_widget::setPurpose_name_static(const QVector<QString> &newPurpose_n
     emit purpose_name_staticChanged();
 }
 
-QVector<QString> Purpose_widget::getPurpose_index_dynamic() const
-{
-    return m_purpose_index_dynamic;
-}
-
-void Purpose_widget::setPurpose_index_dynamic(const QVector<QString> &newPurpose_index_dynamic)
-{
-    if (m_purpose_index_dynamic == newPurpose_index_dynamic)
-        return;
-    m_purpose_index_dynamic = newPurpose_index_dynamic;
-    emit purpose_index_dynamicChanged();
-}
-
 Data_observation_widget::Data_observation_widget()
 {
     m_account_characters.append("Вес [кг]");
@@ -79,7 +66,7 @@ Data_observation_widget::Data_observation_widget()
     // m_account_vector_height.append("220");
 
     m_account_date_temp.append("08.02.2024");
-    m_account_date_temp.append("15.02.2024");
+    // m_account_date_temp.append("15.02.2024");
 }
 
 QVector<QString> Data_observation_widget::getAccount_characters() const
@@ -180,6 +167,15 @@ void Data_observation_widget::remove_item_schedule(int index)
     emit account_vector_weightChanged();
 }
 
+void Data_observation_widget::remove_item_height(int index)
+{
+    if (index >= 0 && index < m_account_vector_height.size())
+    {
+        m_account_vector_height.remove(index);
+    }
+    emit account_vector_heightChanged();
+}
+
 QVector<QString> Data_observation_widget::getAccount_date_temp() const
 {
     return m_account_date_temp;
@@ -204,4 +200,89 @@ void Data_observation_widget::setAccount_vector_height(const QVector<QString> &n
         return;
     m_account_vector_height = newAccount_vector_height;
     emit account_vector_heightChanged();
+}
+
+QString Account_widget::getEmail_log() const
+{
+    return m_email_log;
+}
+
+void Account_widget::setEmail_log(const QString &newEmail_log)
+{
+    if (m_email_log == newEmail_log)
+        return;
+    m_email_log = newEmail_log;
+    emit email_logChanged();
+}
+
+QString Purpose_widget::getPurpose_temp() const
+{
+    return m_purpose_temp;
+}
+
+void Purpose_widget::setPurpose_temp(const QString &newPurpose_temp)
+{
+    if (m_purpose_temp == newPurpose_temp)
+        return;
+    m_purpose_temp = newPurpose_temp;
+    emit purpose_tempChanged();
+}
+
+QString Purpose_widget::getExpected_weight() const
+{
+    return m_expected_weight;
+}
+
+void Purpose_widget::setExpected_weight(const QString &newExpected_weight)
+{
+    if (m_expected_weight == newExpected_weight)
+        return;
+    m_expected_weight = newExpected_weight;
+    emit expected_weightChanged();
+}
+
+double Purpose_widget::getDrinking_regime() const
+{
+    return m_drinking_regime;
+}
+
+void Purpose_widget::setDrinking_regime(const double &newDrinking_regime)
+{
+    if (m_drinking_regime == newDrinking_regime)
+        return;
+    m_drinking_regime = newDrinking_regime;
+    emit drinking_regimeChanged();
+}
+
+int Purpose_widget::getMetabolism() const
+{
+    return m_metabolism;
+}
+
+void Purpose_widget::setMetabolism(const int &newMetabolism)
+{
+    if (m_metabolism == newMetabolism)
+        return;
+    m_metabolism = newMetabolism;
+    emit metabolismChanged();
+}
+
+int Purpose_widget::getAfternoon() const
+{
+    return m_afternoon;
+}
+
+void Purpose_widget::setAfternoon(const int &newAfternoon)
+{
+    if (m_afternoon == newAfternoon)
+        return;
+    m_afternoon = newAfternoon;
+    emit afternoonChanged();
+}
+
+void Purpose_widget::add_purpose(QString temp)
+{
+    m_purpose_temp = temp;
+    qDebug() << m_purpose_temp;
+    emit purpose_tempChanged();
 }

@@ -39,11 +39,5 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Main_logic_temp",& authHandler);
     engine.load(url);
 
-    qDebug() << "My build Version String is - "
-             << QSslSocket::sslLibraryBuildVersionString()
-             << "  "
-                " and version string is  "
-             << QSslSocket::sslLibraryVersionString();
-    qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
     return app.exec();
 }

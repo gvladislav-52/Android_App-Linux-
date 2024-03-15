@@ -46,11 +46,14 @@ private:
     QNetworkReply  * m_networkReply;
     QString idToken;
     QString m_localId;
-    QString m_food;
-    QString m_name;
-    QString m_type;
+    QString m_account_log;
+
+    int m_purpose;
+    int m_afternoon;
     QString m_weight;
     QString m_height;
+    double m_drinking_regime;
+    int m_metabolism;
     Account_widget *m_account_widget = nullptr;
 };
 
