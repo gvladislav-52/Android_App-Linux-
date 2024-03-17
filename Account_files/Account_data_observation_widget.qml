@@ -211,7 +211,7 @@ Item {
                                     anchors.fill: parent
                                     text:
                                     {
-                                        Main_logic_temp.Actual_weight
+                                        Main_logic_temp.Vector_weight[Main_logic_temp.Vector_weight.length-1]
                                     }
                                     color: "#FFFFFF"
                                     font.pixelSize: parent.height *0.5
@@ -230,7 +230,7 @@ Item {
 
                                     onActiveFocusChanged: {
                                                 if (!activeFocus && text_weigth.text === "") {
-                                                    text_weigth.text = Main_logic_temp.account_widget.data_observation.account_vector_weight[Main_logic_temp.account_widget.data_observation.account_vector_weight.length-1]
+                                                    text_weigth.text = Main_logic_temp.Vector_weight[Main_logic_temp.Vector_weight.length-1]
                                                 }
                                             }
 
@@ -238,8 +238,12 @@ Item {
                                         focus = false
                                         if(text_weigth.text !== "")
                                             {
-                                            Main_logic_temp.account_widget.data_observation.add_weight(text_weigth.text)
-                                            Main_logic_temp.account_widget.data_observation.add_date();
+                                            // Data_temp.add_weight(text_weigth.text);
+                                            // Data_temp.add_data_weight();
+                                            Main_logic_temp.add_vector_weight(text_weigth.text);
+                                            Main_logic_temp.add_data_weight();
+                                            //Main_logic_temp.account_widget.data_observation.add_weight(text_weigth.text)
+                                            //Main_logic_temp.account_widget.data_observation.add_date();
                                             }
                                        }
 
@@ -284,7 +288,7 @@ Item {
                                     anchors.fill: parent
                                     text:
                                     {
-                                        Main_logic_temp.account_widget.data_observation.account_vector_height[0]
+                                        Main_logic_temp.Vector_height[Main_logic_temp.Vector_height.length-1]
                                     }
                                     color: "#FFFFFF"
                                     font.pixelSize: parent.height *0.5
@@ -303,7 +307,7 @@ Item {
 
                                     onActiveFocusChanged: {
                                                 if (!activeFocus && text_weigth1.text === "") {
-                                                    text_weigth1.text = Main_logic_temp.account_widget.data_observation.account_vector_height[Main_logic_temp.account_widget.data_observation.account_vector_height.length-1]
+                                                    text_weigth1.text = Main_logic_temp.Vector_height[Main_logic_temp.Vector_height.length-1]
                                                 }
                                             }
 
@@ -311,8 +315,10 @@ Item {
                                         focus = false
                                         if(text_weigth1.text !== "")
                                             {
-                                            Main_logic_temp.account_widget.data_observation.add_height(text_weigth1.text)
-                                            Main_logic_temp.account_widget.data_observation.add_date();
+                                            Main_logic_temp.add_vector_height(text_weigth1.text);
+                                            Main_logic_temp.add_data_height();
+                                            // Main_logic_temp.account_widget.data_observation.add_height(text_weigth1.text)
+                                            // Main_logic_temp.account_widget.data_observation.add_date();
                                             }
                                        }
 
@@ -375,7 +381,7 @@ Item {
                                             {
                                                 anchors.left: parent.left
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                text: qsTr("Hello")
+                                                text: qsTr("Вес [кг]")
                                                 color: "#FFFFFF"
                                                 font.pixelSize: parent.height *0.5
                                             }
@@ -386,7 +392,7 @@ Item {
                                                 {
                                                     if(sfa.model === 0)
                                                     {
-                                                        sfa.model = Main_logic_temp.account_widget.data_observation.account_vector_weight.length
+                                                        sfa.model = Main_logic_temp.Vector_weight.length
                                                         testtt.visible = true
                                                     }
                                                     else
@@ -412,7 +418,7 @@ Item {
                                             anchors
                                             {
                                                 top: name_schedule.bottom
-                                                topMargin: parent.height*0.02
+                                                topMargin: parent.height*0.1
                                                 horizontalCenter: parent.horizontalCenter
 
                                             }
@@ -420,7 +426,7 @@ Item {
                                             Layout.preferredWidth: parent.width
                                                         Repeater {
                                                             id: sfa
-                                                            model: Main_logic_temp.account_widget.data_observation.account_vector_weight.length
+                                                            model: Main_logic_temp.Vector_data_weight.length
                                                             RowLayout {
                                                                 Layout.preferredHeight: track.height * 0.025
                                                                 Layout.preferredWidth:track.width*0.8
@@ -428,7 +434,7 @@ Item {
                                                                 Text {
                                                                     id: poprob
                                                                     Layout.alignment: Qt.AlignLeft
-                                                                    text: Main_logic_temp.account_widget.data_observation.account_date_temp[index]
+                                                                    text: Main_logic_temp.Vector_data_weight[index]//Data_temp.data_weight[index]
                                                                     font.pixelSize: track.height * 0.025
                                                                     color: "lightgray"
                                                                     Layout.fillWidth: true
@@ -438,7 +444,7 @@ Item {
                                                                 {
                                                                     text:
                                                                     {
-                                                                        Main_logic_temp.account_widget.data_observation.account_vector_weight[index]
+                                                                        Main_logic_temp.Vector_weight[index]
                                                                     }
                                                                     Layout.alignment: Qt.AlignRight
                                                                     Layout.rightMargin: parent.width *0.1
@@ -459,8 +465,8 @@ Item {
                                                                         onClicked:
                                                                         {
                                                                             var currentIndex = index
-                                                                            Main_logic_temp.account_widget.data_observation.remove_item_schedule(currentIndex)
-                                                                            //Nutriton_temp.remove_food_schedule(currentIndex)
+                                                                            Main_logic_temp.remove_weight(currentIndex)
+                                                                            Main_logic_temp.remove_data_weight(currentIndex)
                                                                             sfa.model = sfa.model-1
                                                                         }
                                                                     }
@@ -487,7 +493,7 @@ Item {
                                             {
                                                 anchors.left: parent.left
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                text: qsTr("Hello")
+                                                text: qsTr("Рост")
                                                 color: "#FFFFFF"
                                                 font.pixelSize: parent.height *0.5
                                             }
@@ -498,7 +504,7 @@ Item {
                                                 {
                                                     if(sfa1.model === 0)
                                                     {
-                                                        sfa1.model = Main_logic_temp.account_widget.data_observation.account_vector_height.length
+                                                        sfa1.model = Main_logic_temp.Vector_height.length
                                                         testtt1.visible = true
                                                     }
                                                     else
@@ -524,7 +530,7 @@ Item {
                                             anchors
                                             {
                                                 top: name_schedule1.bottom
-                                                topMargin: parent.height*0.02
+                                                topMargin: parent.height*0.1
                                                 horizontalCenter: parent.horizontalCenter
 
                                             }
@@ -532,7 +538,7 @@ Item {
                                             Layout.preferredWidth: parent.width
                                                         Repeater {
                                                             id: sfa1
-                                                            model: Main_logic_temp.account_widget.data_observation.account_vector_height.length
+                                                            model: Main_logic_temp.Vector_data_height.length
                                                             RowLayout {
                                                                 Layout.preferredHeight: track.height * 0.025
                                                                 Layout.preferredWidth:track.width*0.8
@@ -540,7 +546,7 @@ Item {
                                                                 Text {
                                                                     id: poprob1
                                                                     Layout.alignment: Qt.AlignLeft
-                                                                    text: Main_logic_temp.account_widget.data_observation.account_date_temp[index]
+                                                                    text: Main_logic_temp.Vector_data_height[index]
                                                                     font.pixelSize: track.height * 0.025
                                                                     color: "lightgray"
                                                                     Layout.fillWidth: true
@@ -550,7 +556,7 @@ Item {
                                                                 {
                                                                     text:
                                                                     {
-                                                                        Main_logic_temp.account_widget.data_observation.account_vector_height[index]
+                                                                        Main_logic_temp.Vector_height[index]
                                                                     }
                                                                     Layout.alignment: Qt.AlignRight
                                                                     Layout.rightMargin: parent.width *0.1
@@ -571,7 +577,8 @@ Item {
                                                                         onClicked:
                                                                         {
                                                                             var currentIndex = index
-                                                                            Main_logic_temp.account_widget.data_observation.remove_item_height(currentIndex)
+                                                                            Main_logic_temp.remove_height(currentIndex)
+                                                                            Main_logic_temp.remove_data_height(currentIndex)
                                                                             //Nutriton_temp.remove_food_schedule(currentIndex)
                                                                             sfa1.model = sfa1.model-1
                                                                         }

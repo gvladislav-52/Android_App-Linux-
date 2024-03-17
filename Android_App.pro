@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     account_widget.cpp \
+    data_for_observation.cpp \
     main.cpp \
     main_data_management_db.cpp \
     main_navi_bar.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     account_widget.h \
+    data_for_observation.h \
     main_data_management_db.h \
     main_navi_bar.h \
     schedule_widget.h \

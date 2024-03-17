@@ -9,6 +9,7 @@
 #include <QVariantMap>
 #include <QNetworkRequest>
 #include <QJsonObject>
+#include <QDate>
 
 class User: public QObject
 {
@@ -21,6 +22,11 @@ class User: public QObject
     Q_PROPERTY(int Metabolism READ getMetabolism WRITE setMetabolism NOTIFY MetabolismChanged FINAL)
     Q_PROPERTY(int Target_metabolism READ getTarget_metabolism WRITE setTarget_metabolism NOTIFY Target_metabolismChanged FINAL)
 
+    Q_PROPERTY(QVector<int> Vector_weight READ getVector_weight WRITE setVector_weight NOTIFY Vector_weightChanged FINAL)
+    Q_PROPERTY(QVector<QString> Vector_data_weight READ getVector_data_weight WRITE setVector_data_weight NOTIFY Vector_data_weightChanged FINAL)
+
+    Q_PROPERTY(QVector<int> Vector_height READ getVector_height WRITE setVector_height NOTIFY Vector_heightChanged FINAL)
+    Q_PROPERTY(QVector<QString> Vector_data_height READ getVector_data_height WRITE setVector_data_height NOTIFY Vector_data_heightChanged FINAL)
 public:
     explicit User(QObject *parent = nullptr);
     ~User();
@@ -50,11 +56,37 @@ public:
     QString getEmail_log() const;
     void setEmail_log(const QString &newEmail_log);
 
+    QVector<int> getVector_weight() const;
+    void setVector_weight(const QVector<int> &newVector_weight);
+
+    QVector<QString> getVector_data_weight() const;
+    void setVector_data_weight(const QVector<QString> &newVector_data_weight);
+
+    QVector<int> getVector_height() const;
+    void setVector_height(const QVector<int> &newVector_height);
+
+    QVector<QString> getVector_data_height() const;
+    void setVector_data_height(const QVector<QString> &newVector_data_height);
+
 public slots:
     void networkReplyReadyRead();
     void selectAll();
     void add_db();
     void get_data_from_db();
+    void get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable);
+
+    void add_vector_weight(int num);
+    void add_data_weight(QString data = "");
+
+    void add_vector_height(int num);
+    void add_data_height(QString data = "");
+
+    void remove_weight(int index);
+    void remove_height(int index);
+
+    void remove_data_weight(int index);
+    void remove_data_height(int index);
+
 
 signals:
     void userSignedIn();
@@ -72,6 +104,14 @@ signals:
     void Target_metabolismChanged();
 
     void Email_logChanged();
+
+    void Vector_weightChanged();
+
+    void Vector_data_weightChanged();
+
+    void Vector_heightChanged();
+
+    void Vector_data_heightChanged();
 
 private:
     void performPOST (const QString &url, const QJsonDocument & payload);
@@ -92,6 +132,11 @@ private:
     int m_Metabolism;
     int m_Target_metabolism;
     QString m_Email_log;
+
+    QVector<int> m_Vector_weight;
+    QVector<QString> m_Vector_data_weight;
+    QVector<int> m_Vector_height;
+    QVector<QString> m_Vector_data_height;
 };
 
 #endif // USER_H

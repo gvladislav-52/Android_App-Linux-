@@ -16,8 +16,13 @@ User::User(QObject *parent)
     //connect(this, &User::userSignedIn,this,&User::add_db);
     //connect(this, &User::userSignedIn,this,&User::selectAll);
     connect(this, &User::userSignedIn,this,&User::get_data_from_db);
-    //m_account_widget = new Account_widget();
-    //m_schedule_widget = new Schedule_widget();
+    //connect(this, &User::userSignedIn,this,&User::get_vector_data);
+
+    connect(this, &User::userSignedIn, this, [=](){
+        get_vector_data(m_Vector_weight, m_Vector_data_weight,"History_weight/Weight","History_weight/Date", true);
+        get_vector_data(m_Vector_height, m_Vector_data_height,"History_height/Height","History_height/Date", false);
+    });
+
 }
 
 User::~User()
@@ -80,7 +85,7 @@ void User::networkReplyReadyRead()
     {
         qDebug() << "The response was: " << response;
         qDebug() << m_Train_option;
-        // qDebug() << m_height;
+        //qDebug() << m_vector_weight;
         // qDebug() << m_email;
         //qDebug() << training_option;
     }
@@ -126,53 +131,175 @@ void User::get_data_from_db()
                     if (!jsonResponse.isNull())
                     {
                         QJsonObject jsonObject = jsonResponse.object();
-                        for(int i = 0; i < 6; i++)
-                        {
-                            switch(i)
-                            {
-                            case 0:
                                 setTrain_option(jsonObject["Training"].toString());
-                                break;
-                            case 1:
                                 gender = jsonObject["Gender"].toString();
-                                break;
-                            case 2:
                                 setActual_weight(jsonObject["Actual_weight"].toInt());
-                                break;
-                            case 3:
                                 setTarget_weight(jsonObject["Target_weight"].toInt());
-                                break;
-                            case 4:
                                 age = jsonObject["Age"].toInt();
-                                break;
-                            case 5:
                                 height = jsonObject["Height"].toInt();
-                                break;
+
+                                double temp_drink = m_Actual_weight;
+                                setDrinking_regime((temp_drink*30)/1000);
+
+                                if(gender == "Male")
+                                    setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
+                                else if (gender == "Female")
+                                    setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
+
+                                setTarget_metabolism(m_Metabolism*1.5);
+                    }
+                }
+
+                networkReply->deleteLater();
+    });
+}
+
+void User::get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable)
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_path + ".json?auth=" + m_idToken;
+    QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+
+    connect(networkReply, &QNetworkReply::finished, [=, &data_int]()
+            {
+                if(networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+                        bool temp = false;
+                        int num = data_int.size();
+                        while (!temp)
+                        {
+                            if (jsonObject.contains("Data_" + QString::number(num+1)))
+                            {
+                                if(temp_variable)
+                                    add_vector_weight(jsonObject["Data_" + QString::number(num+1)].toInt());
+                                else
+                                    add_vector_height(jsonObject["Data_" + QString::number(num+1)].toInt());
+                                num++;
+                            }
+                            else
+                            {
+                                temp = true;
                             }
                         }
                     }
                 }
-                double temp_drink = m_Actual_weight;
-                setDrinking_regime((temp_drink*30)/1000);
+                networkReply->deleteLater();
+    });
 
-                if(gender == "Male")
-                    setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
-                else if (gender == "Female")
-                    setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
+    url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_data + ".json?auth=" + m_idToken;
+    networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
 
-                setTarget_metabolism(m_Metabolism*1.5);
-
-                //m_Train_option = "3433";
-                // m_account_widget->purpose_object()->setAfternoon(m_afternoon);
-                // m_drinking_regime = 2.92;
-                // m_account_widget->purpose_object()->setDrinking_regime(m_drinking_regime);
-                // m_schedule_widget->setDrinking_regime(m_drinking_regime);
-                // m_metabolism = 1809;
-                // m_account_widget->purpose_object()->setMetabolism(m_metabolism);
+    connect(networkReply, &QNetworkReply::finished, [=, &data_string]()
+            {
+                if(networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+                        bool temp = false;
+                        int num = data_string.size();
+                        while (!temp)
+                        {
+                            if (jsonObject.contains("Data_" + QString::number(num+1)))
+                            {
+                                if(temp_variable)
+                                    add_data_weight(jsonObject["Data_" + QString::number(num+1)].toString());
+                                else
+                                    add_data_height(jsonObject["Data_" + QString::number(num+1)].toString());
+                                num++;
+                            }
+                            else
+                            {
+                                temp = true;
+                            }
+                        }
+                    }
+                }
                 networkReply->deleteLater();
             });
 }
 
+void User::add_vector_weight(int num)
+{
+    m_Vector_weight.append(num);
+    emit Vector_weightChanged();
+}
+
+void User::add_data_weight(QString data)
+{
+    if(data == "")
+    {
+        QDate currentDate = QDate::currentDate();
+        m_Vector_data_weight.append(currentDate.toString("dd-MM-yyyy"));
+        emit Vector_data_weightChanged();
+    }
+    else
+    {
+        m_Vector_data_weight.append(data);
+        emit Vector_data_weightChanged();
+    }
+}
+
+void User::add_vector_height(int num)
+{
+    m_Vector_height.append(num);
+    emit Vector_heightChanged();
+}
+
+void User::add_data_height(QString data)
+{
+    if(data == "")
+    {
+        QDate currentDate = QDate::currentDate();
+        m_Vector_data_height.append(currentDate.toString("dd-MM-yyyy"));
+        emit Vector_data_heightChanged();
+    }
+    else
+    {
+        m_Vector_data_height.append(data);
+    emit Vector_data_heightChanged();
+    }
+}
+
+void User::remove_weight(int index)
+{
+    if (index >= 0 && index < m_Vector_weight.size())
+    {
+        m_Vector_weight.remove(index);
+    }
+    emit Vector_weightChanged();
+}
+
+void User::remove_height(int index)
+{
+    if (index >= 0 && index < m_Vector_height.size())
+    {
+        m_Vector_height.remove(index);
+    }
+    emit Vector_heightChanged();
+}
+
+void User::remove_data_weight(int index)
+{
+    if (index >= 0 && index < m_Vector_data_weight.size())
+    {
+        m_Vector_data_weight.remove(index);
+    }
+    emit Vector_data_weightChanged();
+}
+
+void User::remove_data_height(int index)
+{
+    if (index >= 0 && index < m_Vector_data_height.size())
+    {
+        m_Vector_data_height.remove(index);
+    }
+    emit Vector_data_heightChanged();
+}
 
 void User::performPOST(const QString &url, const QJsonDocument &payload)
 {
@@ -272,4 +399,57 @@ void User::setEmail_log(const QString &newEmail_log)
         return;
     m_Email_log = newEmail_log;
     emit Email_logChanged();
+}
+
+QVector<int> User::getVector_weight() const
+{
+    return m_Vector_weight;
+}
+
+void User::setVector_weight(const QVector<int> &newVector_weight)
+{
+    if (m_Vector_weight == newVector_weight)
+        return;
+    m_Vector_weight = newVector_weight;
+    emit Vector_weightChanged();
+}
+
+
+QVector<QString> User::getVector_data_weight() const
+{
+    return m_Vector_data_weight;
+}
+
+void User::setVector_data_weight(const QVector<QString> &newVector_data_weight)
+{
+    if (m_Vector_data_weight == newVector_data_weight)
+        return;
+    m_Vector_data_weight = newVector_data_weight;
+    emit Vector_data_weightChanged();
+}
+
+QVector<int> User::getVector_height() const
+{
+    return m_Vector_height;
+}
+
+void User::setVector_height(const QVector<int> &newVector_height)
+{
+    if (m_Vector_height == newVector_height)
+        return;
+    m_Vector_height = newVector_height;
+    emit Vector_heightChanged();
+}
+
+QVector<QString> User::getVector_data_height() const
+{
+    return m_Vector_data_height;
+}
+
+void User::setVector_data_height(const QVector<QString> &newVector_data_height)
+{
+    if (m_Vector_data_height == newVector_data_height)
+        return;
+    m_Vector_data_height = newVector_data_height;
+    emit Vector_data_heightChanged();
 }
