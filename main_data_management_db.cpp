@@ -4,17 +4,18 @@ Main_data_management_db::Main_data_management_db(QObject *parent)
     : QObject(parent),
     m_apiKey(QString())
 {
-    // m_weight = "100";
+    m_weight = "100";
     // m_food = "Chicken";
     // m_type = "Meat";
     // m_name = "pavlov";
-    // m_height = "180";
-    // m_purpose = 3;
+    m_height = "180";
+    m_purpose = 3;
     m_networkAccessManaager = new QNetworkAccessManager(this);
-    //connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::add_db);
+    connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::add_db);
     connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::selectAll);
     connect(this, &Main_data_management_db::userSignedIn,this,&Main_data_management_db::get_data_from_db);
     m_account_widget = new Account_widget();
+    m_schedule_widget = new Schedule_widget();
 }
 
 Main_data_management_db::~Main_data_management_db()
@@ -155,6 +156,7 @@ void Main_data_management_db::get_data_from_db()
                 m_account_widget->purpose_object()->setAfternoon(m_afternoon);
                 m_drinking_regime = 2.92;
                 m_account_widget->purpose_object()->setDrinking_regime(m_drinking_regime);
+                m_schedule_widget->setDrinking_regime(m_drinking_regime);
                 m_metabolism = 1809;
                 m_account_widget->purpose_object()->setMetabolism(m_metabolism);
                 networkReply->deleteLater();
@@ -186,4 +188,9 @@ void Main_data_management_db::setWeight(const QString &newWeight)
 Account_widget *Main_data_management_db::account_widget() const
 {
     return m_account_widget;
+}
+
+Schedule_widget *Main_data_management_db::schedule_widget() const
+{
+    return m_schedule_widget;
 }

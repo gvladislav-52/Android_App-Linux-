@@ -13,13 +13,15 @@ SOURCES += \
     main.cpp \
     main_data_management_db.cpp \
     main_navi_bar.cpp \
-    schedule_widget.cpp
+    schedule_widget.cpp \
+    user.cpp
 
 HEADERS += \
     account_widget.h \
     main_data_management_db.h \
     main_navi_bar.h \
-    schedule_widget.h
+    schedule_widget.h \
+    user.h
 
 FORMS +=
 

@@ -6,6 +6,8 @@
 #include "main_navi_bar.h"
 #include "main_data_management_db.h"
 #include <QSslSocket>
+#include "user.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -15,8 +17,8 @@ int main(int argc, char *argv[])
     Nutrition_widget nutrition_temp;
     Main_navi_bar navi_temp;
     Account_widget account_temp;
-    Main_data_management_db db;
-    Main_data_management_db authHandler;
+    //Main_data_management_db db;
+    User authHandler;
 
     authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
     authHandler.signUserIn("start@email.com", "123123123");

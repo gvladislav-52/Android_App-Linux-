@@ -97,6 +97,8 @@ private:
     double m_drinking_regime;
     int m_metabolism;
     int m_afternoon;
+
+    QString purpose;
 };
 
 class Data_observation_widget: public QObject

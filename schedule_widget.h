@@ -8,6 +8,8 @@
 class Schedule_widget: public QQuickPaintedItem
 {
     Q_OBJECT
+    Q_PROPERTY(double drinking_regime READ getDrinking_regime WRITE setDrinking_regime NOTIFY drinking_regimeChanged FINAL)
+
     Q_PROPERTY(qreal startAngle READ getStartAngle WRITE setStartAngle NOTIFY startAngleChanged FINAL)
     Q_PROPERTY(qreal alignAngle READ getAlignAngle WRITE setAlignAngle NOTIFY alignAngleChanged FINAL)
     Q_PROPERTY(
@@ -48,6 +50,9 @@ public:
     QColor getInnerColor() const;
     void setInnerColor(const QColor &newInnerColor);
 
+    double getDrinking_regime() const;
+    void setDrinking_regime(double newDrinking_regime);
+
 signals:
     void startAngleChanged();
     void alignAngleChanged();
@@ -64,6 +69,8 @@ signals:
 
     void innerColorChanged();
 
+    void drinking_regimeChanged();
+
 private:
     qreal m_startAngle;
     qreal m_alignAngle;
@@ -73,6 +80,7 @@ private:
     int m_arcWidth;
     QColor m_outerColor;
     QColor m_innerColor;
+    double m_drinking_regime;
 };
 
 class Nutrition_widget: public QObject

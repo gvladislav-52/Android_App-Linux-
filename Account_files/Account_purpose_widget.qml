@@ -90,7 +90,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Main_logic_temp.account_widget.purpose_object.purpose_temp
+                        text: Main_logic_temp.Train_option
                         color: "green"
                         font.pixelSize: parent.height*0.3
                     }
@@ -133,7 +133,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Main_logic_temp.account_widget.purpose_object.afternoon + " ккал."
+                        text: Main_logic_temp.Target_metabolism + " ккал."
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -176,7 +176,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Main_logic_temp.account_widget.purpose_object.expected_weight
+                        text: Main_logic_temp.Target_weight
                         color: "green"
                         font.pixelSize: parent.height*0.3
                     }
@@ -219,7 +219,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Main_logic_temp.account_widget.purpose_object.drinking_regime + " л"
+                        text: Main_logic_temp.Drinking_regime + " л"
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -262,7 +262,7 @@ Item {
                     {
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
-                        text: Main_logic_temp.account_widget.purpose_object.metabolism + " ккал."
+                        text: Main_logic_temp.Metabolism + " ккал."
                         color: "green"
                         font.pixelSize: parent.height*0.3
                     }

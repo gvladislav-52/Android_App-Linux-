@@ -11,12 +11,15 @@
 #include <QJsonObject>
 
 #include "account_widget.h"
+#include "schedule_widget.h"
 
 class Main_data_management_db : public QObject
 {
     Q_OBJECT
     //Q_PROPERTY(QString weight READ setWeight WRITE setWeight NOTIFY weightChanged FINAL)
     Q_PROPERTY(Account_widget* account_widget READ account_widget CONSTANT)
+    Q_PROPERTY(Schedule_widget* schedule_widget READ schedule_widget CONSTANT)
+
 public:
     explicit Main_data_management_db(QObject *parent = nullptr);
     ~Main_data_management_db();
@@ -27,6 +30,8 @@ public:
     void setWeight(const QString &newWeight);
 
     Account_widget *account_widget() const;
+
+    Schedule_widget *schedule_widget() const;
 
 public slots:
     void networkReplyReadyRead();
@@ -54,7 +59,9 @@ private:
     QString m_height;
     double m_drinking_regime;
     int m_metabolism;
+
     Account_widget *m_account_widget = nullptr;
+    Schedule_widget *m_schedule_widget = nullptr;
 };
 
 #endif // MAIN_DATA_MANAGEMENT_DB_H

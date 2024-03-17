@@ -199,7 +199,7 @@ Item
 
                 Text
                 {
-                    text:  "из 2,88 л"
+                    text:  Main_logic_temp.Drinking_regime + " л"
                     color: "gray"
                     font.pixelSize: parent.height *0.2
                     //anchors.top: drinking_text_two.bottom
@@ -273,14 +273,14 @@ Item
                     Text
                     {
                         id: weight_text_two
-                        text:  "72 кг"
+                        text:  Main_logic_temp.Actual_weight + " кг"
                         color: "#FFFFFF"
                         font.pixelSize: parent.height *0.3
                     }
 
                     Text
                     {
-                        text:  "цель: 77 кг"
+                        text:  "цель: " + Main_logic_temp.Target_weight + " кг"
                         color: "gray"
                         font.pixelSize: parent.height *0.2
                         Layout.alignment: Qt.AlignBottom

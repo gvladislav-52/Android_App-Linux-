@@ -193,7 +193,7 @@ Item {
                             {
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: Main_logic_temp.account_widget.data_observation.account_characters[0]
+                                text: "Вес [кг]"
                                 color: "#FFFFFF"
                                 font.pixelSize: parent.height *0.5
                             }
@@ -211,7 +211,7 @@ Item {
                                     anchors.fill: parent
                                     text:
                                     {
-                                        Main_logic_temp.account_widget.data_observation.account_vector_weight[0]
+                                        Main_logic_temp.Actual_weight
                                     }
                                     color: "#FFFFFF"
                                     font.pixelSize: parent.height *0.5
@@ -266,7 +266,7 @@ Item {
                             {
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: Main_logic_temp.account_widget.data_observation.account_characters[1]
+                                text: "Рост"
                                 color: "#FFFFFF"
                                 font.pixelSize: parent.height *0.5
                             }
@@ -375,7 +375,7 @@ Item {
                                             {
                                                 anchors.left: parent.left
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                text: Main_logic_temp.account_widget.data_observation.account_characters[0]
+                                                text: qsTr("Hello")
                                                 color: "#FFFFFF"
                                                 font.pixelSize: parent.height *0.5
                                             }
@@ -487,7 +487,7 @@ Item {
                                             {
                                                 anchors.left: parent.left
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                text: Main_logic_temp.account_widget.data_observation.account_characters[1]
+                                                text: qsTr("Hello")
                                                 color: "#FFFFFF"
                                                 font.pixelSize: parent.height *0.5
                                             }

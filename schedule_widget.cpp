@@ -208,3 +208,16 @@ void Nutrition_widget::setFood_schedule_string(const QVector<QString> &newFood_s
     m_food_schedule_string = newFood_schedule_string;
     emit food_schedule_stringChanged();
 }
+
+double Schedule_widget::getDrinking_regime() const
+{
+    return m_drinking_regime;
+}
+
+void Schedule_widget::setDrinking_regime(double newDrinking_regime)
+{
+    if (qFuzzyCompare(m_drinking_regime, newDrinking_regime))
+        return;
+    m_drinking_regime = newDrinking_regime;
+    emit drinking_regimeChanged();
+}

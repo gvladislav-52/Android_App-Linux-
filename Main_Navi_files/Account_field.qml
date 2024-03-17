@@ -87,7 +87,7 @@ Item {
                         {
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            text: Main_logic_temp.account_widget.email_log
+                            text: Main_logic_temp.Email_log
                             color: "white"
                             font.pixelSize: parent.height*0.5
                         }
