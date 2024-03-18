@@ -6,12 +6,13 @@ Item
 {
     id: track
     anchors.fill: parent
+
     ScrollView
     {
         anchors.fill: parent
         clip: true
         ScrollBar.vertical.policy: ScrollBar.AlwaysOff
-        contentHeight: lol.height * 1.05
+        contentHeight: lol.height
 
     ColumnLayout {
         id: lol
@@ -36,6 +37,7 @@ Item
                             id: name_schedule
                             width: parent.width
                             height: track.height * 0.07
+                            anchors.horizontalCenter: parent.horizontalCenter
                             color: "#1e1e1e"
                             radius: 10
 
@@ -96,7 +98,7 @@ Item
                                                         }
                                                     }
                                                 }
-                        }
+                         }
 
                         clip: true
 
@@ -155,8 +157,9 @@ Item
                                                 }
                                             }
                                         }
-                                    }
+
                     }
+                }
             }
 
             Repeater {

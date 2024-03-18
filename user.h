@@ -21,6 +21,7 @@ class User: public QObject
     Q_PROPERTY(double Drinking_regime READ getDrinking_regime WRITE setDrinking_regime NOTIFY Drinking_regimeChanged FINAL)
     Q_PROPERTY(int Metabolism READ getMetabolism WRITE setMetabolism NOTIFY MetabolismChanged FINAL)
     Q_PROPERTY(int Target_metabolism READ getTarget_metabolism WRITE setTarget_metabolism NOTIFY Target_metabolismChanged FINAL)
+    Q_PROPERTY(float Index_body READ getIndex_body WRITE setIndex_body NOTIFY Index_bodyChanged FINAL)
 
     Q_PROPERTY(QVector<int> Vector_weight READ getVector_weight WRITE setVector_weight NOTIFY Vector_weightChanged FINAL)
     Q_PROPERTY(QVector<QString> Vector_data_weight READ getVector_data_weight WRITE setVector_data_weight NOTIFY Vector_data_weightChanged FINAL)
@@ -68,6 +69,9 @@ public:
     QVector<QString> getVector_data_height() const;
     void setVector_data_height(const QVector<QString> &newVector_data_height);
 
+    float getIndex_body() const;
+    void setIndex_body(float newIndex_body);
+
 public slots:
     void networkReplyReadyRead();
     void selectAll();
@@ -113,6 +117,8 @@ signals:
 
     void Vector_data_heightChanged();
 
+    void Index_bodyChanged();
+
 private:
     void performPOST (const QString &url, const QJsonDocument & payload);
     QString m_apikey;
@@ -137,6 +143,7 @@ private:
     QVector<QString> m_Vector_data_weight;
     QVector<int> m_Vector_height;
     QVector<QString> m_Vector_data_height;
+    float m_Index_body;
 };
 
 #endif // USER_H

@@ -398,7 +398,7 @@ Item
                 }
                 Text
                 {
-                    text: "из 3443 ккал"
+                    text: "из "+ Main_logic_temp.Target_metabolism +" ккал"
                     color: "gray"
                     font.pixelSize: parent.height*0.15
                 }

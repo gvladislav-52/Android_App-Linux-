@@ -109,7 +109,7 @@ Item {
                         {
                             Layout.alignment: Qt.AlignLeft
                             Layout.fillWidth: true
-                            text: "22, 2"
+                            text: parseFloat(Main_logic_temp.Index_body).toFixed(1)
                             color: "white"
                             font.pixelSize: parent.height*0.5
                         }

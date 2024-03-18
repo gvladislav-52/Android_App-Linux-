@@ -15,14 +15,13 @@ User::User(QObject *parent)
     m_networkAccessManaager = new QNetworkAccessManager(this);
     //connect(this, &User::userSignedIn,this,&User::add_db);
     //connect(this, &User::userSignedIn,this,&User::selectAll);
-    connect(this, &User::userSignedIn,this,&User::get_data_from_db);
-    //connect(this, &User::userSignedIn,this,&User::get_vector_data);
-
     connect(this, &User::userSignedIn, this, [=](){
         get_vector_data(m_Vector_weight, m_Vector_data_weight,"History_weight/Weight","History_weight/Date", true);
         get_vector_data(m_Vector_height, m_Vector_data_height,"History_height/Height","History_height/Date", false);
     });
 
+    connect(this, &User::userSignedIn,this,&User::get_data_from_db);
+    //connect(this, &User::userSignedIn,this,&User::get_vector_data);
 }
 
 User::~User()
@@ -146,6 +145,7 @@ void User::get_data_from_db()
                                 else if (gender == "Female")
                                     setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
 
+                                setIndex_body((static_cast<double>(m_Actual_weight) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
                                 setTarget_metabolism(m_Metabolism*1.5);
                     }
                 }
@@ -452,4 +452,17 @@ void User::setVector_data_height(const QVector<QString> &newVector_data_height)
         return;
     m_Vector_data_height = newVector_data_height;
     emit Vector_data_heightChanged();
+}
+
+float User::getIndex_body() const
+{
+    return m_Index_body;
+}
+
+void User::setIndex_body(float newIndex_body)
+{
+    if (qFuzzyCompare(m_Index_body, newIndex_body))
+        return;
+    m_Index_body = newIndex_body;
+    emit Index_bodyChanged();
 }
