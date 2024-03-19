@@ -3,6 +3,14 @@ import QtQuick.Layouts
 
 Item {
 
+    property var purpose_name:
+    [
+        "Цель",
+        "Дневной прием",
+        "Ожидаемый вес",
+        "Мой питьевой режим",
+        "Твой обмен веществ"
+    ]
     Rectangle
     {
         id: rectangle_header
@@ -71,7 +79,7 @@ Item {
                         id: purpose
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_object.purpose_name_static[0]
+                        text: purpose_name[0]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -114,7 +122,7 @@ Item {
                         id: аfternoon_reception
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_object.purpose_name_static[1]
+                        text: purpose_name[1]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -157,7 +165,7 @@ Item {
                         id: expected_weight
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_object.purpose_name_static[2]
+                        text: purpose_name[2]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -200,7 +208,7 @@ Item {
                         id: drinking_regime
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_object.purpose_name_static[3]
+                        text: purpose_name[3]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }
@@ -243,7 +251,7 @@ Item {
                         id: metabolism
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        text: Account_temp.purpose_object.purpose_name_static[4]
+                        text: purpose_name[4]
                         color: "lightgray"
                         font.pixelSize: parent.height*0.3
                     }

@@ -342,31 +342,29 @@ Item
                 onClicked: console.log("kkal")
             }
 
-            Statistic_object
-            {
+            Statistic_object {
                 id: statistic_object_main
-                anchors
-                {
+                anchors {
                     verticalCenter: parent.verticalCenter
                     left: parent.left
                 }
-                width: parent.height/1.2
-                height: parent.height/1.2
+                width: parent.height / 1.2
+                height: parent.height / 1.2
                 arcWidth: 6
                 outerColor: "orange"
                 innerColor: "gray"
-                speed: 3500
+                speed: Deitary_temp.Calories_time_domain
+                highestRange: Main_logic_temp.Target_metabolism
 
-                Text
-                {
-                    anchors
-                    {
-                        verticalCenter:parent.verticalCenter
-                        horizontalCenter:parent.horizontalCenter
+                Text {
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        horizontalCenter: parent.horizontalCenter
                     }
 
+                    font.pixelSize: parent.height * 0.2
                     color: "gray"
-                    text: "0%"
+                    text: parseFloat(statistic_object_main.speed / statistic_object_main.highestRange).toFixed(2) * 100 + "%"
                 }
             }
 
@@ -461,7 +459,8 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 120
+                    speed: 170
+                    highestRange: Main_logic_temp.Protein
 
                     Text
                     {
@@ -470,9 +469,9 @@ Item
                             verticalCenter:parent.verticalCenter
                             horizontalCenter:parent.horizontalCenter
                         }
-
+                        font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: "0%"
+                        text: parseFloat(object_one.speed/object_one.highestRange).toFixed(2)*100 + "%"
                     }
                 }
 
@@ -511,7 +510,7 @@ Item
                         leftMargin: parent.width*0.1
                     }
                     font.pixelSize: parent.height*0.15
-                    text: "из 211 г"
+                    text: "из "+ Main_logic_temp.Protein +" г"
                     color: "gray"
                     anchors.top:object_one_text2.bottom
                 }
@@ -533,8 +532,8 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 2200
-
+                    speed: 110
+                    highestRange: Main_logic_temp.Carb
                     Text
                     {
                         anchors
@@ -543,8 +542,9 @@ Item
                             horizontalCenter:parent.horizontalCenter
                         }
 
+                        font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: "0%"
+                        text: parseFloat(object_two.speed/object_two.highestRange).toFixed(2)*100 + "%"
                     }
                 }
                 Text
@@ -582,7 +582,7 @@ Item
                         leftMargin: parent.width*0.1
                     }
                     font.pixelSize: parent.height*0.15
-                    text: "из 414 г"
+                    text: "из "+ Main_logic_temp.Carb +" г"
                     color: "gray"
                     anchors.top:object_two_text2.bottom
                 }
@@ -605,7 +605,8 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 500
+                    speed: 90
+                    highestRange: Main_logic_temp.Fats
 
                     Text
                     {
@@ -615,8 +616,9 @@ Item
                             horizontalCenter:parent.horizontalCenter
                         }
 
+                        font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: "0%"
+                        text: parseFloat(object_three.speed/object_three.highestRange).toFixed(2)*100 + "%"
                     }
                 }
                 Text
@@ -654,7 +656,7 @@ Item
                         leftMargin: parent.width*0.1
                     }
                     font.pixelSize: parent.height*0.15
-                    text: "из 95,8 г"
+                    text: "из " + Main_logic_temp.Fats +" г"
                     color: "gray"
                     anchors.top:object_three_text2.bottom
                 }
@@ -677,7 +679,8 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 1000
+                    speed: 14
+                    highestRange: Main_logic_temp.Fiber
 
                     Text
                     {
@@ -687,8 +690,9 @@ Item
                             horizontalCenter:parent.horizontalCenter
                         }
 
+                        font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: "0%"
+                        text: parseFloat(object_four.speed/object_four.highestRange).toFixed(2)*100 + "%"
                     }
                 }
 
@@ -727,7 +731,7 @@ Item
                         leftMargin: parent.width*0.1
                     }
                     font.pixelSize: parent.height*0.15
-                    text: "из 27,5 г"
+                    text: "из " + Main_logic_temp.Fiber + " г"
                     color: "gray"
                     anchors.top:object_four_text2.bottom
                 }

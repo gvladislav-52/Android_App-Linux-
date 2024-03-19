@@ -76,7 +76,7 @@ Item {
                 }
                     Repeater {
                         id: my_food_repeater
-                        model: Account_temp.my_food_object.my_food_static.length
+                        model: My_food_temp.my_food_static.length
 
                         Item {
                             Layout.preferredHeight: main_scroll_item_food.height* 0.1
@@ -97,7 +97,7 @@ Item {
 
                             Text
                             {
-                                text: Account_temp.my_food_object.my_food_static[index]
+                                text: My_food_temp.my_food_static[index]
                                 color: "gray"
                                 font.pixelSize: parent.height * 0.3
                                 anchors

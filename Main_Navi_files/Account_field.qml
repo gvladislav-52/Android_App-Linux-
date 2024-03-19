@@ -3,6 +3,15 @@ import QtQuick.Layouts
 import "../Account_files"
 
 Item {
+    property var account_name:
+    [
+        "Твоя цель",
+        "Данные для наблюдения",
+        "Мои блюда",
+        "Изменить пароль",
+        "Удалить аккаунт"
+    ]
+
     Item
     {
         id: main_window_account
@@ -157,7 +166,7 @@ Item {
 
                 Repeater
                 {
-                    model: Account_temp.account_name_button.length
+                    model: account_name.length
 
                     Rectangle
                     {
@@ -167,7 +176,7 @@ Item {
                         Text
                         {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: Account_temp.account_name_button[index]
+                            text: account_name[index]
                             color: "lightgray"
                             font.pixelSize: parent.height*0.3
                         }

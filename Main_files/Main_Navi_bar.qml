@@ -4,6 +4,24 @@ import QtQuick.Layouts
 
 Item
 {
+    property var textVector:
+    [
+        "Мой профиль",
+        "Рацион",
+        "Рецепты",
+        "Мои блюда",
+        "Справка"
+    ]
+
+    property var imageVector:
+    [
+        "qrc:/ui/Image NaviBar/person.png",
+        "qrc:/ui/Image NaviBar/schedule.jpg",
+        "qrc:/ui/Image NaviBar/book.png",
+        "qrc:/ui/Image NaviBar/food.png",
+        "qrc:/ui/Image NaviBar/question.png"
+    ]
+
     Rectangle
     {
         id: main_background
@@ -19,7 +37,7 @@ Item
             spacing: 0
             Repeater
             {
-                model: Navi_temp.name_navi_bar.length
+                model: textVector.length
                 Rectangle
                 {
                     Layout.preferredHeight: parent.height*0.2
@@ -31,14 +49,14 @@ Item
 
                         Image {
                             id: image_bar
-                            source: Navi_temp.path_icon[index]
+                            source: imageVector[index]
                             Layout.preferredHeight: parent.height * 0.4
                             Layout.preferredWidth: parent.width * 0.4
                             fillMode: Image.PreserveAspectFit
                         }
 
                             Text {
-                                text: Navi_temp.name_navi_bar[index]
+                                text: textVector[index]
                                 font.pixelSize: parent.height * 0.3
                                 color: "lightgray"
                                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter

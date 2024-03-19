@@ -28,6 +28,12 @@ class User: public QObject
 
     Q_PROPERTY(QVector<int> Vector_height READ getVector_height WRITE setVector_height NOTIFY Vector_heightChanged FINAL)
     Q_PROPERTY(QVector<QString> Vector_data_height READ getVector_data_height WRITE setVector_data_height NOTIFY Vector_data_heightChanged FINAL)
+
+    Q_PROPERTY(int Protein READ getProtein WRITE setProtein NOTIFY ProteinChanged FINAL)
+    Q_PROPERTY(int Carb READ getCarb WRITE setCarb NOTIFY CarbChanged FINAL)
+    Q_PROPERTY(int Fats READ getFats WRITE setFats NOTIFY FatsChanged FINAL)
+    Q_PROPERTY(int Fiber READ getFiber WRITE setFiber NOTIFY FiberChanged FINAL)
+
 public:
     explicit User(QObject *parent = nullptr);
     ~User();
@@ -71,6 +77,18 @@ public:
 
     float getIndex_body() const;
     void setIndex_body(float newIndex_body);
+
+    int getProtein() const;
+    void setProtein(int newProtein);
+
+    int getCarb() const;
+    void setCarb(int newCarb);
+
+    int getFats() const;
+    void setFats(int newFats);
+
+    int getFiber() const;
+    void setFiber(int newFiber);
 
 public slots:
     void networkReplyReadyRead();
@@ -119,6 +137,14 @@ signals:
 
     void Index_bodyChanged();
 
+    void ProteinChanged();
+
+    void CarbChanged();
+
+    void FatsChanged();
+
+    void FiberChanged();
+
 private:
     void performPOST (const QString &url, const QJsonDocument & payload);
     QString m_apikey;
@@ -144,6 +170,10 @@ private:
     QVector<int> m_Vector_height;
     QVector<QString> m_Vector_data_height;
     float m_Index_body;
+    int m_Protein;
+    int m_Carb;
+    int m_Fats;
+    int m_Fiber;
 };
 
 #endif // USER_H

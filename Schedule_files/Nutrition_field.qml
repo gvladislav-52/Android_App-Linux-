@@ -4,6 +4,15 @@ import QtQuick.Controls
 
 Item
 {
+    property var meal_schedule_static:
+    [
+        "ЗАВТРАК",
+        "ВТОРОЙ ЗАВТРАК",
+        "ОБЕД",
+        "ПОЛДНИК",
+        "УЖИН",
+        "ВТОРОЙ УЖИН",
+    ]
     id: track
     anchors.fill: parent
 
@@ -24,7 +33,7 @@ Item
         }
 
             Repeater {
-                model: 7
+                model: meal_schedule_static.length
 
                     Rectangle {
                         id: tect
@@ -47,7 +56,7 @@ Item
 
                                                     Text
                                                     {
-                                                        text: Nutriton_temp.meal_schedule_string[index]
+                                                        text: meal_schedule_static[index]
                                                         font.pixelSize: parent.height * 0.4
                                                         color: "gray"
                                                         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
@@ -92,7 +101,7 @@ Item
                                                             anchors.fill: parent
                                                             onClicked:
                                                             {
-                                                                Nutriton_temp.add_food_string()
+                                                                Deitary_temp.add_food_string()
                                                                 sfa.model = sfa.model+1
                                                             }
                                                         }
@@ -122,7 +131,7 @@ Item
                                                 Text {
                                                     id: poprob
                                                     Layout.alignment: Qt.AlignLeft
-                                                    text: Nutriton_temp.food_schedule_string[index]
+                                                    text: Deitary_temp.food_schedule_string[index]
                                                     font.pixelSize: track.height * 0.025
                                                     color: "#FFFFFF"
                                                     Layout.fillWidth: true
@@ -150,7 +159,7 @@ Item
                                                         onClicked:
                                                         {
                                                             var currentIndex = index
-                                                            Nutriton_temp.remove_food_schedule(currentIndex)
+                                                            Deitary_temp.remove_food_schedule(currentIndex)
                                                             sfa.model = sfa.model-1
                                                         }
                                                     }
@@ -172,7 +181,7 @@ Item
 
                     Text
                     {
-                        text: Nutriton_temp.note_string[index]
+                        text: Deitary_temp.note_string[index]
                         color: "gray"
                         font.pixelSize: parent.height * 0.3
                         Layout.alignment: Qt.ALignLeft | Qt.AlignVCenter
@@ -225,7 +234,7 @@ Item
                     anchors.fill: parent
                     onClicked:
                     {
-                        Nutriton_temp.add_note_string()
+                        Deitary_temp.add_note_string()
                         test.model = test.model+1
                     }
                 }

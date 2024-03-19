@@ -177,11 +177,6 @@ Item {
                     {
                         width: parent.width
                         height: parent.height * 0.2
-                        // Repeater
-                        // {
-                        //     id: asdss
-                        //     model: Main_logic_temp.account_widget.data_observation.account_characters.length
-                        // }
 
                         Item
                         {
@@ -238,12 +233,8 @@ Item {
                                         focus = false
                                         if(text_weigth.text !== "")
                                             {
-                                            // Data_temp.add_weight(text_weigth.text);
-                                            // Data_temp.add_data_weight();
                                             Main_logic_temp.add_vector_weight(text_weigth.text);
                                             Main_logic_temp.add_data_weight();
-                                            //Main_logic_temp.account_widget.data_observation.add_weight(text_weigth.text)
-                                            //Main_logic_temp.account_widget.data_observation.add_date();
                                             }
                                        }
 
@@ -317,8 +308,6 @@ Item {
                                             {
                                             Main_logic_temp.add_vector_height(text_weigth1.text);
                                             Main_logic_temp.add_data_height();
-                                            // Main_logic_temp.account_widget.data_observation.add_height(text_weigth1.text)
-                                            // Main_logic_temp.account_widget.data_observation.add_date();
                                             }
                                        }
 
@@ -360,10 +349,6 @@ Item {
                         horizontalCenter: parent.horizontalCenter
                         verticalCenter: parent.verticalCenter
                         }
-
-                            // Repeater {
-                            //     model: Main_logic_temp.account_widget.data_observation.account_characters.length
-
                                     Rectangle {
                                         id: tect
                                         Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)

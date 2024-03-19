@@ -172,7 +172,7 @@ Rectangle {
 
                             Text
                             {
-                                text: index + " " + Nutriton_temp.note_string[index]
+                                text: index + " " + Deitary_temp.note_string[index]
                                 color: "gray"
                                 font.pixelSize: parent.height * 0.3
                                 Layout.alignment: Qt.ALignLeft | Qt.AlignVCenter
@@ -229,7 +229,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked:
                 {
-                    Nutriton_temp.add_note_string()
+                    Deitary_temp.add_note_string()
                     my_food_list_repeater.model = my_food_list_repeater.model+1
                 }
             }
@@ -267,8 +267,8 @@ Rectangle {
                 anchors.fill: parent
                 onClicked:
                 {
-                    Account_temp.my_food_object.add_my_food(naming_food.text)
-                    my_food_repeater.model = Account_temp.my_food_object.my_food_static.length
+                    My_food_temp.add_my_food(naming_food.text)
+                    my_food_repeater.model = My_food_temp.my_food_static.length
                     add_my_food.visible = false
                     add_my_food.enabled = false
                     food_list.enabled = true

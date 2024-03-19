@@ -11,7 +11,7 @@ User::User(QObject *parent)
     // m_Actual_weight = 75;
     // m_Target_weight = 77;
     // m_Train_option = "Набор мышечной массы";
-
+    //setTarget_metabolism(0);
     m_networkAccessManaager = new QNetworkAccessManager(this);
     //connect(this, &User::userSignedIn,this,&User::add_db);
     //connect(this, &User::userSignedIn,this,&User::selectAll);
@@ -22,6 +22,14 @@ User::User(QObject *parent)
 
     connect(this, &User::userSignedIn,this,&User::get_data_from_db);
     //connect(this, &User::userSignedIn,this,&User::get_vector_data);
+
+    m_Protein = 212;
+    m_Carb = 415;
+    m_Fats = 96;
+    m_Fiber = 28;
+   // m_Target_metabolism = 2914;
+
+    //setTarget_metabolism(2000);
 }
 
 User::~User()
@@ -465,4 +473,56 @@ void User::setIndex_body(float newIndex_body)
         return;
     m_Index_body = newIndex_body;
     emit Index_bodyChanged();
+}
+
+int User::getProtein() const
+{
+    return m_Protein;
+}
+
+void User::setProtein(int newProtein)
+{
+    if (m_Protein == newProtein)
+        return;
+    m_Protein = newProtein;
+    emit ProteinChanged();
+}
+
+int User::getCarb() const
+{
+    return m_Carb;
+}
+
+void User::setCarb(int newCarb)
+{
+    if (m_Carb == newCarb)
+        return;
+    m_Carb = newCarb;
+    emit CarbChanged();
+}
+
+int User::getFats() const
+{
+    return m_Fats;
+}
+
+void User::setFats(int newFats)
+{
+    if (m_Fats == newFats)
+        return;
+    m_Fats = newFats;
+    emit FatsChanged();
+}
+
+int User::getFiber() const
+{
+    return m_Fiber;
+}
+
+void User::setFiber(int newFiber)
+{
+    if (m_Fiber == newFiber)
+        return;
+    m_Fiber = newFiber;
+    emit FiberChanged();
 }

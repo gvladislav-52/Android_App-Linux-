@@ -9,20 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    account_widget.cpp \
     data_for_observation.cpp \
+    dietary_information.cpp \
     main.cpp \
-    main_data_management_db.cpp \
-    main_navi_bar.cpp \
-    schedule_widget.cpp \
+    my_food.cpp \
+    recipe.cpp \
+    setting_widget.cpp \
     user.cpp
 
 HEADERS += \
-    account_widget.h \
     data_for_observation.h \
-    main_data_management_db.h \
-    main_navi_bar.h \
-    schedule_widget.h \
+    dietary_information.h \
+    my_food.h \
+    recipe.h \
+    setting_widget.h \
     user.h
 
 FORMS +=
