@@ -8,6 +8,7 @@
 #include "data_for_observation.h"
 #include "my_food.h"
 #include "dietary_information.h"
+#include "database.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,8 +23,17 @@ int main(int argc, char *argv[])
     Data_for_observation data_observation;
     Dietary_information deitary;
     setting_widget sa;
-    authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
-    authHandler.signUserIn("start@email.com", "123123123");
+    Database db;
+    //authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
+    //authHandler.signUserIn("start@email.com", "123123123");
+    QEventLoop loop;
+    db.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
+    db.signUserIn("start@email.com", "123123123");
+    loop.quit();
+    authHandler.use_data_all(db.get_user_data_string("Training"), db.get_user_data_string("Gender"), db.get_user_data_int("Actual_weight"),
+                             db.get_user_data_int("Target_weight"), db.get_user_data_int("Age"), db.get_user_data_int("Height"), db.get_email_info(),
+                             db.get_user_data_vector_int("Data_","History_weight/Weight"),db.get_user_data_vector_string("Data_","History_weight/Date"),
+                             db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
     qmlRegisterType<setting_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 
@@ -43,14 +53,33 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Main_logic_temp", &authHandler);
     rootContext->setContextProperty("Data_temp", &data_observation);
     engine.load(url);
+    // QTimer::singleShot(3000,[&db, &authHandler]() {
+    //     authHandler.use_data_all(db.get_user_data_string("Training"), db.get_user_data_string("Gender"), db.get_user_data_int("Actual_weight"),
+    //                              db.get_user_data_int("Target_weight"), db.get_user_data_int("Age"), db.get_user_data_int("Height"), db.get_email_info(),
+    //                              db.get_user_data_vector_int("Data_","History_weight/Weight"),db.get_user_data_vector_string("Data_","History_weight/Date"),
+    //                              db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
 
-    QTimer::singleShot(1000, [&]() {
-        for(int i = 0; i < 3; i++)
-        {
-            data_observation.add_weight(authHandler.getActual_weight());
-            data_observation.add_data_weight();
-        }
-    });
+    //     // authHandler.setTrain_option(db.get_user_data_string("Training"));
+    //     // QString gender = db.get_user_data_string("Gender");
+    //     // authHandler.setActual_weight(db.get_user_data_int("Actual_weight"));
+    //     // authHandler.setTarget_weight(db.get_user_data_int("Target_weight"));
+    //     // int age = db.get_user_data_int("Age");
+    //     // int height = db.get_user_data_int("Height");
+    //     // authHandler.setDrinking_regime((authHandler.getActual_weight()*30)/1000);
+    //     // if(gender == "Male")
+    //     //         authHandler.setMetabolism(66.5+(13.75*authHandler.getActual_weight())+(5.003*height)-(6.775-age));
+    //     //     else if (gender == "Female")
+    //     //         authHandler.setMetabolism(655.1+(9.563*authHandler.getActual_weight())+(1.850*height)-(4.676-age));
+    //     // authHandler.setIndex_body((static_cast<double>(authHandler.getActual_weight()) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
+    //     // authHandler.setTarget_metabolism(authHandler.getMetabolism()*1.5);
+
+    //     // authHandler.setVector_weight(db.get_user_data_vector_int("Data_","History_weight/Weight"));
+    //     // authHandler.setVector_data_weight(db.get_user_data_vector_string("Data_","History_weight/Date"));
+    //     // authHandler.setVector_height(db.get_user_data_vector_int("Data_","History_height/Height"));
+    //     // authHandler.setVector_data_height(db.get_user_data_vector_string("Data_","History_height/Date"));
+
+    //     //authHandler.setEmail_log(db.get_email_info());
+    // });
 
     return app.exec();
 }

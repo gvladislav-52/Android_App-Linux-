@@ -1,8 +1,8 @@
 #include "user.h"
 
 User::User(QObject *parent)
-    : QObject(parent),
-    m_apikey(QString())
+    : QObject(parent)
+                //////m_apikey(QString())
 {
     // gender = "Male";
     // activity = 1;
@@ -12,15 +12,15 @@ User::User(QObject *parent)
     // m_Target_weight = 77;
     // m_Train_option = "Набор мышечной массы";
     //setTarget_metabolism(0);
-    m_networkAccessManaager = new QNetworkAccessManager(this);
+                ///////m_networkAccessManaager = new QNetworkAccessManager(this);
     //connect(this, &User::userSignedIn,this,&User::add_db);
     //connect(this, &User::userSignedIn,this,&User::selectAll);
-    connect(this, &User::userSignedIn, this, [=](){
-        get_vector_data(m_Vector_weight, m_Vector_data_weight,"History_weight/Weight","History_weight/Date", true);
-        get_vector_data(m_Vector_height, m_Vector_data_height,"History_height/Height","History_height/Date", false);
-    });
+                //////connect(this, &User::userSignedIn, this, [=](){
+                //////    get_vector_data(m_Vector_weight, m_Vector_data_weight,"History_weight/Weight","History_weight/Date", true);
+                //////    get_vector_data(m_Vector_height, m_Vector_data_height,"History_height/Height","History_height/Date", false);
+                /////});
 
-    connect(this, &User::userSignedIn,this,&User::get_data_from_db);
+                //////connect(this, &User::userSignedIn,this,&User::get_data_from_db);
     //connect(this, &User::userSignedIn,this,&User::get_vector_data);
 
     m_Protein = 212;
@@ -34,202 +34,224 @@ User::User(QObject *parent)
 
 User::~User()
 {
-    m_networkAccessManaager->deleteLater();
+   // m_networkAccessManaager->deleteLater();
 }
 
-void User::setApiKey(const QString &apiKey)
-{
-    m_apikey =apiKey;
-}
+// void User::setApiKey(const QString &apiKey)
+// {
+//     m_apikey =apiKey;
+// }
 
-void User::signUserUp(const QString &emailAddress, const QString &password)
-{
-    QString signUpEndpoint = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + m_apikey;
-    QVariantMap variantPayload;
-    variantPayload["email"] = emailAddress;
-    variantPayload["password"] = password;
-    variantPayload["returnSecureToken"] = true;
+// void User::signUserUp(const QString &emailAddress, const QString &password)
+// {
+//     QString signUpEndpoint = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + m_apikey;
+//     QVariantMap variantPayload;
+//     variantPayload["email"] = emailAddress;
+//     variantPayload["password"] = password;
+//     variantPayload["returnSecureToken"] = true;
 
-    QJsonDocument jsonPayload = QJsonDocument::fromVariant(variantPayload);
-    performPOST(signUpEndpoint,jsonPayload);
-}
+//     QJsonDocument jsonPayload = QJsonDocument::fromVariant(variantPayload);
+//     performPOST(signUpEndpoint,jsonPayload);
+// }
 
-void User::signUserIn(const QString &emailAddress, const QString &password)
-{
-    QString signInEndpoint = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + m_apikey;
-    QVariantMap variantPayload;
-    variantPayload["email"] = emailAddress;
-    variantPayload["password"] = password;
-    variantPayload["returnSecureToken"] = true;
+// void User::signUserIn(const QString &emailAddress, const QString &password)
+// {
+//     QString signInEndpoint = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + m_apikey;
+//     QVariantMap variantPayload;
+//     variantPayload["email"] = emailAddress;
+//     variantPayload["password"] = password;
+//     variantPayload["returnSecureToken"] = true;
 
-    QJsonDocument jsonPayload = QJsonDocument::fromVariant(variantPayload);
-    performPOST(signInEndpoint,jsonPayload);
+//     QJsonDocument jsonPayload = QJsonDocument::fromVariant(variantPayload);
+//     performPOST(signInEndpoint,jsonPayload);
 
-}
+// }
 
-void User::networkReplyReadyRead()
-{
-    QByteArray response = m_networkReply->readAll();
-    m_networkReply->deleteLater();
+// void User::networkReplyReadyRead()
+// {
+//     QByteArray response = m_networkReply->readAll();
+//     m_networkReply->deleteLater();
 
-    QJsonDocument jsonDocument = QJsonDocument::fromJson(response);
-    if (jsonDocument.object().contains("error"))
-    {
-        qDebug () << "Error occured!" << response;
-    }
-    else if (jsonDocument.object().contains("kind"))
-    {
-        m_idToken = jsonDocument.object().value("idToken").toString();
-        m_localId = jsonDocument.object().value("localId").toString();
-        setEmail_log(jsonDocument.object().value("email").toString());
+//     QJsonDocument jsonDocument = QJsonDocument::fromJson(response);
+//     if (jsonDocument.object().contains("error"))
+//     {
+//         qDebug () << "Error occured!" << response;
+//     }
+//     else if (jsonDocument.object().contains("kind"))
+//     {
+//         m_idToken = jsonDocument.object().value("idToken").toString();
+//         m_localId = jsonDocument.object().value("localId").toString();
+//         setEmail_log(jsonDocument.object().value("email").toString());
 
-        //m_account_widget->setEmail_log(m_email);
-        qDebug () << "Succesfull!";
-        qDebug () << m_Email_log;
-        emit userSignedIn();
-    }
-    else
-    {
-        qDebug() << "The response was: " << response;
-        qDebug() << m_Train_option;
-        //qDebug() << m_vector_weight;
-        // qDebug() << m_email;
-        //qDebug() << training_option;
-    }
-}
+//         //m_account_widget->setEmail_log(m_email);
+//         qDebug () << "Succesfull!";
+//         qDebug () << m_Email_log;
+//         emit userSignedIn();
+//     }
+//     else
+//     {
+//         qDebug() << "The response was: " << response;
+//         qDebug() << m_Train_option;
+//         //qDebug() << m_vector_weight;
+//         // qDebug() << m_email;
+//         //qDebug() << training_option;
+//     }
+// }
 
-void User::selectAll()
-{
-    QString catalog = m_localId;
-    QString endPoint = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + catalog+ "/.json?auth=" + m_idToken;
-    m_networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(endPoint)));
+// void User::selectAll()
+// {
+//     QString catalog = m_localId;
+//     QString endPoint = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + catalog+ "/.json?auth=" + m_idToken;
+//     m_networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(endPoint)));
 
-    connect(m_networkReply, &QNetworkReply::readyRead,this,&User::networkReplyReadyRead);
-}
+//     connect(m_networkReply, &QNetworkReply::readyRead,this,&User::networkReplyReadyRead);
+// }
 
-void User::add_db()
-{
-    QString catalog = m_localId;
-    QVariantMap newPet;
-    newPet["Training"] = m_Train_option;
-    newPet["Gender"] = gender;
-    newPet["Activity"] = activity;
-    newPet["Age"] = age;
-    newPet["Height"] = height;
-    newPet["Actual_weight"] = m_Actual_weight;
-    newPet["Target_weight"] = m_Target_weight;
-    QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
+// void User::add_db()
+// {
+//     QString catalog = m_localId;
+//     QVariantMap newPet;
+//     newPet["Training"] = m_Train_option;
+//     newPet["Gender"] = gender;
+//     newPet["Activity"] = activity;
+//     newPet["Age"] = age;
+//     newPet["Height"] = height;
+//     newPet["Actual_weight"] = m_Actual_weight;
+//     newPet["Target_weight"] = m_Target_weight;
+//     QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
 
-    QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/"+ catalog+ "/.json?auth=" + m_idToken));
-    newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
-    m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
-}
+//     QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/"+ catalog+ "/.json?auth=" + m_idToken));
+//     newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
+//     m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
+// }
 
-void User::get_data_from_db()
-{
-    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/.json?auth=" + m_idToken;
-    QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+// void User::get_data_food()
+// {
+//     QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/Day_1/AFTERNOON SNACK/.json?auth=" + m_idToken;
+//     QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
 
-    connect(networkReply, &QNetworkReply::finished, [=]()
-            {
-                if(networkReply->error() == QNetworkReply::NoError)
-                {
-                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
-                    if (!jsonResponse.isNull())
-                    {
-                        QJsonObject jsonObject = jsonResponse.object();
-                                setTrain_option(jsonObject["Training"].toString());
-                                gender = jsonObject["Gender"].toString();
-                                setActual_weight(jsonObject["Actual_weight"].toInt());
-                                setTarget_weight(jsonObject["Target_weight"].toInt());
-                                age = jsonObject["Age"].toInt();
-                                height = jsonObject["Height"].toInt();
+//     connect(networkReply, &QNetworkReply::finished, [=]()
+//             {
+//                 if(networkReply->error() == QNetworkReply::NoError)
+//                 {
+//                     QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//                     if (!jsonResponse.isNull())
+//                     {
+//                         QJsonObject jsonObject = jsonResponse.object();
+//                         qDebug() << (jsonObject["173"].toString());
 
-                                double temp_drink = m_Actual_weight;
-                                setDrinking_regime((temp_drink*30)/1000);
+//                     }
+//                 }
 
-                                if(gender == "Male")
-                                    setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
-                                else if (gender == "Female")
-                                    setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
+//                 networkReply->deleteLater();
+//             });
+// }
 
-                                setIndex_body((static_cast<double>(m_Actual_weight) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
-                                setTarget_metabolism(m_Metabolism*1.5);
-                    }
-                }
+// void User::get_data_from_db()
+// {
+//     QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/.json?auth=" + m_idToken;
+//     QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
 
-                networkReply->deleteLater();
-    });
-}
+//     connect(networkReply, &QNetworkReply::finished, [=]()
+//             {
+//                 if(networkReply->error() == QNetworkReply::NoError)
+//                 {
+//                     QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//                     if (!jsonResponse.isNull())
+//                     {
+//                         QJsonObject jsonObject = jsonResponse.object();
+//                                 setTrain_option(jsonObject["Training"].toString());
+//                                 gender = jsonObject["Gender"].toString();
+//                                 setActual_weight(jsonObject["Actual_weight"].toInt());
+//                                 setTarget_weight(jsonObject["Target_weight"].toInt());
+//                                 age = jsonObject["Age"].toInt();
+//                                 height = jsonObject["Height"].toInt();
 
-void User::get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable)
-{
-    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_path + ".json?auth=" + m_idToken;
-    QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+//                                 double temp_drink = m_Actual_weight;
+//                                 setDrinking_regime((temp_drink*30)/1000);
 
-    connect(networkReply, &QNetworkReply::finished, [=, &data_int]()
-            {
-                if(networkReply->error() == QNetworkReply::NoError)
-                {
-                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
-                    if (!jsonResponse.isNull())
-                    {
-                        QJsonObject jsonObject = jsonResponse.object();
-                        bool temp = false;
-                        int num = data_int.size();
-                        while (!temp)
-                        {
-                            if (jsonObject.contains("Data_" + QString::number(num+1)))
-                            {
-                                if(temp_variable)
-                                    add_vector_weight(jsonObject["Data_" + QString::number(num+1)].toInt());
-                                else
-                                    add_vector_height(jsonObject["Data_" + QString::number(num+1)].toInt());
-                                num++;
-                            }
-                            else
-                            {
-                                temp = true;
-                            }
-                        }
-                    }
-                }
-                networkReply->deleteLater();
-    });
+//                                 if(gender == "Male")
+//                                     setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
+//                                 else if (gender == "Female")
+//                                     setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
 
-    url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_data + ".json?auth=" + m_idToken;
-    networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+//                                 setIndex_body((static_cast<double>(m_Actual_weight) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
+//                                 setTarget_metabolism(m_Metabolism*1.5);
+//                     }
+//                 }
 
-    connect(networkReply, &QNetworkReply::finished, [=, &data_string]()
-            {
-                if(networkReply->error() == QNetworkReply::NoError)
-                {
-                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
-                    if (!jsonResponse.isNull())
-                    {
-                        QJsonObject jsonObject = jsonResponse.object();
-                        bool temp = false;
-                        int num = data_string.size();
-                        while (!temp)
-                        {
-                            if (jsonObject.contains("Data_" + QString::number(num+1)))
-                            {
-                                if(temp_variable)
-                                    add_data_weight(jsonObject["Data_" + QString::number(num+1)].toString());
-                                else
-                                    add_data_height(jsonObject["Data_" + QString::number(num+1)].toString());
-                                num++;
-                            }
-                            else
-                            {
-                                temp = true;
-                            }
-                        }
-                    }
-                }
-                networkReply->deleteLater();
-            });
-}
+//                 networkReply->deleteLater();
+//     });
+// }
+
+// void User::get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable)
+// {
+//     QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_path + ".json?auth=" + m_idToken;
+//     QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+
+//     connect(networkReply, &QNetworkReply::finished, [=, &data_int]()
+//             {
+//                 if(networkReply->error() == QNetworkReply::NoError)
+//                 {
+//                     QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//                     if (!jsonResponse.isNull())
+//                     {
+//                         QJsonObject jsonObject = jsonResponse.object();
+//                         bool temp = false;
+//                         int num = data_int.size();
+//                         while (!temp)
+//                         {
+//                             if (jsonObject.contains("Data_" + QString::number(num+1)))
+//                             {
+//                                 if(temp_variable)
+//                                     add_vector_weight(jsonObject["Data_" + QString::number(num+1)].toInt());
+//                                 else
+//                                     add_vector_height(jsonObject["Data_" + QString::number(num+1)].toInt());
+//                                 num++;
+//                             }
+//                             else
+//                             {
+//                                 temp = true;
+//                             }
+//                         }
+//                     }
+//                 }
+//                 networkReply->deleteLater();
+//     });
+
+//     url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/" + m_data + ".json?auth=" + m_idToken;
+//     networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+
+//     connect(networkReply, &QNetworkReply::finished, [=, &data_string]()
+//             {
+//                 if(networkReply->error() == QNetworkReply::NoError)
+//                 {
+//                     QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//                     if (!jsonResponse.isNull())
+//                     {
+//                         QJsonObject jsonObject = jsonResponse.object();
+//                         bool temp = false;
+//                         int num = data_string.size();
+//                         while (!temp)
+//                         {
+//                             if (jsonObject.contains("Data_" + QString::number(num+1)))
+//                             {
+//                                 if(temp_variable)
+//                                     add_data_weight(jsonObject["Data_" + QString::number(num+1)].toString());
+//                                 else
+//                                     add_data_height(jsonObject["Data_" + QString::number(num+1)].toString());
+//                                 num++;
+//                             }
+//                             else
+//                             {
+//                                 temp = true;
+//                             }
+//                         }
+//                     }
+//                 }
+//                 networkReply->deleteLater();
+//             });
+// }
 
 void User::add_vector_weight(int num)
 {
@@ -309,13 +331,36 @@ void User::remove_data_height(int index)
     emit Vector_data_heightChanged();
 }
 
-void User::performPOST(const QString &url, const QJsonDocument &payload)
+void User::use_data_all(QString training_temp, QString gender_temp, int Actual_weight_temp, int Target_weight_temp, int Age_temp, int Height_temp, QString email_id,QVector<int> weight_v, QVector<QString> weight_data, QVector<int> height_v, QVector<QString> height_data)
 {
-    QNetworkRequest newRequest ((QUrl(url)));
-    newRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
-    m_networkReply = m_networkAccessManaager->post(newRequest,payload.toJson());
-    connect(m_networkReply, &QNetworkReply::readyRead,this,&User::networkReplyReadyRead);
+        setTrain_option(training_temp);
+        gender = (gender_temp);
+        setActual_weight(Actual_weight_temp);
+        setTarget_weight(Target_weight_temp);
+        age = (Age_temp);
+        height = (Height_temp);
+        setDrinking_regime((getActual_weight()*30)/1000);
+        if(gender == "Male")
+            setMetabolism(66.5+(13.75*getActual_weight())+(5.003*height)-(6.775-age));
+        else if (gender == "Female")
+            setMetabolism(655.1+(9.563*getActual_weight())+(1.850*height)-(4.676-age));
+        setIndex_body((static_cast<double>(getActual_weight()) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
+        setTarget_metabolism(getMetabolism()*1.5);
+        setEmail_log(email_id);
+
+        setVector_weight(weight_v);
+        setVector_data_weight(weight_data);
+        setVector_height(height_v);
+        setVector_data_height(height_data);
 }
+
+// void User::performPOST(const QString &url, const QJsonDocument &payload)
+// {
+//     QNetworkRequest newRequest ((QUrl(url)));
+//     newRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
+//     m_networkReply = m_networkAccessManaager->post(newRequest,payload.toJson());
+//     connect(m_networkReply, &QNetworkReply::readyRead,this,&User::networkReplyReadyRead);
+// }
 
 
 QString User::getTrain_option() const

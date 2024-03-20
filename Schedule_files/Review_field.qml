@@ -353,7 +353,7 @@ Item
                 arcWidth: 6
                 outerColor: "orange"
                 innerColor: "gray"
-                speed: Deitary_temp.Calories_time_domain
+                speed: parseFloat(Deitary_temp.Calories_day_temp).toFixed(1)
                 highestRange: Main_logic_temp.Target_metabolism
 
                 Text {
@@ -364,7 +364,7 @@ Item
 
                     font.pixelSize: parent.height * 0.2
                     color: "gray"
-                    text: parseFloat(statistic_object_main.speed / statistic_object_main.highestRange).toFixed(2) * 100 + "%"
+                    text: (parseFloat(statistic_object_main.speed/statistic_object_main.highestRange * 100)).toFixed(0) + "%"
                 }
             }
 
@@ -378,7 +378,7 @@ Item
                 verticalCenter:parent.verticalCenter
                 }
                 height: parent.height*0.9
-                width: parent.horizontalCenter
+                width: text_two_main_statistic.width
                 spacing: 0
                 Text
                 {
@@ -390,9 +390,9 @@ Item
                 Text
                 {
                     id: text_two_main_statistic
-                    text: "0 ккал"
+                    text: parseFloat(Deitary_temp.Calories_day_temp).toFixed(1) + " ккал"
                     color: "#FFFFFF"
-                    font.pixelSize: parent.height*0.35
+                    font.pixelSize: parent.height*0.3
                 }
                 Text
                 {
@@ -407,7 +407,7 @@ Item
                 anchors
                 {
                 left: statistic_object_columnlayout.right
-                leftMargin: parent.width*0.25
+                leftMargin: parent.width*0.05
                 verticalCenter: parent.verticalCenter
                 }
                 source: "qrc:/ui/Image Main/info.png"
@@ -459,7 +459,7 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 170
+                    speed: parseFloat(Deitary_temp.Protein_day_temp).toFixed(1)
                     highestRange: Main_logic_temp.Protein
 
                     Text
@@ -471,7 +471,7 @@ Item
                         }
                         font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: parseFloat(object_one.speed/object_one.highestRange).toFixed(2)*100 + "%"
+                        text: (parseFloat(object_one.speed/object_one.highestRange * 100)).toFixed(0) + "%"
                     }
                 }
 
@@ -497,8 +497,8 @@ Item
                         left: object_one.right
                         leftMargin: parent.width*0.1
                     }
-                    font.pixelSize: parent.height*0.3
-                    text: "0 г"
+                    font.pixelSize: parent.height*0.25
+                    text: parseFloat(Deitary_temp.Protein_day_temp).toFixed(1) + " г"
                     color: "#FFFFFF"
                     anchors.top:object_one_text1.bottom
                 }
@@ -532,7 +532,7 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 110
+                    speed: parseFloat(Deitary_temp.Carb_day_temp).toFixed(1)
                     highestRange: Main_logic_temp.Carb
                     Text
                     {
@@ -544,7 +544,7 @@ Item
 
                         font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: parseFloat(object_two.speed/object_two.highestRange).toFixed(2)*100 + "%"
+                        text: (parseFloat(object_two.speed/object_two.highestRange * 100)).toFixed(0) + "%"
                     }
                 }
                 Text
@@ -569,8 +569,8 @@ Item
                         left: object_two.right
                         leftMargin: parent.width*0.1
                     }
-                    font.pixelSize: parent.height*0.3
-                    text: "0 г"
+                    font.pixelSize: parent.height*0.25
+                    text: parseFloat(Deitary_temp.Carb_day_temp).toFixed(1) + " г"
                     color: "#FFFFFF"
                     anchors.top:object_two_text1.bottom
                 }
@@ -605,7 +605,7 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 90
+                    speed: parseFloat(Deitary_temp.Fats_day_temp).toFixed(1)
                     highestRange: Main_logic_temp.Fats
 
                     Text
@@ -618,7 +618,7 @@ Item
 
                         font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: parseFloat(object_three.speed/object_three.highestRange).toFixed(2)*100 + "%"
+                        text: (parseFloat(object_three.speed/object_three.highestRange * 100)).toFixed(0) + "%"
                     }
                 }
                 Text
@@ -643,8 +643,8 @@ Item
                         left: object_three.right
                         leftMargin: parent.width*0.1
                     }
-                    font.pixelSize: parent.height*0.3
-                    text: "0 г"
+                    font.pixelSize: parent.height*0.25
+                    text: parseFloat(Deitary_temp.Fats_day_temp).toFixed(1) + " г"
                     color: "#FFFFFF"
                     anchors.top:object_three_text1.bottom
                 }
@@ -679,7 +679,7 @@ Item
                     arcWidth: 6
                     outerColor: "orange"
                     innerColor: "gray"
-                    speed: 14
+                    speed: parseFloat(Deitary_temp.Fiber_day_temp).toFixed(1)
                     highestRange: Main_logic_temp.Fiber
 
                     Text
@@ -692,7 +692,10 @@ Item
 
                         font.pixelSize: parent.height * 0.2
                         color: "gray"
-                        text: parseFloat(object_four.speed/object_four.highestRange).toFixed(2)*100 + "%"
+                        text:
+                        {
+                            (parseFloat(object_four.speed/object_four.highestRange * 100)).toFixed(0) + "%"
+                        }
                     }
                 }
 
@@ -718,8 +721,8 @@ Item
                         left: object_four.right
                         leftMargin: parent.width*0.1
                     }
-                    font.pixelSize: parent.height*0.3
-                    text: "0 г"
+                    font.pixelSize: parent.height*0.25
+                    text: parseFloat(Deitary_temp.Fiber_day_temp).toFixed(1) + " г"
                     color: "#FFFFFF"
                     anchors.top:object_four_text1.bottom
                 }

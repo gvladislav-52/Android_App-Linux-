@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     data_for_observation.cpp \
+    database.cpp \
     dietary_information.cpp \
     main.cpp \
     my_food.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     data_for_observation.h \
+    database.h \
     dietary_information.h \
     my_food.h \
     recipe.h \

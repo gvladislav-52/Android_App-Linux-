@@ -38,9 +38,9 @@ public:
     explicit User(QObject *parent = nullptr);
     ~User();
 
-    void setApiKey(const QString &apiKey);                                      //ключ
-    void signUserUp(const QString & emailAddress, const QString & password);    //регистрация
-    void signUserIn(const QString & emailAddress, const QString & password);    //авторизация
+    // void setApiKey(const QString &apiKey);                                      //ключ
+    // void signUserUp(const QString & emailAddress, const QString & password);    //регистрация
+    // void signUserIn(const QString & emailAddress, const QString & password);    //авторизация
 
     QString getTrain_option() const;
     void setTrain_option(const QString &newTrain_option);
@@ -91,11 +91,12 @@ public:
     void setFiber(int newFiber);
 
 public slots:
-    void networkReplyReadyRead();
-    void selectAll();
-    void add_db();
-    void get_data_from_db();
-    void get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable);
+    //void networkReplyReadyRead();
+    //void selectAll();
+    //void add_db();
+    //void get_data_food();
+    //void get_data_from_db();
+    //void get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable);
 
     void add_vector_weight(int num);
     void add_data_weight(QString data = "");
@@ -109,9 +110,11 @@ public slots:
     void remove_data_weight(int index);
     void remove_data_height(int index);
 
+    void use_data_all(QString training_temp,QString gender_temp,int Actual_weight_temp, int Target_weight_temp, int Age_temp, int Height_temp, QString email_id, QVector<int> weight, QVector<QString> weight_data, QVector<int> height, QVector<QString> height_data);
+
 
 signals:
-    void userSignedIn();
+    //void userSignedIn();
 
     void Train_optionChanged();
 
@@ -146,12 +149,12 @@ signals:
     void FiberChanged();
 
 private:
-    void performPOST (const QString &url, const QJsonDocument & payload);
-    QString m_apikey;
-    QNetworkAccessManager * m_networkAccessManaager;
-    QNetworkReply  * m_networkReply;
-    QString m_idToken;
-    QString m_localId;
+    //void performPOST (const QString &url, const QJsonDocument & payload);
+    //QString m_apikey;
+    //QNetworkAccessManager * m_networkAccessManaager;
+    //QNetworkReply  * m_networkReply;
+    //QString m_idToken;
+    //QString m_localId;
 
     QString gender;
     int activity;

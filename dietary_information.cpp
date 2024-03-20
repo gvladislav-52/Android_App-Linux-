@@ -1,9 +1,20 @@
 #include "dietary_information.h"
+#include "qdebug.h"
 #include <QTimer>
 
-Dietary_information::Dietary_information():m_Calories_time_domain(0) {
-    QTimer::singleShot(5000, this, [this]() {
-        setCalories_time_domain(300);
+Dietary_information::Dietary_information()
+    :m_Calories_day_temp(0),
+    m_Protein_day_temp(0),
+    m_Carb_day_temp(0),
+    m_Fats_day_temp(0),
+    m_Fiber_day_temp(0)
+{
+    QTimer::singleShot(3000, this, [this]() {
+        setCalories_day_temp(1000.23);
+        setProtein_day_temp(100);
+        setCarb_day_temp(400);
+        setFats_day_temp(24);
+        setFiber_day_temp(8);
     });
 }
 
@@ -51,15 +62,72 @@ void Dietary_information::setFood_schedule_string(const QVector<QString> &newFoo
     emit food_schedule_stringChanged();
 }
 
-int Dietary_information::getCalories_time_domain() const
+double Dietary_information::getCalories_day_temp() const
 {
-    return m_Calories_time_domain;
+    return m_Calories_day_temp;
 }
 
-void Dietary_information::setCalories_time_domain(int newCalories_time_domain)
+void Dietary_information::setCalories_day_temp(double newCalories_day_temp)
 {
-    if (m_Calories_time_domain == newCalories_time_domain)
+    if (m_Calories_day_temp == newCalories_day_temp)
         return;
-    m_Calories_time_domain = newCalories_time_domain;
-    emit Calories_time_domainChanged();
+    m_Calories_day_temp = newCalories_day_temp;
+    emit Calories_day_tempChanged();
+}
+
+double Dietary_information::getProtein_day_temp() const
+{
+    return m_Protein_day_temp;
+}
+
+void Dietary_information::setProtein_day_temp(double newProtein_day_temp)
+{
+    if (m_Protein_day_temp == newProtein_day_temp)
+        return;
+    m_Protein_day_temp = newProtein_day_temp;
+    emit Protein_day_tempChanged();
+}
+
+double Dietary_information::getCarb_day_temp() const
+{
+    return m_Carb_day_temp;
+}
+
+void Dietary_information::setCarb_day_temp(double newCarb_day_temp)
+{
+    if (m_Carb_day_temp == newCarb_day_temp)
+        return;
+    m_Carb_day_temp = newCarb_day_temp;
+    emit Carb_day_tempChanged();
+}
+
+double Dietary_information::getFats_day_temp() const
+{
+    return m_Fats_day_temp;
+}
+
+void Dietary_information::setFats_day_temp(double newFats_day_temp)
+{
+    if (m_Fats_day_temp == newFats_day_temp)
+        return;
+    m_Fats_day_temp = newFats_day_temp;
+    emit Fats_day_tempChanged();
+}
+
+double Dietary_information::getFiber_day_temp() const
+{
+    return m_Fiber_day_temp;
+}
+
+void Dietary_information::setFiber_day_temp(double newFiber_day_temp)
+{
+    if (m_Fiber_day_temp == newFiber_day_temp)
+        return;
+    m_Fiber_day_temp = newFiber_day_temp;
+    emit Fiber_day_tempChanged();
+}
+
+void Dietary_information::ConnectFunc(QString IdToken, QString IdLocal)
+{
+    qDebug() << IdToken << " " << IdLocal;
 }
