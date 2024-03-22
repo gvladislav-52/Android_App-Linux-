@@ -29,5 +29,7 @@
         <file>Account_files/Account_my_food_widget.qml</file>
         <file>Account_files/Add_my_food.qml</file>
         <file>Account_files/VIew_my_food.qml</file>
+        <file>Schedule_files/Foods_menu.qml</file>
+        <file>ui/Image Food/apple.png</file>
     </qresource>
 </RCC>

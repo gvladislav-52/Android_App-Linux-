@@ -27,14 +27,16 @@ public slots:
     void networkReplyReadyRead();
     void selectAll();
     void add_db();
-    void get_data_food();
-    void get_data_from_db();
+    //void get_data_food();
+    // get_data_from_db();
     void get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable);
     int get_user_data_int(QString nameData) const;
     QString get_user_data_string(QString nameData) const;
     QVector<int> get_user_data_vector_int(QString nameData, QString pathData);
     QVector<QString> get_user_data_vector_string (QString nameData, QString pathData);
     QString get_email_info() {return m_email;}
+
+    QMap<QString, QMap<QString, double>> get_data_table_food();
 
 
 signals:

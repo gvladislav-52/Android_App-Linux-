@@ -127,64 +127,64 @@ void Database::add_db()
     // m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
 }
 
-void Database::get_data_food()
-{
-    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/Day_1/AFTERNOON SNACK/.json?auth=" + m_idToken;
-    QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+// void Database::get_data_food()
+// {
+//     QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/Day_1/AFTERNOON SNACK/.json?auth=" + m_idToken;
+//     QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
 
-    connect(networkReply, &QNetworkReply::finished, [=]()
-            {
-                if(networkReply->error() == QNetworkReply::NoError)
-                {
-                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
-                    if (!jsonResponse.isNull())
-                    {
-                        QJsonObject jsonObject = jsonResponse.object();
-                        qDebug() << (jsonObject["173"].toString());
+//     connect(networkReply, &QNetworkReply::finished, [=]()
+//             {
+//                 if(networkReply->error() == QNetworkReply::NoError)
+//                 {
+//                     QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//                     if (!jsonResponse.isNull())
+//                     {
+//                         QJsonObject jsonObject = jsonResponse.object();
+//                         qDebug() << (jsonObject["173"].toString());
 
-                    }
-                }
+//                     }
+//                 }
 
-                networkReply->deleteLater();
-            });
-}
+//                 networkReply->deleteLater();
+//             });
+// }
 
-void Database::get_data_from_db()
-{
-    // QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/.json?auth=" + m_idToken;
-    // QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+// void Database::get_data_from_db()
+// {
+//     // QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/User_characters/" + m_localId + "/.json?auth=" + m_idToken;
+//     // QNetworkReply * networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
 
-    // connect(networkReply, &QNetworkReply::finished, [=]()
-    //         {
-    //             if(networkReply->error() == QNetworkReply::NoError)
-    //             {
-    //                 QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
-    //                 if (!jsonResponse.isNull())
-    //                 {
-    //                     QJsonObject jsonObject = jsonResponse.object();
-    //                     setTrain_option(jsonObject["Training"].toString());
-    //                     gender = jsonObject["Gender"].toString();
-    //                     setActual_weight(jsonObject["Actual_weight"].toInt());
-    //                     setTarget_weight(jsonObject["Target_weight"].toInt());
-    //                     age = jsonObject["Age"].toInt();
-    //                     height = jsonObject["Height"].toInt();
+//     // connect(networkReply, &QNetworkReply::finished, [=]()
+//     //         {
+//     //             if(networkReply->error() == QNetworkReply::NoError)
+//     //             {
+//     //                 QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+//     //                 if (!jsonResponse.isNull())
+//     //                 {
+//     //                     QJsonObject jsonObject = jsonResponse.object();
+//     //                     setTrain_option(jsonObject["Training"].toString());
+//     //                     gender = jsonObject["Gender"].toString();
+//     //                     setActual_weight(jsonObject["Actual_weight"].toInt());
+//     //                     setTarget_weight(jsonObject["Target_weight"].toInt());
+//     //                     age = jsonObject["Age"].toInt();
+//     //                     height = jsonObject["Height"].toInt();
 
-    //                     double temp_drink = m_Actual_weight;
-    //                     setDrinking_regime((temp_drink*30)/1000);
+//     //                     double temp_drink = m_Actual_weight;
+//     //                     setDrinking_regime((temp_drink*30)/1000);
 
-    //                     if(gender == "Male")
-    //                         setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
-    //                     else if (gender == "Female")
-    //                         setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
+//     //                     if(gender == "Male")
+//     //                         setMetabolism(66.5+(13.75*m_Actual_weight)+(5.003*height)-(6.775-age));
+//     //                     else if (gender == "Female")
+//     //                         setMetabolism(655.1+(9.563*m_Actual_weight)+(1.850*height)-(4.676-age));
 
-    //                     setIndex_body((static_cast<double>(m_Actual_weight) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
-    //                     setTarget_metabolism(m_Metabolism*1.5);
-    //                 }
-    //             }
+//     //                     setIndex_body((static_cast<double>(m_Actual_weight) / (static_cast<double>(height) * static_cast<double>(height)))*10000);
+//     //                     setTarget_metabolism(m_Metabolism*1.5);
+//     //                 }
+//     //             }
 
-    //             networkReply->deleteLater();
-    //         });
-}
+//     //             networkReply->deleteLater();
+//     //         });
+// }
 
 void Database::get_vector_data(QVector<int> &data_int, QVector<QString> &data_string, QString m_path, QString m_data, bool temp_variable)
 {
@@ -387,6 +387,55 @@ QVector<QString> Database::get_user_data_vector_string(QString nameData, QString
 
     loop.exec();
     return data_string;
+}
+
+QMap<QString, QMap<QString, double>> Database::get_data_table_food()
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Food_Table/.json?auth=" + m_idToken;
+    QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+    QMap<QString, QMap<QString, double>> items_food;
+
+    QEventLoop loop;
+    connect(networkReply, &QNetworkReply::finished, [&]()
+            {
+                if (networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+                        for (const QString& key : jsonObject.keys())
+                        {
+                            QJsonObject foodItem = jsonObject.value(key).toObject();
+                            QMap<QString, double> temp;
+                            for (const QString& foodKey : foodItem.keys())
+                            {
+                                temp.insert(foodKey, foodItem.value(foodKey).toDouble());
+                            }
+                            items_food.insert(key, temp);
+                        }
+                    }
+                }
+
+                networkReply->deleteLater();
+                loop.quit();
+            });
+
+    loop.exec();
+
+    // for (auto it = items_food.begin(); it != items_food.end(); ++it)
+    // {
+    //     qDebug() << it.key();
+    //     QMap<QString, double> foodMap = it.value();
+    //     for (auto subIt = foodMap.begin(); subIt != foodMap.end(); ++subIt)
+    //     {
+    //         qDebug() << "           " << subIt.key() << ": " << subIt.value();
+    //     }
+    // }
+
+    qDebug() << items_food;
+
+    return items_food;
 }
 
 void Database::performPOST(const QString &url, const QJsonDocument &payload)

@@ -73,7 +73,13 @@ Item
                 {
                     id: reception_mouse_area
                     anchors.fill: parent
-                    onClicked: console.log("button reception")
+                    onClicked:
+                    {
+                        foods_menu.visible = true
+                        foods_menu.enabled = true
+                        schedule_temp.visible = false
+                        schedule_temp.enabled = false
+                    }
                 }
 
                 Behavior on color

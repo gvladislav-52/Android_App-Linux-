@@ -9,6 +9,7 @@
 #include "my_food.h"
 #include "dietary_information.h"
 #include "database.h"
+#include "table_foods.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     Dietary_information deitary;
     setting_widget sa;
     Database db;
+    table_foods tab_food;
     //authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
     //authHandler.signUserIn("start@email.com", "123123123");
     QEventLoop loop;
@@ -53,6 +55,8 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Main_logic_temp", &authHandler);
     rootContext->setContextProperty("Data_temp", &data_observation);
     engine.load(url);
+    db.get_data_table_food();
+    //qDebug() << db.get_user_data_int("Actual_weight");
     // QTimer::singleShot(3000,[&db, &authHandler]() {
     //     authHandler.use_data_all(db.get_user_data_string("Training"), db.get_user_data_string("Gender"), db.get_user_data_int("Actual_weight"),
     //                              db.get_user_data_int("Target_weight"), db.get_user_data_int("Age"), db.get_user_data_int("Height"), db.get_email_info(),
@@ -80,6 +84,10 @@ int main(int argc, char *argv[])
 
     //     //authHandler.setEmail_log(db.get_email_info());
     // });
+
+    //db.get_data_table_food();
+
+    tab_food.set_data_food(db.get_data_table_food());
 
     return app.exec();
 }

@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 import "../Main_Navi_files"
+import "../Schedule_files"
 
 Window {
     visible: true
@@ -19,6 +20,13 @@ Window {
     {
         id: schedule_temp
         anchors.fill: parent
+    }
+
+    Foods_menu
+    {
+        id: foods_menu
+        visible: false
+        enabled: false
     }
 
     Account_field

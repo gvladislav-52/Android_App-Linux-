@@ -16,6 +16,7 @@ SOURCES += \
     my_food.cpp \
     recipe.cpp \
     setting_widget.cpp \
+    table_foods.cpp \
     user.cpp
 
 HEADERS += \
@@ -25,6 +26,7 @@ HEADERS += \
     my_food.h \
     recipe.h \
     setting_widget.h \
+    table_foods.h \
     user.h
 
 FORMS +=
