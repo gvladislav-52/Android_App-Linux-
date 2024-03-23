@@ -433,8 +433,6 @@ QMap<QString, QMap<QString, double>> Database::get_data_table_food()
     //     }
     // }
 
-    qDebug() << items_food;
-
     return items_food;
 }
 

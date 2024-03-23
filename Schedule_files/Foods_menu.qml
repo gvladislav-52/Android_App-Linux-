@@ -326,19 +326,83 @@ Rectangle {
             ColumnLayout
             {
                 id: lol
-                width: parent.width
+                width: parent.width * 0.95
                 anchors.horizontalCenter: parent.horizontalCenter
                 Repeater
                 {
                     id: repetor
-                    model: 50
+                    model: Table_food.Naming_food.length
 
-                    Rectangle
+                    RowLayout
                     {
                         id: food_item_col
-                        color: "red"
                         Layout.preferredWidth: eat_stack.width
                         Layout.preferredHeight: eat_stack.height * 0.1
+
+                        Rectangle
+                        {
+                            Layout.alignment:   Qt.AlignLeft | Qt.AlignVCenter
+
+                            Layout.preferredWidth: parent.height * 0.7
+                            Layout.preferredHeight: parent.height * 0.7
+                            color: "gray";
+                            radius: 10
+
+                            Text
+                            {
+                                text: "i"
+                                color: "black"
+                                anchors
+                                {
+                                    verticalCenter: parent.verticalCenter
+                                    horizontalCenter: parent.horizontalCenter
+                                }
+                                font.pixelSize: parent.height * 0.5
+                            }
+                        }
+
+                        Text {
+                            id: name
+                            Layout.alignment:   Qt.AlignLeft | Qt.AlignVCenter
+                            Layout.leftMargin: parent.width * 0.075
+                            color: "white"
+                            text: Table_food.Naming_food[index]
+                            font.pixelSize: parent.height * 0.3
+                            Layout.fillWidth: true
+                        }
+
+                        Item
+                        {
+                            Layout.alignment:   Qt.AlignRight| Qt.AlignVCenter
+
+                            Layout.preferredWidth: parent.height * 0.7
+                            Layout.preferredHeight: parent.height* 0.7
+
+                            Text
+                            {
+                                anchors
+                                {
+                                    top: parent.top
+                                    right: parent.right
+                                }
+
+                                text: Table_food.Data_food[index*6] + " ккал."
+                                color: "gray"
+                                font.pixelSize: parent.height * 0.35
+                            }
+
+                            Text
+                            {
+                                anchors
+                                {
+                                    bottom: parent.bottom
+                                    right: parent.right
+                                }
+                                text: Table_food.Data_food[(index*6)+5] +"г"
+                                color: "gray"
+                                font.pixelSize: parent.height * 0.35
+                            }
+                        }
                     }
                 }
             }

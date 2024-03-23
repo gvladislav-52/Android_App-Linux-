@@ -5,7 +5,7 @@
 #include "setting_widget.h"
 #include <QSslSocket>
 #include "user.h"
-#include "data_for_observation.h"
+//#include "data_for_observation.h"
 #include "my_food.h"
 #include "dietary_information.h"
 #include "database.h"
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     My_food my_food_temp;
     //Main_data_management_db db;
     User authHandler;
-    Data_for_observation data_observation;
+    //Data_for_observation data_observation;
     Dietary_information deitary;
     setting_widget sa;
     Database db;
@@ -54,9 +54,8 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Deitary_temp", &deitary);
     rootContext->setContextProperty("My_food_temp", &my_food_temp);
     rootContext->setContextProperty("Main_logic_temp", &authHandler);
-    rootContext->setContextProperty("Data_temp", &data_observation);
+    rootContext->setContextProperty("Table_food", &tab_food);
     engine.load(url);
-    db.get_data_table_food();
     //qDebug() << db.get_user_data_int("Actual_weight");
     // QTimer::singleShot(3000,[&db, &authHandler]() {
     //     authHandler.use_data_all(db.get_user_data_string("Training"), db.get_user_data_string("Gender"), db.get_user_data_int("Actual_weight"),
