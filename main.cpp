@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     table_foods tab_food;
     //authHandler.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
     //authHandler.signUserIn("start@email.com", "123123123");
-    //
+    ///////////
     QEventLoop loop;
     db.setApiKey("AIzaSyAVTdtQ1yZqPUttmzLvDcvw3nAXWPAK7RI");
     db.signUserIn("start@email.com", "123123123");
