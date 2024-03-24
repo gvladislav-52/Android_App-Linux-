@@ -29,6 +29,13 @@ Window {
         enabled: false
     }
 
+    View_foods_item
+    {
+        id: view_foods_item
+        visible: false
+        enabled: false
+    }
+
     Account_field
     {
         id: account_temp

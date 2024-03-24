@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
     //db.get_data_table_food();
 
     tab_food.set_data_food(db.get_data_table_food());
+        //qDebug() << db.get_user_data_string("Training");
 
     return app.exec();
 }

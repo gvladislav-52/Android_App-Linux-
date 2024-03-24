@@ -403,6 +403,19 @@ Rectangle {
                                 font.pixelSize: parent.height * 0.35
                             }
                         }
+
+                        MouseArea
+                        {
+                            anchors.fill: parent
+                            onClicked:
+                            {
+                                view_foods_item.index_temp = index
+                                view_foods_item.visible = true
+                                view_foods_item.enabled = true
+                                foods_menu.visible = false
+                                foods_menu.enabled = false
+                            }
+                        }
                     }
                 }
             }
