@@ -22,6 +22,13 @@ Window {
         anchors.fill: parent
     }
 
+    VIew_composition_foods
+    {
+        id: view_composition_foods_
+        visible: false
+        enabled: false
+    }
+
     Foods_menu
     {
         id: foods_menu

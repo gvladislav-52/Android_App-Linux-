@@ -32,5 +32,6 @@
         <file>Schedule_files/Foods_menu.qml</file>
         <file>ui/Image Food/apple.png</file>
         <file>Schedule_files/View_foods_item.qml</file>
+        <file>Schedule_files/VIew_composition_foods.qml</file>
     </qresource>
 </RCC>
