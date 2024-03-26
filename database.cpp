@@ -426,39 +426,19 @@ QMap<QString, QMap<QString, double>> Database::get_data_table_food()
     return items_food;
 }
 
-void Database::add_food_in_schedule(QString name, QString data, int index_schedule)
-{
+void Database::add_food_in_schedule(QString data, QString index_schedule, QVector<QString> afternoon) {
     if(!get_data_day(data))
     {
         add_data_day(data);
     }
-    QString temp;
-    switch(index_schedule)
-    {
-    case 1:
-        temp = "BREAKFAST";
-        break;
-    case 2:
-        temp = "SECOND BREAKFAST";
-        break;
-    case 3:
-        temp = "LUNCH";
-        break;
-    case 4:
-        temp = "AFTERNOON SNACK";
-        break;
-    case 5:
-        temp = "DINNER";
-        break;
-    case 6:
-        temp = "SECOND DINNER";
-        break;
-    }
     QVariantMap newPet;
-        newPet["1"] = name;
+    for(int i = 0; i < afternoon.length(); i++)
+    {
+        newPet[QString::number(i)] = afternoon[i];
+    }
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
 
-    QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/"+ m_localId +"/"+ data + "/" + temp+ "/.json?auth=" + m_idToken));
+    QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/"+ m_localId +"/"+ data + "/" + index_schedule+ "/.json?auth=" + m_idToken));
     newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
     m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
 }
