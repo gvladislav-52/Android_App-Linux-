@@ -111,10 +111,14 @@ Rectangle {
             height: parent.height * 0.5
 
             model: ["Завтрак", "Второй завтрак", "Обед", "Полдник", "Ужин", "Второй ужин"]
+
             currentIndex: 0
 
             background: Rectangle {
-                color: "transparent"
+                radius: 20
+                color: "gray"
+                border.width: parent && parent.activeFocus ? 2 : 1
+                border.color: parent && parent.activeFocus ? comboBoxCustom.palette.highlight : comboBoxCustom.palette.button
             }
             font.bold: true
         }
@@ -198,6 +202,7 @@ Rectangle {
                     height: parent.height
                     onClicked:
                     {
+                        view_composition_foods_.updatePaint();
                         view_composition_foods_.index_temp = index_temp
                         view_composition_foods_.visible = true
                         view_composition_foods_.enabled = true
@@ -300,6 +305,15 @@ Rectangle {
             text: qsTr("Добавить еду в расписание")
             color: "white"
             font.pixelSize: parent.height * 0.25
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            onClicked:
+            {
+                db.add_food_in_schedule(Table_food.Naming_food[index_temp], "Day_2", comboBox.currentIndex+1)
+            }
         }
     }
 }

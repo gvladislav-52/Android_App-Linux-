@@ -38,6 +38,10 @@ public slots:
 
     QMap<QString, QMap<QString, double>> get_data_table_food();
 
+    void add_food_in_schedule(QString name, QString data, int index_schedule);
+    bool get_data_day(QString nameData);
+    void add_data_day(QString nameData);
+
 
 signals:
     void userSignedIn();

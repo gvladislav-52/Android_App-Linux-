@@ -423,17 +423,100 @@ QMap<QString, QMap<QString, double>> Database::get_data_table_food()
 
     loop.exec();
 
-    // for (auto it = items_food.begin(); it != items_food.end(); ++it)
-    // {
-    //     qDebug() << it.key();
-    //     QMap<QString, double> foodMap = it.value();
-    //     for (auto subIt = foodMap.begin(); subIt != foodMap.end(); ++subIt)
-    //     {
-    //         qDebug() << "           " << subIt.key() << ": " << subIt.value();
-    //     }
-    // }
-
     return items_food;
+}
+
+void Database::add_food_in_schedule(QString name, QString data, int index_schedule)
+{
+    if(!get_data_day(data))
+    {
+        add_data_day(data);
+    }
+    QString temp;
+    switch(index_schedule)
+    {
+    case 1:
+        temp = "BREAKFAST";
+        break;
+    case 2:
+        temp = "SECOND BREAKFAST";
+        break;
+    case 3:
+        temp = "LUNCH";
+        break;
+    case 4:
+        temp = "AFTERNOON SNACK";
+        break;
+    case 5:
+        temp = "DINNER";
+        break;
+    case 6:
+        temp = "SECOND DINNER";
+        break;
+    }
+    QVariantMap newPet;
+        newPet["1"] = name;
+    QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
+
+    QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/"+ m_localId +"/"+ data + "/" + temp+ "/.json?auth=" + m_idToken));
+    newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
+    m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
+}
+
+bool Database::get_data_day(QString nameData)
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/.json?auth=" + m_idToken;
+    QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+    bool temp;
+
+    QEventLoop loop;
+    connect(networkReply, &QNetworkReply::finished, [&]()
+            {
+                if (networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+
+                        if (jsonObject.contains(nameData))
+                        {
+                            temp = true;
+                        }
+                        else
+                        {
+                            temp = false;
+                        }
+                    }
+                }
+                else
+                {
+                    temp = "Ошибка при запросе данных.";
+                }
+
+                networkReply->deleteLater();
+                loop.quit();
+            });
+
+    loop.exec();
+
+    return temp;
+}
+
+void Database::add_data_day(QString nameData)
+{
+    QVariantMap newPet;
+    newPet["AFTERNOON SNACK"] = "";
+    newPet["BREAKFAST"] = "";
+    newPet["SECOND BREAKFAST"] = "";
+    newPet["DINNER"] = "";
+    newPet["SECOND DINNER"] = "";
+    newPet["LUNCH"] = "";
+    QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
+
+     QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/"+ m_localId + "/" +nameData +"/.json?auth=" + m_idToken));
+    newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
+    m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
 }
 
 void Database::performPOST(const QString &url, const QJsonDocument &payload)

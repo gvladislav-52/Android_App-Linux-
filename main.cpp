@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("My_food_temp", &my_food_temp);
     rootContext->setContextProperty("Main_logic_temp", &authHandler);
     rootContext->setContextProperty("Table_food", &tab_food);
+    rootContext->setContextProperty("db", &db);
     engine.load(url);
     //qDebug() << db.get_user_data_int("Actual_weight");
     // QTimer::singleShot(3000,[&db, &authHandler]() {
@@ -86,7 +87,9 @@ int main(int argc, char *argv[])
     // });
     //
     //db.get_data_table_food();
-
+    //db.add_food_in_schedule("Amount","Day_1",1);
+    //db.add_food_in_schedule("Morkov","Day_1",2);
+    //db.add_food_in_schedule("Arbuz","Day_2",4);
     tab_food.set_data_food(db.get_data_table_food());
         //qDebug() << db.get_user_data_string("Training");
 

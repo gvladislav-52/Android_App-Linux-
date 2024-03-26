@@ -6,6 +6,12 @@ Rectangle {
     anchors.fill: parent
     color: "#121212"
     property variant index_temp
+
+    function updatePaint()
+    {
+        canvas.requestPaint()
+    }
+
     Rectangle
     {
         id: headerfoods
@@ -473,47 +479,52 @@ Rectangle {
             Layout.preferredHeight: parent.height * 0.45
             Layout.alignment:  Qt.AlignHCenter
 
-            RowLayout
-            {
+            RowLayout {
                 anchors.fill: parent
-            Canvas
-            {
-                id: canvas
-                Layout.preferredWidth: parent.height* 0.8
-                Layout.preferredHeight: parent.height*0.8
-                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                property variant data: [30,40,20]
-                onPaint:
-                {
-                    var ctx = getContext("2d")
-                    if (ctx === null)
-                        console.log("Error canvas paint")
-                    var total = data.reduce(function(acc,val)
-                    {
-                       return acc+val
-                    },0)
-                    var startPoint = 0
-                    var colors = ["blue","yellow","red"]
 
-                    for(var i = 0; i <data.length; i++)
-                    {
-                        var angle = 2 * Math.PI * (data[i]/total)
-                        ctx.beginPath()
-                        ctx.moveTo(canvas.width/2,canvas.height/2)
-                        ctx.arc(canvas.width/2,canvas.height/2,canvas.width/2,startPoint, startPoint + angle)
-                        ctx.closePath()
-                        ctx.fillStyle = colors[i]
-                        ctx.fill()
-                        startPoint += angle
+                Canvas {
+                    id: canvas
+                    Layout.preferredWidth: parent.height * 0.8
+                    Layout.preferredHeight: parent.height * 0.8
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    property variant sum
+                    property variant data: [Table_food.Data_food[(index_temp*6)+4], Table_food.Data_food[(index_temp*6)+1], Table_food.Data_food[(index_temp*6)+2],Table_food.Data_food[(index_temp*6)+3]]
+                    function drawChart() {
+                        var ctx = getContext("2d");
+                        if (ctx === null) {
+                            console.log("Error canvas paint");
+                            return;
+                        }
+
+                        sum = data[0] + data[1] + data[2] + data[3];
+                        var total = data.reduce(function(acc, val) {
+                            return acc + val;
+                        }, 0);
+
+                        var startPoint = 0;
+                        var colors = ["red", "blue", "yellow","green"];
+
+                        for (var i = 0; i < data.length; i++) {
+                            var angle = 2 * Math.PI * (data[i] / total);
+                            ctx.beginPath();
+                            ctx.moveTo(canvas.width / 2, canvas.height / 2);
+                            ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, startPoint, startPoint + angle);
+                            ctx.closePath();
+                            ctx.fillStyle = colors[i];
+                            ctx.fill();
+                            startPoint += angle;
+                        }
+                        ctx.beginPath();
+                        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 4, 0, 2 * Math.PI);
+                        ctx.fillStyle = "#1e1e1e";
+                        ctx.fill();
+                        ctx.closePath();
                     }
 
-                    ctx.beginPath();
-                    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 4, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#1e1e1e";
-                    ctx.fill();
-                    ctx.closePath();
+                    onPaint: {
+                        drawChart();
+                    }
                 }
-            }
 
             ColumnLayout
             {
@@ -546,7 +557,7 @@ Rectangle {
 
                     Text
                     {
-                        text: parseFloat((canvas.data[0]/90)*100).toFixed(0) + " %"
+                        text: parseFloat((canvas.data[0]/canvas.sum)*100).toFixed(0) + " %"
                         font.pixelSize: parent.height * 0.3
                         color: "gray"
                         Layout.alignment: Qt.AlignRight| Qt.AlignVCenter
@@ -578,7 +589,7 @@ Rectangle {
 
                     Text
                     {
-                        text: parseFloat((canvas.data[1]/90)*100).toFixed(0) + " %"
+                        text: parseFloat((canvas.data[1]/canvas.sum)*100).toFixed(0) + " %"
                         font.pixelSize: parent.height * 0.3
                         color: "gray"
                         Layout.alignment: Qt.AlignRight| Qt.AlignVCenter
@@ -610,7 +621,39 @@ Rectangle {
 
                     Text
                     {
-                        text: parseFloat((canvas.data[2]/90)*100).toFixed(0) + " %"
+                        text: parseFloat((canvas.data[2]/canvas.sum)*100).toFixed(0) + " %"
+                        font.pixelSize: parent.height * 0.3
+                        color: "gray"
+                        Layout.alignment: Qt.AlignRight| Qt.AlignVCenter
+                    }
+                }
+
+                RowLayout
+                {
+                    Layout.preferredWidth: parent.width * 0.9
+                    Layout.preferredHeight: parent.height * 0.3
+                    Layout.alignment: Qt.AlignHCenter
+
+                    Rectangle
+                    {
+                        Layout.preferredHeight: parent.height * 0.3
+                        Layout.preferredWidth: parent.height * 0.3
+                        radius: parent.height * 0.2
+                        color: "green"
+                        Layout.alignment: Qt.AlignLeft| Qt.AlignVCenter
+                    }
+
+                    Text
+                    {
+                        text: "Клетчатка"
+                        font.pixelSize: parent.height * 0.3
+                        color: "gray"
+                        Layout.alignment: Qt.AlignLeft| Qt.AlignVCenter
+                    }
+
+                    Text
+                    {
+                        text: parseFloat((canvas.data[3]/canvas.sum)*100).toFixed(0) + " %"
                         font.pixelSize: parent.height * 0.3
                         color: "gray"
                         Layout.alignment: Qt.AlignRight| Qt.AlignVCenter
