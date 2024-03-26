@@ -191,6 +191,20 @@ Rectangle {
                     width: rect_foods_item.width
                     height: parent.height * 0.05
                 }
+
+                MouseArea
+                {
+                    width: rect_foods_item.width
+                    height: parent.height
+                    onClicked:
+                    {
+                        view_composition_foods_.index_temp = index_temp
+                        view_composition_foods_.visible = true
+                        view_composition_foods_.enabled = true
+                        view_foods_item.visible = false
+                        view_foods_item.enabled = false
+                    }
+                }
             }
 
             Text

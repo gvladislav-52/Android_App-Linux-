@@ -235,10 +235,7 @@ Item
                     anchors.fill: parent
                     onClicked:
                     {
-                        view_composition_foods_.visible = true
-                        view_composition_foods_.enabled = true
-                        schedule_temp.visible = false
-                        schedule_temp.enabled = false
+                        console.log("drink");
                     }
                 }
 
