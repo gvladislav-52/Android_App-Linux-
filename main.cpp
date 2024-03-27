@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
                              db.get_user_data_int("Target_weight"), db.get_user_data_int("Age"), db.get_user_data_int("Height"), db.get_email_info(),
                              db.get_user_data_vector_int("Data_","History_weight/Weight"),db.get_user_data_vector_string("Data_","History_weight/Date"),
                              db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
+    tab_food.set_data_food(db.get_data_table_food());
+    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
     qmlRegisterType<setting_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 
@@ -90,10 +92,10 @@ int main(int argc, char *argv[])
     //db.add_food_in_schedule("Amount","Day_1",1);
     //db.add_food_in_schedule("Morkov","Day_1",2);
     //db.add_food_in_schedule("Arbuz","Day_2",4);
-    tab_food.set_data_food(db.get_data_table_food());
+   //tab_food.set_data_food(db.get_data_table_food());
         //qDebug() << db.get_user_data_string("Training");
-    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
+    //tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
     //tab_food.setAfternoon(db.get_data_day("AFTERNOON SNACK","2"));
-
+    //db.delete_data();
     return app.exec();
 }

@@ -16,8 +16,8 @@ void table_foods::set_data_food(QMap<QString, QMap<QString, double>> temp)
         }
     }
 
-    qDebug() << "Keys Vector: " << m_Naming_food;
-    qDebug() << "Values Vector: " << m_Data_food;
+    // qDebug() << "Keys Vector: " << m_Naming_food;
+    // qDebug() << "Values Vector: " << m_Data_food;
 }
 
 void table_foods::set_afternoon(QString set)
@@ -56,6 +56,15 @@ void table_foods::set_sec_dinner(QString set)
     emit Second_dinnerChanged();
 }
 
+void table_foods::remove_afternoon(int index)
+{
+    if (index >= 0 && index < m_Afternoon.size())
+    {
+        m_Afternoon.remove(index);
+    }
+    emit AfternoonChanged();
+}
+
 void table_foods::set_data_schedule(QVector<QString> afternoon, QVector<QString> breakfast, QVector<QString> dinner, QVector<QString> lunch, QVector<QString> sec_breakfast, QVector<QString> sec_dinner)
 {
     setAfternoon(afternoon);
@@ -71,6 +80,51 @@ void table_foods::set_data_schedule(QVector<QString> afternoon, QVector<QString>
     qDebug() << "Lunch " << m_Lunch;
     qDebug() << "Second_dinner " << m_Second_dinner;
     qDebug() << "Second_breakfast " << m_Second_breakfast;
+}
+
+void table_foods::remove_breakfast(int index)
+{
+    if (index >= 0 && index < m_Breakfast.size())
+    {
+        m_Breakfast.remove(index);
+    }
+    emit BreakfastChanged();
+}
+
+void table_foods::remove_sec_breakfast(int index)
+{
+    if (index >= 0 && index < m_Second_breakfast.size())
+    {
+        m_Second_breakfast.remove(index);
+    }
+    emit Second_breakfastChanged();
+}
+
+void table_foods::remove_lunch(int index)
+{
+    if (index >= 0 && index < m_Lunch.size())
+    {
+        m_Lunch.remove(index);
+    }
+    emit LunchChanged();
+}
+
+void table_foods::remove_dinner(int index)
+{
+    if (index >= 0 && index < m_Dinner.size())
+    {
+        m_Dinner.remove(index);
+    }
+    emit DinnerChanged();
+}
+
+void table_foods::remove_sec_dinner(int index)
+{
+    if (index >= 0 && index < m_Second_dinner.size())
+    {
+        m_Second_dinner.remove(index);
+    }
+    emit Second_dinnerChanged();
 }
 
 QVector<QString> table_foods::getNaming_food() const

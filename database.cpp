@@ -531,6 +531,46 @@ QVector<QString> Database::get_data_day(QString nameData, QString nameDay)
     return items_food;
 }
 
+bool Database::delete_data(int num,QString nameData,QString Day)
+{
+    QString url1 = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/"+Day+"/.json?auth=" + m_idToken;
+    QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url1)));
+    QVector<QString> items_food;
+
+    QEventLoop loop;
+    connect(networkReply, &QNetworkReply::finished, [&]()
+            {
+                if (networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+                        QJsonObject foodItem = jsonObject.value(nameData).toObject();
+                        for (const QString &foodKey : foodItem.keys())
+                        {
+                            items_food.append(foodKey);
+                        }
+                    }
+
+                }
+
+                networkReply->deleteLater();
+                loop.quit();
+            });
+
+    loop.exec();
+
+    QString data = items_food[num];
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/"+Day+"/"+nameData+"/"+data+"/.json?auth=" + m_idToken;
+    QNetworkRequest request((QUrl(url)));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QNetworkAccessManager *nam = new QNetworkAccessManager(this);
+    QNetworkReply *reply = nam->deleteResource(request);
+    return true;
+}
+
 void Database::performPOST(const QString &url, const QJsonDocument &payload)
 {
     QNetworkRequest newRequest ((QUrl(url)));

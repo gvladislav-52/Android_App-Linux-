@@ -42,8 +42,7 @@ public slots:
     bool create_data_day(QString nameData);
     void add_data_day(QString nameData);
     QVector<QString> get_data_day(QString nameData, QString nameDay);
-
-
+    bool delete_data(int num, QString Data, QString Day);
 signals:
     void userSignedIn();
 

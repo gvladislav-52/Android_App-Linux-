@@ -73,6 +73,13 @@ public slots:
     void set_sec_breakfast(QString set);
     void set_sec_dinner(QString set);
 
+    void remove_afternoon(int index);
+    void remove_breakfast(int index);
+    void remove_sec_breakfast(int index);
+    void remove_lunch(int index);
+    void remove_dinner(int index);
+    void remove_sec_dinner(int index);
+
     void set_data_schedule(QVector<QString> afternoon,QVector<QString> breakfast,QVector<QString> dinner,QVector<QString> lunch,QVector<QString> sec_breakfast, QVector<QString> sec_dinner);
 private:
     QMap<QString, QMap<QString, double>> m_full_data;

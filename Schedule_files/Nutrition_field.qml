@@ -32,144 +32,803 @@ Item
         verticalCenter: parent.verticalCenter
         }
 
-            Repeater {
-                model: meal_schedule_static.length
+                Rectangle {
+                    id: tect
+                    Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
 
-                    Rectangle {
-                        id: tect
-                        Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
-                        Layout.preferredWidth: parent.width
-                        color: "transparent"
+                    Rectangle
+                    {
+                        id: name_schedule
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
 
-                        Rectangle
-                        {
-                            id: name_schedule
-                            width: parent.width
-                            height: track.height * 0.07
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            color: "#1e1e1e"
-                            radius: 10
+                        RowLayout {
+                                                id: test_rowlayout
+                                                anchors.fill: parent
 
-                            RowLayout {
-                                                    id: test_rowlayout
-                                                    anchors.fill: parent
-
-                                                    Text
-                                                    {
-                                                        text: meal_schedule_static[index]
-                                                        font.pixelSize: parent.height * 0.4
-                                                        color: "gray"
-                                                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                                        Layout.leftMargin: parent.width * 0.03
-                                                        Layout.fillWidth: true
-                                                    }
-
-                                                    Text
-                                                    {
-                                                        text: "2232 ккал."
-                                                        font.pixelSize: parent.height*0.3
-                                                        color: "gray"
-                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                                        Layout.rightMargin: parent.width * 0.03
-                                                    }
-
-                                                    Image
-                                                    {
-                                                        id: dot_image
-                                                        source: "qrc:/ui/Image Main/dot.png"
-                                                        Layout.preferredHeight: parent.height * 0.6
-                                                        Layout.preferredWidth: parent.height * 0.6
-                                                        smooth: true
-                                                        fillMode: Image.PreserveAspectFit
-                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                                        Layout.rightMargin: parent.width * 0.03
-                                                    }
-
-                                                    Image
-                                                    {
-                                                        id: plus_image
-                                                        source: "qrc:/ui/Image Main/plus.png"
-                                                        Layout.preferredHeight: parent.height * 0.6
-                                                        Layout.preferredWidth: parent.height * 0.6
-                                                        smooth: true
-                                                        fillMode: Image.PreserveAspectFit
-                                                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                                                        Layout.margins: parent.width * 0.02
-
-                                                        MouseArea
-                                                        {
-                                                            anchors.fill: parent
-                                                            onClicked:
-                                                            {
-                                                                Deitary_temp.add_food_string()
-                                                                sfa.model = sfa.model+1
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                         }
-
-                        clip: true
-
-                        ColumnLayout {
-                            anchors
-                            {
-                                top: name_schedule.bottom
-                                topMargin: parent.height*0.02
-                                horizontalCenter: parent.horizontalCenter
-
-                            }
-                            Layout.preferredHeight: parent.height
-                            Layout.preferredWidth: parent.width
-                                        Repeater {
-                                            id: sfa
-                                            model: 0
-                                            RowLayout {
-                                                Layout.preferredHeight: track.height * 0.025
-                                                Layout.preferredWidth:track.width*0.8
-
-                                                Text {
-                                                    id: poprob
-                                                    Layout.alignment: Qt.AlignLeft
-                                                    text: Deitary_temp.food_schedule_string[index]
-                                                    font.pixelSize: track.height * 0.025
-                                                    color: "#FFFFFF"
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[0]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
                                                     Layout.fillWidth: true
                                                 }
 
                                                 Text
                                                 {
-                                                    text: "186 ккал."
-                                                    Layout.alignment: Qt.AlignRight
-                                                    Layout.rightMargin: parent.width *0.1
-                                                    font.pixelSize: track.height * 0.02
-                                                    color: "lightgray"
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
                                                 }
 
                                                 Image
                                                 {
-                                                    id: sas
-                                                    Layout.alignment: Qt.AlignRight
-                                                    source: "qrc:/ui/Image Main/cancel.jpg"
-                                                    Layout.preferredHeight: track.height * 0.025
-                                                    Layout.preferredWidth: track.height * 0.025
+                                                    id: dot_image
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    id: plus_image
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
                                                     MouseArea
                                                     {
                                                         anchors.fill: parent
                                                         onClicked:
                                                         {
-                                                            var currentIndex = index
-                                                            Deitary_temp.remove_food_schedule(currentIndex)
-                                                            sfa.model = sfa.model-1
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
                                                         }
                                                     }
                                                 }
                                             }
-                                        }
+                     }
 
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa
+
+                                        model: Table_food.Breakfast.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                id: poprob
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Breakfast[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                id: sas
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"BREAKFAST","Day_1"))
+                                                            Table_food.remove_breakfast(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                     }
                 }
-            }
+
+                Rectangle {
+                    Layout.preferredHeight: Math.max(sfa1.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
+
+                    Rectangle
+                    {
+                        id: name_schedule1
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
+
+                        RowLayout {
+                                                anchors.fill: parent
+
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[1]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
+                                                    Layout.fillWidth: true
+                                                }
+
+                                                Text
+                                                {
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                     }
+
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule1.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa1
+
+                                        model: Table_food.Second_breakfast.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Second_breakfast[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"SECOND BREAKFAST","Day_1"))
+                                                            Table_food.remove_sec_breakfast(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredHeight: Math.max(sfa2.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
+
+                    Rectangle
+                    {
+                        id: name_schedule2
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
+
+                        RowLayout {
+                                                anchors.fill: parent
+
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[2]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
+                                                    Layout.fillWidth: true
+                                                }
+
+                                                Text
+                                                {
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                     }
+
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule2.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa2
+
+                                        model: Table_food.Lunch.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Lunch[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"LUNCH","Day_1"))
+                                                            Table_food.remove_lunch(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredHeight: Math.max(sfa3.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
+
+                    Rectangle
+                    {
+                        id: name_schedule3
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
+
+                        RowLayout {
+                                                anchors.fill: parent
+
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[3]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
+                                                    Layout.fillWidth: true
+                                                }
+
+                                                Text
+                                                {
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                     }
+
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule3.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa3
+
+                                        model: Table_food.Afternoon.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Afternoon[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"AFTERNOON SNACK","Day_1"))
+                                                            Table_food.remove_afternoon(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredHeight: Math.max(sfa4.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
+
+                    Rectangle
+                    {
+                        id: name_schedule4
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
+
+                        RowLayout {
+                                                anchors.fill: parent
+
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[4]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
+                                                    Layout.fillWidth: true
+                                                }
+
+                                                Text
+                                                {
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                     }
+
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule4.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa4
+
+                                        model: Table_food.Dinner.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Dinner[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"DINNER","Day_1"))
+                                                            Table_food.remove_dinner(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                    }
+                }
+
+                Rectangle {
+                    Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
+                    Layout.preferredWidth: parent.width
+                    color: "transparent"
+
+                    Rectangle
+                    {
+                        id: name_schedule5
+                        width: parent.width
+                        height: track.height * 0.07
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        color: "#1e1e1e"
+                        radius: 10
+
+                        RowLayout {
+                                                anchors.fill: parent
+
+                                                Text
+                                                {
+                                                    text: meal_schedule_static[5]
+                                                    font.pixelSize: parent.height * 0.4
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                                    Layout.leftMargin: parent.width * 0.03
+                                                    Layout.fillWidth: true
+                                                }
+
+                                                Text
+                                                {
+                                                    text: "2232 ккал."
+                                                    font.pixelSize: parent.height*0.3
+                                                    color: "gray"
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/dot.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.rightMargin: parent.width * 0.03
+                                                }
+
+                                                Image
+                                                {
+                                                    source: "qrc:/ui/Image Main/plus.png"
+                                                    Layout.preferredHeight: parent.height * 0.6
+                                                    Layout.preferredWidth: parent.height * 0.6
+                                                    smooth: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                                                    Layout.margins: parent.width * 0.02
+
+                                                    MouseArea
+                                                    {
+                                                        anchors.fill: parent
+                                                        onClicked:
+                                                        {
+                                                            foods_menu.visible = true
+                                                            foods_menu.enabled = true
+                                                            schedule_temp.visible = false
+                                                            schedule_temp.enabled = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                     }
+
+                    clip: true
+
+                    ColumnLayout {
+                        anchors
+                        {
+                            top: name_schedule5.bottom
+                            topMargin: parent.height*0.02
+                            horizontalCenter: parent.horizontalCenter
+
+                        }
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                                    Repeater {
+                                        id: sfa5
+
+                                        model: Table_food.Second_dinner.length
+
+
+                                        RowLayout {
+                                            Layout.preferredHeight: track.height * 0.025
+                                            Layout.preferredWidth:track.width*0.8
+
+                                            Text {
+                                                Layout.alignment: Qt.AlignLeft
+                                                text: Table_food.Second_dinner[index]
+                                                font.pixelSize: track.height * 0.025
+                                                color: "#FFFFFF"
+                                                Layout.fillWidth: true
+                                            }
+
+                                            Text
+                                            {
+                                                text: "186 ккал."
+                                                Layout.alignment: Qt.AlignRight
+                                                Layout.rightMargin: parent.width *0.1
+                                                font.pixelSize: track.height * 0.02
+                                                color: "lightgray"
+                                            }
+
+                                            Image
+                                            {
+                                                Layout.alignment: Qt.AlignRight
+                                                source: "qrc:/ui/Image Main/cancel.jpg"
+                                                Layout.preferredHeight: track.height * 0.025
+                                                Layout.preferredWidth: track.height * 0.025
+                                                MouseArea
+                                                {
+                                                    anchors.fill: parent
+                                                    onClicked:
+                                                    {
+                                                        if(db.delete_data(index,"SECOND DINNER","Day_1"))
+                                                            Table_food.remove_sec_dinner(index)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                    }
+                }
 
             Repeater {
                 id: test
