@@ -56,6 +56,23 @@ void table_foods::set_sec_dinner(QString set)
     emit Second_dinnerChanged();
 }
 
+void table_foods::set_data_schedule(QVector<QString> afternoon, QVector<QString> breakfast, QVector<QString> dinner, QVector<QString> lunch, QVector<QString> sec_breakfast, QVector<QString> sec_dinner)
+{
+    setAfternoon(afternoon);
+    setBreakfast(breakfast);
+    setDinner(dinner);
+    setLunch(lunch);
+    setSecond_dinner(sec_dinner);
+    setSecond_breakfast(sec_breakfast);
+
+    qDebug() << "Afternoon " << m_Afternoon;
+    qDebug() << "Breakfast " << m_Breakfast;
+    qDebug() << "Dinner " << m_Dinner;
+    qDebug() << "Lunch " << m_Lunch;
+    qDebug() << "Second_dinner " << m_Second_dinner;
+    qDebug() << "Second_breakfast " << m_Second_breakfast;
+}
+
 QVector<QString> table_foods::getNaming_food() const
 {
     return m_Naming_food;

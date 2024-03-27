@@ -92,6 +92,8 @@ int main(int argc, char *argv[])
     //db.add_food_in_schedule("Arbuz","Day_2",4);
     tab_food.set_data_food(db.get_data_table_food());
         //qDebug() << db.get_user_data_string("Training");
+    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
+    //tab_food.setAfternoon(db.get_data_day("AFTERNOON SNACK","2"));
 
     return app.exec();
 }

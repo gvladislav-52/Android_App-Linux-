@@ -312,33 +312,35 @@ Rectangle {
             anchors.fill: parent
             onClicked:
             {
+                var temp_string = "Day_1"
                 switch(comboBox.currentIndex)
                 {
                 case 0:
                     Table_food.set_breakfast(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2", "BREAKFAST",Table_food.Breakfast)
+                    db.add_food_in_schedule(temp_string, "BREAKFAST",Table_food.Breakfast)
                     break;
                 case 1:
                     Table_food.set_sec_breakfast(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2","SECOND BREAKFAST",Table_food.Second_breakfast)
+                    db.add_food_in_schedule(temp_string,"SECOND BREAKFAST",Table_food.Second_breakfast)
                     break;
                 case 2:
                     Table_food.set_lunch(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2", "LUNCH",Table_food.Lunch)
+                    db.add_food_in_schedule(temp_string, "LUNCH",Table_food.Lunch)
                     break;
                 case 3:
                     Table_food.set_afternoon(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2", "AFTERNOON SNACK",Table_food.Afternoon)
+                    db.add_food_in_schedule(temp_string, "AFTERNOON SNACK",Table_food.Afternoon)
                     break;
                 case 4:
                     Table_food.set_dinner(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2", "DINNER",Table_food.Dinner)
+                    db.add_food_in_schedule(temp_string, "DINNER",Table_food.Dinner)
                     break;
                 case 5:
                     Table_food.set_sec_dinner(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule("Day_2", "SECOND DINNER",Table_food.Second_dinner)
+                    db.add_food_in_schedule(temp_string, "SECOND DINNER",Table_food.Second_dinner)
                     break;
                 }
+                Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"))
             }
         }
     }

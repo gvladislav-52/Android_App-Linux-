@@ -427,14 +427,14 @@ QMap<QString, QMap<QString, double>> Database::get_data_table_food()
 }
 
 void Database::add_food_in_schedule(QString data, QString index_schedule, QVector<QString> afternoon) {
-    if(!get_data_day(data))
+    if(!create_data_day(data))
     {
         add_data_day(data);
     }
     QVariantMap newPet;
     for(int i = 0; i < afternoon.length(); i++)
     {
-        newPet[QString::number(i)] = afternoon[i];
+        newPet["item_" +QString::number(i)] = afternoon[i];
     }
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(newPet);
 
@@ -443,7 +443,7 @@ void Database::add_food_in_schedule(QString data, QString index_schedule, QVecto
     m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
 }
 
-bool Database::get_data_day(QString nameData)
+bool Database::create_data_day(QString nameData)
 {
     QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/.json?auth=" + m_idToken;
     QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
@@ -496,7 +496,39 @@ void Database::add_data_day(QString nameData)
 
      QNetworkRequest newPetRequest(QUrl("https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/"+ m_localId + "/" +nameData +"/.json?auth=" + m_idToken));
     newPetRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
-    m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
+     m_networkAccessManaager->put(newPetRequest, jsonDoc.toJson());
+}
+
+QVector<QString> Database::get_data_day(QString nameData, QString nameDay)
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Date_Menu_Characters/" + m_localId + "/" +nameDay+"/.json?auth=" + m_idToken;
+    QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+    QVector<QString> items_food;
+
+    QEventLoop loop;
+    connect(networkReply, &QNetworkReply::finished, [&]()
+            {
+                if (networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+                            QJsonObject foodItem = jsonObject.value(nameData).toObject();
+                            for (const QString &foodKey : foodItem.keys())
+                            {
+                                items_food.append(foodItem.value(foodKey).toString());
+                            }
+                    }
+
+                }
+
+                networkReply->deleteLater();
+                loop.quit();
+            });
+
+    loop.exec();
+    return items_food;
 }
 
 void Database::performPOST(const QString &url, const QJsonDocument &payload)
