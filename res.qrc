@@ -33,5 +33,18 @@
         <file>ui/Image Food/apple.png</file>
         <file>Schedule_files/View_foods_item.qml</file>
         <file>Schedule_files/VIew_composition_foods.qml</file>
+        <file>Screen_image/screen_1.png</file>
+        <file>Screen_image/screen_2.png</file>
+        <file>Screen_image/screen_3.png</file>
+        <file>Screen_image/screen_4.png</file>
+        <file>Screen_image/screen_5.png</file>
+        <file>Screen_image/screen_6.png</file>
+        <file>Screen_image/screen_7.png</file>
+        <file>Screen_image/screen_8.png</file>
+        <file>Screen_image/screen_9.png</file>
+        <file>Screen_image/screen_10.png</file>
+        <file>Screen_image/screen_11.png</file>
+        <file>Screen_image/screen_12.png</file>
+        <file>Screen_image/screen_13.png</file>
     </qresource>
 </RCC>
