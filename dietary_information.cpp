@@ -1,6 +1,7 @@
 #include "dietary_information.h"
 #include "qdebug.h"
 #include <QTimer>
+#include <QDateTime>
 
 Dietary_information::Dietary_information()
     :m_Calories_day_temp(0),
@@ -16,11 +17,33 @@ Dietary_information::Dietary_information()
         setFats_day_temp(24);
         setFiber_day_temp(8);
     });
+
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    m_Data_temp = currentDateTime.toString("dd-MM-yyyy");
+    m_Data_int = 0;
 }
 
 void Dietary_information::add_food_string()
 {
     m_food_schedule_string.append("food" + QString::number(m_food_schedule_string.size()));
+}
+
+bool Dietary_information::plus_data()
+{
+    m_Data_int++;
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    currentDateTime = currentDateTime.addDays(m_Data_int);
+    setData_temp(currentDateTime.toString("dd-MM-yyyy"));
+    return true;
+}
+
+bool Dietary_information::del_data()
+{
+    m_Data_int--;
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    currentDateTime = currentDateTime.addDays(m_Data_int);
+    setData_temp(currentDateTime.toString("dd-MM-yyyy"));
+    return true;
 }
 
 void Dietary_information::add_note_string()
@@ -130,4 +153,17 @@ void Dietary_information::setFiber_day_temp(double newFiber_day_temp)
 void Dietary_information::ConnectFunc(QString IdToken, QString IdLocal)
 {
     qDebug() << IdToken << " " << IdLocal;
+}
+
+QString Dietary_information::getData_temp() const
+{
+    return m_Data_temp;
+}
+
+void Dietary_information::setData_temp(const QString &newData_temp)
+{
+    if (m_Data_temp == newData_temp)
+        return;
+    m_Data_temp = newData_temp;
+    emit Data_tempChanged();
 }

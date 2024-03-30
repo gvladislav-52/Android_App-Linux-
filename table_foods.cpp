@@ -127,6 +127,42 @@ void table_foods::remove_sec_dinner(int index)
     emit Second_dinnerChanged();
 }
 
+void table_foods::del_ful_afternoon()
+{
+    m_Afternoon.clear();
+    emit AfternoonChanged();
+}
+
+void table_foods::del_ful_breakfast()
+{
+    m_Breakfast.clear();
+    emit BreakfastChanged();
+}
+
+void table_foods::del_ful_sec_breakfast()
+{
+    m_Second_breakfast.clear();
+    emit Second_breakfastChanged();
+}
+
+void table_foods::del_ful_lunch()
+{
+    m_Lunch.clear();
+    emit LunchChanged();
+}
+
+void table_foods::del_ful_dinner()
+{
+    m_Dinner.clear();
+    emit DinnerChanged();
+}
+
+void table_foods::del_ful_sec_dinner()
+{
+    m_Second_dinner.clear();
+    emit Second_dinnerChanged();
+}
+
 QVector<QString> table_foods::getNaming_food() const
 {
     return m_Naming_food;

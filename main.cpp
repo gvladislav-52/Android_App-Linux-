@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
                              db.get_user_data_vector_int("Data_","History_weight/Weight"),db.get_user_data_vector_string("Data_","History_weight/Date"),
                              db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
     tab_food.set_data_food(db.get_data_table_food());
-    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
+    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_day("SECOND DINNER",deitary.getData_temp()));
     qmlRegisterType<setting_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 

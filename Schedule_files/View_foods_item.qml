@@ -312,7 +312,7 @@ Rectangle {
             anchors.fill: parent
             onClicked:
             {
-                var temp_string = "Day_1"
+                var temp_string = Deitary_temp.Data_temp
                 switch(comboBox.currentIndex)
                 {
                 case 0:
@@ -340,7 +340,7 @@ Rectangle {
                     db.add_food_in_schedule(temp_string, "SECOND DINNER",Table_food.Second_dinner)
                     break;
                 }
-                Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"))
+                Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
             }
         }
     }

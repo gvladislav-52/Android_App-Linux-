@@ -160,7 +160,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"BREAKFAST","Day_1"))
+                                                        if(db.delete_data(index,"BREAKFAST",Deitary_temp.Data_temp))
                                                             Table_food.remove_breakfast(index)
                                                     }
                                                 }
@@ -292,7 +292,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"SECOND BREAKFAST","Day_1"))
+                                                        if(db.delete_data(index,"SECOND BREAKFAST",Deitary_temp.Data_temp))
                                                             Table_food.remove_sec_breakfast(index)
                                                     }
                                                 }
@@ -424,7 +424,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"LUNCH","Day_1"))
+                                                        if(db.delete_data(index,"LUNCH",Deitary_temp.Data_temp))
                                                             Table_food.remove_lunch(index)
                                                     }
                                                 }
@@ -556,7 +556,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"AFTERNOON SNACK","Day_1"))
+                                                        if(db.delete_data(index,"AFTERNOON SNACK",Deitary_temp.Data_temp))
                                                             Table_food.remove_afternoon(index)
                                                     }
                                                 }
@@ -688,7 +688,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"DINNER","Day_1"))
+                                                        if(db.delete_data(index,"DINNER",Deitary_temp.Data_temp))
                                                             Table_food.remove_dinner(index)
                                                     }
                                                 }
@@ -699,7 +699,7 @@ Item
                 }
 
                 Rectangle {
-                    Layout.preferredHeight: Math.max(sfa.model * track.height*0.05 + 30)
+                    Layout.preferredHeight: Math.max(sfa5.model * track.height*0.05 + 30)
                     Layout.preferredWidth: parent.width
                     color: "transparent"
 
@@ -820,7 +820,7 @@ Item
                                                     anchors.fill: parent
                                                     onClicked:
                                                     {
-                                                        if(db.delete_data(index,"SECOND DINNER","Day_1"))
+                                                        if(db.delete_data(index,"SECOND DINNER",Deitary_temp.Data_temp))
                                                             Table_food.remove_sec_dinner(index)
                                                     }
                                                 }

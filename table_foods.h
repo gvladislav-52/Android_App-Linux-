@@ -80,6 +80,13 @@ public slots:
     void remove_dinner(int index);
     void remove_sec_dinner(int index);
 
+    void del_ful_afternoon();
+    void del_ful_breakfast();
+    void del_ful_sec_breakfast();
+    void del_ful_lunch();
+    void del_ful_dinner();
+    void del_ful_sec_dinner();
+
     void set_data_schedule(QVector<QString> afternoon,QVector<QString> breakfast,QVector<QString> dinner,QVector<QString> lunch,QVector<QString> sec_breakfast, QVector<QString> sec_dinner);
 private:
     QMap<QString, QMap<QString, double>> m_full_data;
@@ -91,6 +98,8 @@ private:
     QVector<QString> m_Lunch;
     QVector<QString> m_Second_breakfast;
     QVector<QString> m_Second_dinner;
+
+
 };
 
 #endif // TABLE_FOODS_H

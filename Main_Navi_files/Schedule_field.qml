@@ -33,6 +33,23 @@ Item {
                 Layout.preferredWidth: parent.width *0.1
                 fillMode: Image.PreserveAspectFit
                 mirror: true
+
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked:
+                    {
+                        var temp_string = Deitary_temp.Data_temp
+                        Table_food.del_ful_afternoon()
+                        Table_food.del_ful_breakfast()
+                        Table_food.del_ful_sec_breakfast()
+                        Table_food.del_ful_lunch()
+                        Table_food.del_ful_dinner()
+                        Table_food.del_ful_sec_dinner()
+                        if(Deitary_temp.del_data())
+                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
+                    }
+                }
             }
 
             RowLayout
@@ -54,7 +71,7 @@ Item {
                     id: calendar_text_data
                     Layout.alignment: Qt.AlignRight
                     font.pixelSize: parent.height*0.3
-                    text: qsTr("20.02.2024")
+                    text: Deitary_temp.Data_temp
                     color: "gray"
                 }
             }
@@ -67,6 +84,23 @@ Item {
                 Layout.preferredHeight: parent.height*0.4
                 Layout.preferredWidth: parent.width *0.1
                 fillMode: Image.PreserveAspectFit
+
+                MouseArea
+                {
+                    anchors.fill: parent
+                    onClicked:
+                    {
+                        var temp_string = Deitary_temp.Data_temp
+                        Table_food.del_ful_afternoon()
+                        Table_food.del_ful_breakfast()
+                        Table_food.del_ful_sec_breakfast()
+                        Table_food.del_ful_lunch()
+                        Table_food.del_ful_dinner()
+                        Table_food.del_ful_sec_dinner()
+                        if(Deitary_temp.plus_data())
+                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
+                    }
+                }
             }
         }
 

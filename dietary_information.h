@@ -21,6 +21,8 @@ class Dietary_information: public QObject
     Q_PROPERTY(double Carb_day_temp READ getCarb_day_temp WRITE setCarb_day_temp NOTIFY Carb_day_tempChanged FINAL)
     Q_PROPERTY(double Fats_day_temp READ getFats_day_temp WRITE setFats_day_temp NOTIFY Fats_day_tempChanged FINAL)
     Q_PROPERTY(double Fiber_day_temp READ getFiber_day_temp WRITE setFiber_day_temp NOTIFY Fiber_day_tempChanged FINAL)
+
+    Q_PROPERTY(QString Data_temp READ getData_temp WRITE setData_temp NOTIFY Data_tempChanged FINAL)
 public:
     Dietary_information();
     QVector<QString> getNote_string() const;
@@ -46,6 +48,9 @@ public:
 
     void ConnectFunc(QString IdToken, QString IdLocal);
 
+    QString getData_temp() const;
+    void setData_temp(const QString &newData_temp);
+
 signals:
     void note_stringChanged();
 
@@ -60,6 +65,8 @@ signals:
     void Fats_day_tempChanged();
 
     void Fiber_day_tempChanged();
+
+    void Data_tempChanged();
 
 private:
     QNetworkAccessManager * m_networkAccessManaager;
@@ -77,10 +84,15 @@ private:
 
     double m_Fiber_day_temp;
 
+    QString m_Data_temp;
+    int m_Data_int;
+
 public slots:
     void add_note_string();
     void remove_food_schedule(int index);
     void add_food_string();
+    bool plus_data();
+    bool del_data();
 
 };
 
