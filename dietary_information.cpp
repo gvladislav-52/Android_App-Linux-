@@ -34,6 +34,7 @@ bool Dietary_information::plus_data()
     QDateTime currentDateTime = QDateTime::currentDateTime();
     currentDateTime = currentDateTime.addDays(m_Data_int);
     setData_temp(currentDateTime.toString("dd-MM-yyyy"));
+    qDebug() << m_Data_temp;
     return true;
 }
 
@@ -43,6 +44,7 @@ bool Dietary_information::del_data()
     QDateTime currentDateTime = QDateTime::currentDateTime();
     currentDateTime = currentDateTime.addDays(m_Data_int);
     setData_temp(currentDateTime.toString("dd-MM-yyyy"));
+        qDebug() << m_Data_temp;
     return true;
 }
 

@@ -39,7 +39,6 @@ Item {
                     anchors.fill: parent
                     onClicked:
                     {
-                        var temp_string = Deitary_temp.Data_temp
                         Table_food.del_ful_afternoon()
                         Table_food.del_ful_breakfast()
                         Table_food.del_ful_sec_breakfast()
@@ -47,7 +46,7 @@ Item {
                         Table_food.del_ful_dinner()
                         Table_food.del_ful_sec_dinner()
                         if(Deitary_temp.del_data())
-                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
+                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp))
                     }
                 }
             }
@@ -90,7 +89,6 @@ Item {
                     anchors.fill: parent
                     onClicked:
                     {
-                        var temp_string = Deitary_temp.Data_temp
                         Table_food.del_ful_afternoon()
                         Table_food.del_ful_breakfast()
                         Table_food.del_ful_sec_breakfast()
@@ -98,7 +96,7 @@ Item {
                         Table_food.del_ful_dinner()
                         Table_food.del_ful_sec_dinner()
                         if(Deitary_temp.plus_data())
-                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
+                            Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp))
                     }
                 }
             }
