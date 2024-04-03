@@ -91,7 +91,7 @@ private:
     double m_SumProtein;
     double m_SumCarb;
     double m_SumFats;
-    double m_Fiber;
+    double m_SumFiber;
 
 public slots:
     void add_note_string();
@@ -100,6 +100,8 @@ public slots:
     bool plus_data();
     bool del_data();
     void set_adding_food_metrics(double calories, double protein, double carb, double fats, double fiber);
+    void set_adding_food_metrics(QVector<QString> calories,QMap<QString, QMap<QString, double>> temp);
+    void reset_food_metrics();
 };
 
 #endif // DIETARY_INFORMATION_H

@@ -46,13 +46,70 @@ void Dietary_information::set_adding_food_metrics(double calories, double protei
     m_SumProtein += protein;
     m_SumCarb += carb;
     m_SumFats +=fats;
-    m_Fiber +=fiber;
+    m_SumFiber +=fiber;
 
     setCalories_day_temp(m_SumCalories);
     setProtein_day_temp(m_SumProtein);
     setCarb_day_temp(m_SumCarb);
     setFats_day_temp(m_SumFats);
-    setFiber_day_temp(m_Fiber);
+    setFiber_day_temp(m_SumFiber);
+}
+
+void Dietary_information::set_adding_food_metrics(QVector<QString> schedule, QMap<QString, QMap<QString, double> > temp)
+{
+    for(int i = 0; i < schedule.size(); i++)
+    {
+        for (auto it = temp.begin(); it != temp.end(); ++it) {
+            if(schedule[i] ==it.key())
+            {
+            QMap<QString, double> inner_map = it.value();
+                int index = 0;
+                for(auto inner_it = inner_map.begin(); inner_it != inner_map.end(); ++inner_it)
+                {
+                    switch(index)
+                    {
+                    case 0:
+                        m_SumCalories += inner_it.value();
+                        break;
+                    case 1:
+                        m_SumCarb += inner_it.value();
+                        break;
+                    case 2:
+                        m_SumFats +=inner_it.value();
+                        break;
+                    case 3:
+                        m_SumFiber += inner_it.value();
+                        break;
+                    case 4:
+                        m_SumProtein += inner_it.value();
+                        break;
+                    }
+                    ++index;
+                }
+            }
+        }
+    }
+    setCalories_day_temp(m_SumCalories);
+    setProtein_day_temp(m_SumProtein);
+    setCarb_day_temp(m_SumCarb);
+    setFats_day_temp(m_SumFats);
+    setFiber_day_temp(m_SumFiber);
+}
+
+void Dietary_information::reset_food_metrics()
+{
+
+    m_SumCalories =0;
+    m_SumProtein =0;
+    m_SumCarb =0;
+    m_SumFats =0;
+    m_SumFiber =0;
+
+    setCalories_day_temp(m_SumCalories);
+    setProtein_day_temp(m_SumProtein);
+    setCarb_day_temp(m_SumCarb);
+    setFats_day_temp(m_SumFats);
+    setFiber_day_temp(m_SumFiber);
 }
 
 void Dietary_information::add_note_string()

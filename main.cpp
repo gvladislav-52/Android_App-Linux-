@@ -39,6 +39,12 @@ int main(int argc, char *argv[])
                              db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
     tab_food.set_data_food(db.get_data_table_food());
     tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_day("SECOND DINNER",deitary.getData_temp()));
+    // deitary.set_adding_food_metrics(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_table_food());
+    // deitary.set_adding_food_metrics(db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_table_food());
+    // deitary.set_adding_food_metrics(db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_table_food());
+    // deitary.set_adding_food_metrics(db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_table_food());
+    // deitary.set_adding_food_metrics(db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_table_food());
+    // deitary.set_adding_food_metrics(db.get_data_day("SECOND DINNER",deitary.getData_temp()),db.get_data_table_food());
     qmlRegisterType<setting_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 

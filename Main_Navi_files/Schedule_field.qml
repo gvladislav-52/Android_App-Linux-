@@ -45,8 +45,17 @@ Item {
                         Table_food.del_ful_lunch()
                         Table_food.del_ful_dinner()
                         Table_food.del_ful_sec_dinner()
+                        //Deitary_temp.reset_food_metrics()
                         if(Deitary_temp.del_data())
+                        {
                             Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp))
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp),db.get_data_table_food());
+                        }
                     }
                 }
             }
@@ -95,8 +104,17 @@ Item {
                         Table_food.del_ful_lunch()
                         Table_food.del_ful_dinner()
                         Table_food.del_ful_sec_dinner()
+                        //Deitary_temp.reset_food_metrics()
                         if(Deitary_temp.plus_data())
+                        {
                             Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp))
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("AFTERNOON SNACK",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("BREAKFAST",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("DINNER",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("LUNCH",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("SECOND BREAKFAST",Deitary_temp.Data_temp),db.get_data_table_food());
+                            // Deitary_temp.set_adding_food_metrics(db.get_data_day("SECOND DINNER",Deitary_temp.Data_temp),db.get_data_table_food());
+                        }
                     }
                 }
             }
