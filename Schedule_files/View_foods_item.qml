@@ -340,6 +340,7 @@ Rectangle {
                     db.add_food_in_schedule(temp_string, "SECOND DINNER",Table_food.Second_dinner)
                     break;
                 }
+                Deitary_temp.set_adding_food_metrics(Table_food.Data_food[(index_temp*6)],Table_food.Data_food[(index_temp*6)+4],Table_food.Data_food[(index_temp*6)+1],Table_food.Data_food[(index_temp*6)+2],Table_food.Data_food[(index_temp*6)+3]);
                 Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
             }
         }

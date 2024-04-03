@@ -87,13 +87,19 @@ private:
     QString m_Data_temp;
     int m_Data_int;
 
+    double m_SumCalories;
+    double m_SumProtein;
+    double m_SumCarb;
+    double m_SumFats;
+    double m_Fiber;
+
 public slots:
     void add_note_string();
     void remove_food_schedule(int index);
     void add_food_string();
     bool plus_data();
     bool del_data();
-
+    void set_adding_food_metrics(double calories, double protein, double carb, double fats, double fiber);
 };
 
 #endif // DIETARY_INFORMATION_H

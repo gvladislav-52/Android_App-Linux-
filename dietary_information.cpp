@@ -10,14 +10,6 @@ Dietary_information::Dietary_information()
     m_Fats_day_temp(0),
     m_Fiber_day_temp(0)
 {
-    QTimer::singleShot(3000, this, [this]() {
-        setCalories_day_temp(1000.23);
-        setProtein_day_temp(100);
-        setCarb_day_temp(400);
-        setFats_day_temp(24);
-        setFiber_day_temp(8);
-    });
-
     QDateTime currentDateTime = QDateTime::currentDateTime();
     m_Data_temp = currentDateTime.toString("dd-MM-yyyy");
     m_Data_int = 0;
@@ -46,6 +38,21 @@ bool Dietary_information::del_data()
     setData_temp(currentDateTime.toString("dd-MM-yyyy"));
         qDebug() << m_Data_temp;
     return true;
+}
+
+void Dietary_information::set_adding_food_metrics(double calories, double protein, double carb, double fats, double fiber)
+{
+    m_SumCalories += calories;
+    m_SumProtein += protein;
+    m_SumCarb += carb;
+    m_SumFats +=fats;
+    m_Fiber +=fiber;
+
+    setCalories_day_temp(m_SumCalories);
+    setProtein_day_temp(m_SumProtein);
+    setCarb_day_temp(m_SumCarb);
+    setFats_day_temp(m_SumFats);
+    setFiber_day_temp(m_Fiber);
 }
 
 void Dietary_information::add_note_string()
