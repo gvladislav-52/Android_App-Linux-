@@ -100,8 +100,9 @@ public slots:
     bool plus_data();
     bool del_data();
     void set_adding_food_metrics(double calories, double protein, double carb, double fats, double fiber);
-    void set_adding_food_metrics(QVector<QString> calories,QMap<QString, QMap<QString, double>> temp);
+    void set_adding_food_metrics(QVector<QString> Afternoon,QVector<QString> Breakfast,QVector<QString> Lunch,QVector<QString> Dinner,QVector<QString> Sec_Breakfast,QVector<QString> Sec_Dinner, QMap<QString, QMap<QString, double> > temp);
     void reset_food_metrics();
+    void set_del_food_metrics(double calories, double protein, double carb, double fats, double fiber);
 };
 
 #endif // DIETARY_INFORMATION_H

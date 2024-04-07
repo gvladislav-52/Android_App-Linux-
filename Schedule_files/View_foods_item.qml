@@ -307,42 +307,69 @@ Rectangle {
             font.pixelSize: parent.height * 0.25
         }
 
-        MouseArea
-        {
+        MouseArea {
             anchors.fill: parent
-            onClicked:
-            {
+            onClicked: {
+
+                 view_foods_item.visible = false
+                 view_foods_item.enabled = false
+
+                schedule_temp.visible = true
+                schedule_temp.enabled = true
+
+
                 var temp_string = Deitary_temp.Data_temp
-                switch(comboBox.currentIndex)
-                {
+                switch (comboBox.currentIndex) {
                 case 0:
                     Table_food.set_breakfast(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string, "BREAKFAST",Table_food.Breakfast)
+                    db.add_food_in_schedule(temp_string, "BREAKFAST", Table_food.Breakfast)
                     break;
                 case 1:
                     Table_food.set_sec_breakfast(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string,"SECOND BREAKFAST",Table_food.Second_breakfast)
+                    db.add_food_in_schedule(temp_string, "SECOND BREAKFAST", Table_food.Second_breakfast)
                     break;
                 case 2:
                     Table_food.set_lunch(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string, "LUNCH",Table_food.Lunch)
+                    db.add_food_in_schedule(temp_string, "LUNCH", Table_food.Lunch)
                     break;
                 case 3:
                     Table_food.set_afternoon(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string, "AFTERNOON SNACK",Table_food.Afternoon)
+                    db.add_food_in_schedule(temp_string, "AFTERNOON SNACK", Table_food.Afternoon)
                     break;
                 case 4:
                     Table_food.set_dinner(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string, "DINNER",Table_food.Dinner)
+                    db.add_food_in_schedule(temp_string, "DINNER", Table_food.Dinner)
                     break;
                 case 5:
                     Table_food.set_sec_dinner(Table_food.Naming_food[index_temp]);
-                    db.add_food_in_schedule(temp_string, "SECOND DINNER",Table_food.Second_dinner)
+                    db.add_food_in_schedule(temp_string, "SECOND DINNER", Table_food.Second_dinner)
                     break;
                 }
-                Deitary_temp.set_adding_food_metrics(Table_food.Data_food[(index_temp*6)],Table_food.Data_food[(index_temp*6)+4],Table_food.Data_food[(index_temp*6)+1],Table_food.Data_food[(index_temp*6)+2],Table_food.Data_food[(index_temp*6)+3]);
-                Table_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",temp_string),db.get_data_day("BREAKFAST",temp_string),db.get_data_day("DINNER",temp_string),db.get_data_day("LUNCH",temp_string),db.get_data_day("SECOND BREAKFAST",temp_string),db.get_data_day("SECOND DINNER",temp_string))
+
+                // Вызов функции после выполнения switch
+                //myFunctionCall(); // Название вашей функции
+                Deitary_temp.set_adding_food_metrics(
+                            Table_food.Data_food[(index_temp*6)],
+                            Table_food.Data_food[(index_temp*6)+4],
+                            Table_food.Data_food[(index_temp*6)+1],
+                            Table_food.Data_food[(index_temp*6)+2],
+                            Table_food.Data_food[(index_temp*6)+3]
+                            );
+                // Table_food.set_data_schedule(
+                //     db.get_data_day("AFTERNOON SNACK", temp_string),
+                //     db.get_data_day("BREAKFAST", temp_string),
+                //     db.get_data_day("DINNER", temp_string),
+                //     db.get_data_day("LUNCH", temp_string),
+                //     db.get_data_day("SECOND BREAKFAST", temp_string),
+                //     db.get_data_day("SECOND DINNER", temp_string)
+                // );
+
+
             }
         }
+
+        // function myFunctionCall() {
+        // }
+
     }
 }

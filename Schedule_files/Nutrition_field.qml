@@ -161,7 +161,10 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"BREAKFAST",Deitary_temp.Data_temp))
+                                                        {
+                                                            console.log(Table_food.Breakfast[index])
                                                             Table_food.remove_breakfast(index)
+                                                        }
                                                     }
                                                 }
                                             }

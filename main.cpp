@@ -38,13 +38,7 @@ int main(int argc, char *argv[])
                              db.get_user_data_vector_int("Data_","History_weight/Weight"),db.get_user_data_vector_string("Data_","History_weight/Date"),
                              db.get_user_data_vector_int("Data_","History_height/Height"),db.get_user_data_vector_string("Data_","History_height/Date"));
     tab_food.set_data_food(db.get_data_table_food());
-    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_day("SECOND DINNER",deitary.getData_temp()));
-    // deitary.set_adding_food_metrics(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_table_food());
-    // deitary.set_adding_food_metrics(db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_table_food());
-    // deitary.set_adding_food_metrics(db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_table_food());
-    // deitary.set_adding_food_metrics(db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_table_food());
-    // deitary.set_adding_food_metrics(db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_table_food());
-    // deitary.set_adding_food_metrics(db.get_data_day("SECOND DINNER",deitary.getData_temp()),db.get_data_table_food());
+
     qmlRegisterType<setting_widget>("my_statistic_table_qml", 1, 0, "Statistic_object");
     const QUrl url(u"qrc:/Main_files/Main.qml"_qs);
 
@@ -57,6 +51,7 @@ int main(int argc, char *argv[])
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+
     QQmlContext * rootContext = engine.rootContext();
     rootContext->setContextProperty("sasa", &sa);
     rootContext->setContextProperty("Deitary_temp", &deitary);
@@ -65,6 +60,9 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("Table_food", &tab_food);
     rootContext->setContextProperty("db", &db);
     engine.load(url);
+
+    deitary.set_adding_food_metrics(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_day("SECOND DINNER",deitary.getData_temp()),db.get_data_table_food());
+    tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK",deitary.getData_temp()),db.get_data_day("BREAKFAST",deitary.getData_temp()),db.get_data_day("DINNER",deitary.getData_temp()),db.get_data_day("LUNCH",deitary.getData_temp()),db.get_data_day("SECOND BREAKFAST",deitary.getData_temp()),db.get_data_day("SECOND DINNER",deitary.getData_temp()));
     //qDebug() << db.get_user_data_int("Actual_weight");
     // QTimer::singleShot(3000,[&db, &authHandler]() {
     //     authHandler.use_data_all(db.get_user_data_string("Training"), db.get_user_data_string("Gender"), db.get_user_data_int("Actual_weight"),

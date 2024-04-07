@@ -55,12 +55,22 @@ void Dietary_information::set_adding_food_metrics(double calories, double protei
     setFiber_day_temp(m_SumFiber);
 }
 
-void Dietary_information::set_adding_food_metrics(QVector<QString> schedule, QMap<QString, QMap<QString, double> > temp)
+void Dietary_information::set_adding_food_metrics(QVector<QString> Afternoon,QVector<QString> Breakfast,QVector<QString> Lunch,QVector<QString> Dinner,QVector<QString> Sec_Breakfast,QVector<QString> Sec_Dinner, QMap<QString, QMap<QString, double> > temp)
 {
-    for(int i = 0; i < schedule.size(); i++)
+    QVector<QVector<QString>> vector_temp;
+    vector_temp.append(Afternoon);
+    vector_temp.append(Breakfast);
+    vector_temp.append(Lunch);
+    vector_temp.append(Dinner);
+    vector_temp.append(Sec_Breakfast);
+    vector_temp.append(Sec_Dinner);
+
+    for(int g = 0; g<vector_temp.size(); g++)
+    {
+    for(int i = 0; i < vector_temp[g].size(); i++)
     {
         for (auto it = temp.begin(); it != temp.end(); ++it) {
-            if(schedule[i] ==it.key())
+            if(vector_temp[g][i] ==it.key())
             {
             QMap<QString, double> inner_map = it.value();
                 int index = 0;
@@ -89,6 +99,7 @@ void Dietary_information::set_adding_food_metrics(QVector<QString> schedule, QMa
             }
         }
     }
+    }
     setCalories_day_temp(m_SumCalories);
     setProtein_day_temp(m_SumProtein);
     setCarb_day_temp(m_SumCarb);
@@ -104,6 +115,21 @@ void Dietary_information::reset_food_metrics()
     m_SumCarb =0;
     m_SumFats =0;
     m_SumFiber =0;
+
+    setCalories_day_temp(m_SumCalories);
+    setProtein_day_temp(m_SumProtein);
+    setCarb_day_temp(m_SumCarb);
+    setFats_day_temp(m_SumFats);
+    setFiber_day_temp(m_SumFiber);
+}
+
+void Dietary_information::set_del_food_metrics(double calories, double protein, double carb, double fats, double fiber)
+{
+    m_SumCalories -= calories;
+    m_SumProtein -= protein;
+    m_SumCarb -= carb;
+    m_SumFats -=fats;
+    m_SumFiber -=fiber;
 
     setCalories_day_temp(m_SumCalories);
     setProtein_day_temp(m_SumProtein);
