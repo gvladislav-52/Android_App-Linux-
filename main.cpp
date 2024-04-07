@@ -101,5 +101,6 @@ int main(int argc, char *argv[])
     //tab_food.set_data_schedule(db.get_data_day("AFTERNOON SNACK","Day_1"),db.get_data_day("BREAKFAST","Day_1"),db.get_data_day("DINNER","Day_1"),db.get_data_day("LUNCH","Day_1"),db.get_data_day("SECOND BREAKFAST","Day_1"),db.get_data_day("SECOND DINNER","Day_1"));
     //tab_food.setAfternoon(db.get_data_day("AFTERNOON SNACK","2"));
     //db.delete_data();
+
     return app.exec();
 }

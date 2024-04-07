@@ -571,6 +571,56 @@ bool Database::delete_data(int num,QString nameData,QString Day)
     return true;
 }
 
+double Database::find_characters_food(QString nameData, int i)
+{
+    QString url = "https://qtfirebaseintegrationexa-c5807-default-rtdb.firebaseio.com/Food_Table/.json?auth=" + m_idToken;
+    QNetworkReply *networkReply = m_networkAccessManaager->get(QNetworkRequest(QUrl(url)));
+    double temp;
+    QEventLoop loop;
+    connect(networkReply, &QNetworkReply::finished, [&]()
+            {
+                if (networkReply->error() == QNetworkReply::NoError)
+                {
+                    QJsonDocument jsonResponse = QJsonDocument::fromJson(networkReply->readAll());
+                    if (!jsonResponse.isNull())
+                    {
+                        QJsonObject jsonObject = jsonResponse.object();
+
+                        if (jsonObject.contains(nameData))
+                        {
+                            QJsonObject appleObject = jsonObject.value(nameData).toObject();
+
+                            switch(i)
+                            {
+                            case 0:
+                                temp = appleObject.value("Calories").toDouble();
+                                break;
+                            case 1:
+                                temp = appleObject.value("Protein").toDouble();
+                                break;
+                            case 2:
+                                temp = appleObject.value("Fats").toDouble();
+                                break;
+                            case 3:
+                                temp = appleObject.value("Fiber").toDouble();
+                                break;
+                            case 4:
+                                temp = appleObject.value("Carb").toDouble();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                networkReply->deleteLater();
+                loop.quit();
+            });
+
+    loop.exec();
+
+    return temp;
+}
+
 void Database::performPOST(const QString &url, const QJsonDocument &payload)
 {
     QNetworkRequest newRequest ((QUrl(url)));

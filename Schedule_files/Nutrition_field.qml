@@ -162,7 +162,12 @@ Item
                                                     {
                                                         if(db.delete_data(index,"BREAKFAST",Deitary_temp.Data_temp))
                                                         {
-                                                            console.log(Table_food.Breakfast[index])
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Breakfast[index],0),
+                                                                                              db.find_characters_food(Table_food.Breakfast[index],1),
+                                                                                              db.find_characters_food(Table_food.Breakfast[index],4),
+                                                                                              db.find_characters_food(Table_food.Breakfast[index],2),
+                                                                                              db.find_characters_food(Table_food.Breakfast[index],3)
+                                                                                              )
                                                             Table_food.remove_breakfast(index)
                                                         }
                                                     }
@@ -296,7 +301,15 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"SECOND BREAKFAST",Deitary_temp.Data_temp))
+                                                        {
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Second_breakfast[index],0),
+                                                                                              db.find_characters_food(Table_food.Second_breakfast[index],1),
+                                                                                              db.find_characters_food(Table_food.Second_breakfast[index],4),
+                                                                                              db.find_characters_food(Table_food.Second_breakfast[index],2),
+                                                                                              db.find_characters_food(Table_food.Second_breakfast[index],3)
+                                                                                              )
                                                             Table_food.remove_sec_breakfast(index)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -428,7 +441,15 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"LUNCH",Deitary_temp.Data_temp))
+                                                        {
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Lunch[index],0),
+                                                                                              db.find_characters_food(Table_food.Lunch[index],1),
+                                                                                              db.find_characters_food(Table_food.Lunch[index],4),
+                                                                                              db.find_characters_food(Table_food.Lunch[index],2),
+                                                                                              db.find_characters_food(Table_food.Lunch[index],3)
+                                                                                              )
                                                             Table_food.remove_lunch(index)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -560,7 +581,15 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"AFTERNOON SNACK",Deitary_temp.Data_temp))
+                                                        {
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Afternoon[index],0),
+                                                                                              db.find_characters_food(Table_food.Afternoon[index],1),
+                                                                                              db.find_characters_food(Table_food.Afternoon[index],4),
+                                                                                              db.find_characters_food(Table_food.Afternoon[index],2),
+                                                                                              db.find_characters_food(Table_food.Afternoon[index],3)
+                                                                                              )
                                                             Table_food.remove_afternoon(index)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -692,7 +721,15 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"DINNER",Deitary_temp.Data_temp))
+                                                        {
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Dinner[index],0),
+                                                                                              db.find_characters_food(Table_food.Dinner[index],1),
+                                                                                              db.find_characters_food(Table_food.Dinner[index],4),
+                                                                                              db.find_characters_food(Table_food.Dinner[index],2),
+                                                                                              db.find_characters_food(Table_food.Dinner[index],3)
+                                                                                              )
                                                             Table_food.remove_dinner(index)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -824,7 +861,15 @@ Item
                                                     onClicked:
                                                     {
                                                         if(db.delete_data(index,"SECOND DINNER",Deitary_temp.Data_temp))
+                                                        {
+                                                            Deitary_temp.set_del_food_metrics(db.find_characters_food(Table_food.Second_dinner[index],0),
+                                                                                              db.find_characters_food(Table_food.Second_dinner[index],1),
+                                                                                              db.find_characters_food(Table_food.Second_dinner[index],4),
+                                                                                              db.find_characters_food(Table_food.Second_dinner[index],2),
+                                                                                              db.find_characters_food(Table_food.Second_dinner[index],3)
+                                                                                              )
                                                             Table_food.remove_sec_dinner(index)
+                                                        }
                                                     }
                                                 }
                                             }
